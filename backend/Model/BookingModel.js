@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const shortid = require("shortid"); // Install this package: npm install shortid
 
 const Schema = mongoose.Schema;
 
@@ -7,7 +6,7 @@ const bookingSchema = new Schema({
     bookingId: {
         type: String,
         default: function () {
-            return 'BK' + shortid.generate(); // Prefix BK + unique short ID
+            return 'BK' + Math.floor(Math.random() * 1000000); // Prefix BK + random number for uniqueness
         },
         unique: true // Ensure it's unique
     },
