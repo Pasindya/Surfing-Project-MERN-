@@ -1,35 +1,33 @@
 const mongoose = require("mongoose");
-const shortid = require("shortid"); // Install this package: npm install shortid
-
 const Schema = mongoose.Schema;
+const shortid = require("shortid"); // You need to install shortid
 
 const bookingSchema = new Schema({
-    bookingId: {
+    _id: {
         type: String,
         default: function () {
-            return 'BK' + shortid.generate(); // Prefix BK + unique short ID
-        },
-        unique: true // Ensure it's unique
+            return 'BK' + shortid.generate(); // Prefix + unique ID
+        }
     },
     name: {
         type: String,
-        required: true
+        required: true,
     },
     packagename: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     mobileno: {
-        type: String,
-        required: true
+        type: String, // Changed from Number to String
+        required: true,
     },
     address: {
         type: String,
-        required: true
+        required: true,
     }
 });
 
