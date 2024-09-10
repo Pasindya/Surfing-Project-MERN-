@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Signin() {
+export default function Booking() {
   return (
     <div>
-      Sign in
+      Booking
     </div>
   )
 }

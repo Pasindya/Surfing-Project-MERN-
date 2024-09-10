@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Signin() {
+export default function Adminhome() {
   return (
     <div>
-      Sign in
+      Admin home
     </div>
   )
 }
