@@ -1,8 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate from react-router-dom
+import axios from 'axios';
 
 export default function Booking({ booking }) {
   const { _id, name, packagename, email, mobileno, address } = booking;
+  const navigate = useNavigate();
+
+  const deleteHandler = async () => {
+    try {
+      await axios.delete(`http://localhost:5005/bookings/${_id}`);
+      navigate("/"); // Redirect to home after deletion
+      // Optionally navigate to booking details or any other page
+    } catch (error) {
+      console.error('Failed to delete the booking:', error);
+    }
+  };
 
   return (
     <div className="p-4 mb-4 bg-white shadow rounded">
@@ -19,7 +31,8 @@ export default function Booking({ booking }) {
             Update
           </button>
         </Link>
-        <button className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">
+        <button onClick={deleteHandler}
+          className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">
           Delete
         </button>
       </div>
