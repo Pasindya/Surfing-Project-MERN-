@@ -18,6 +18,7 @@ import Booking from './Booking/Booking';
 import Updatebooking from './Booking/Updatebooking';
 import Bookingdescription from './Booking/Bookingdescription';
 import Adminhome from './Dashboard/Adminhome';
+import Support from './Pages/Support';
 
 export default function App() {
   return (
@@ -34,9 +35,10 @@ export default function App() {
       <Route path ='/supplier' element={<Supplier/>}/>
       <Route path ='/signin' element={<Signin/>}/>
       <Route path ='/beginner' element={<Beginner/>}/>
-      <Route path ='/intermidiate' element={<Intermidiate/>}/>
+      <Route path ='/intermediate' element={<Intermidiate/>}/>
       <Route path ='/advanced' element={<Advanced/>}/>
       <Route path ='/bookpackage' element={<Bookpackage/>}/>
+      <Route path ='/support' element={<Support/>}/>
 
 
 //Booking pages
