@@ -70,7 +70,7 @@ export default function Bookpackage() {
 
   // Function to send a booking request to the server
   const sendRequest = async () => {
-    await axios.post("http://Localhost:5005/bookings", {
+    await axios.post("http://Localhost:5009/bookings", {
       name: String(inputs.name),
       packagename: String(inputs.packagename),
       email: String(inputs.email),
