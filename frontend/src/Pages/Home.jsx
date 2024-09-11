@@ -114,7 +114,7 @@ export default function Home() {
       <section className="py-16 bg-blue-600 text-white text-center">
         <h2 className="text-3xl sm:text-4xl font-bold">Ready to Ride the Waves?</h2>
         <p className="mt-4 text-lg sm:text-xl">Join us at Surf Deck for an unforgettable surfing experience.</p>
-        <Link to="/contact" className="mt-8 inline-block bg-white text-blue-600 font-semibold py-2 px-4 rounded">
+        <Link to="/support" className="mt-8 inline-block bg-white text-blue-600 font-semibold py-2 px-4 rounded">
           Contact Us
         </Link>
       </section>
