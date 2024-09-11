@@ -12,7 +12,7 @@ export default function UpdateBooking() {
   useEffect(() => {
     const fetchHandler = async () => {
       try {
-        const response = await axios.get(`http://Localhost:5005/bookings/${id}`);
+        const response = await axios.get(`http://Localhost:5009/bookings/${id}`);
         setInputs(response.data);
       } catch (err) {
         console.error("Error fetching booking details: ", err);
@@ -23,7 +23,7 @@ export default function UpdateBooking() {
 
   const sendRequest = async () => {
     try {
-      await axios.put(`http://Localhost:5005/bookings/${id}`, {
+      await axios.put(`http://Localhost:5009/bookings/${id}`, {
         name: String(inputs.name),
         packagename: String(inputs.packagename),
         email: String(inputs.email),

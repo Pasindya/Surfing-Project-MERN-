@@ -3,7 +3,7 @@ import axios from 'axios';
 import Bookingnav from './Bookingnav';  // Ensure this is the correct path to Bookingnav component
 import Booking from './Booking';  // Ensure this is the correct path to Booking component
 
-const URL = "http://localhost:5005/bookings";  // Ensure your backend API is running and the URL is correct
+const URL = "http://localhost:5009/bookings";  // Ensure your backend API is running and the URL is correct
 
 // Function to fetch booking data
 const fetchHandler = async () => {
