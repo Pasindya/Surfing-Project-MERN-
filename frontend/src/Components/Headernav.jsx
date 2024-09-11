@@ -45,6 +45,9 @@ export default function Headernav() {
           <Link to="/packages" className="text-slate-700 hover:underline">
           Packages
           </Link>
+          <Link to="/upcoming" className="text-slate-700 hover:underline">
+            Lessons
+          </Link>
           <Link to="/staff" className="text-slate-700 hover:underline">
             Staff
           </Link>
