@@ -3,7 +3,6 @@ import axios from 'axios';
 import Headernav from '../Components/Headernav'; // Ensure this path is correct
 import Footer from '../Components/Footer'; // Ensure this path is correct
 
-// Correct URL
 const URL = "http://localhost:5009/lessons";
 
 // Function to fetch lessons
