@@ -33,21 +33,19 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <ul className="flex flex-col sm:flex-row gap-4 text-sm sm:text-base">
-            <Link to="/About">
-              <li className="hover:underline">About Us</li>
+            <Link to="/aboutus">
+              <li className="hover:underline">AboutUs</li>
             </Link>
             <Link to="/packages">
               <li className="hover:underline">Packages</li>
             </Link>
-            <Link to="/Event">
+            <Link to="/events">
               <li className="hover:underline">Events</li>
             </Link>
             <Link to="/Support">
               <li className="hover:underline">Support</li>
             </Link>
-            <Link to="/Contact">
-              <li className="hover:underline">Contact</li>
-            </Link>
+           
             <Link to="/adminhome">
               <li className="hover:underline">Dashboard</li>
             </Link>
