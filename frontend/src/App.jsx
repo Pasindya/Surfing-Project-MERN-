@@ -19,6 +19,14 @@ import Updatebooking from './Booking/Updatebooking';
 import Bookingdescription from './Booking/Bookingdescription';
 import Adminhome from './Dashboard/Adminhome';
 import Support from './Pages/Support';
+import Lessondetails from './Lessons/Lessondetails';
+import Lessondescription from './Lessons/Lessondescription';
+import Lessonnav from './Lessons/Lessonnav';
+import Viewlesson from './Lessons/Viewlesson';
+import Updatelesson from './Lessons/Updatelesson';
+import Shedulelesson from './Lessons/Shedulelesson';
+import Lessonplan from './Lessons/Lessonplan';
+import Upcoming from './Pages/Upcoming';
 
 export default function App() {
   return (
@@ -48,6 +56,17 @@ export default function App() {
       <Route path ='/booking' element={<Booking/>}/>
       <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
       <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
+
+
+      //lesson pages
+      <Route path ='/lessondetails' element={<Lessondetails/>}/>
+      <Route path ='/lessondescription' element={<Lessondescription/>}/>
+      <Route path ='/lessonnav' element={<Lessonnav/>}/>
+      <Route path ='/viewlesson' element={<Viewlesson/>}/>
+      <Route path ='/updatelesson' element={<Updatelesson/>}/>
+      <Route path ='/shedulelesson' element={<Shedulelesson/>}/>
+      <Route path ='/lessonplan' element={<Lessonplan/>}/>
+      <Route path ='/upcoming' element={<Upcoming/>}/>
 
     </Routes>
     </BrowserRouter>
