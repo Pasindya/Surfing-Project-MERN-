@@ -8,6 +8,7 @@ const staffRouter = require("./Route/StaffRoute");
 
 const app = express();
 
+
 // Middleware
 app.use(express.json());
 app.use(cors());

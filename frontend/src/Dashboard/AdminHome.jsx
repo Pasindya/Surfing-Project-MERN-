@@ -62,7 +62,7 @@ export default function AdminHome() {
             <FaWaveSquare className="text-2xl mr-3" />
             Manage Equipments
           </Link>
-          <Link to="/manage-instructors" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/viewstaff" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaChalkboardTeacher className="text-2xl mr-3" />
             Manage Instructors
           </Link>
