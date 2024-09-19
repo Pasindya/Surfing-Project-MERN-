@@ -19,7 +19,7 @@ const fetchHandler = async () => {
 // Define the Lesson component to display individual lesson details
 const Lesson = ({ lesson }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 mb-6 w-full max-w-xl mx-auto border-l-4 border-blue-500 hover:bg-blue-50 transition-all duration-300">
+    <div className="bg-white/80 shadow-lg rounded-lg p-6 mb-6 w-full max-w-xl mx-auto border-l-4 border-blue-500 hover:bg-blue-50 transition-all duration-300">
       <div className="flex items-center mb-4">
         <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mr-4">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@ export default function Upcoming() {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/public/images/les5.jpg')" }}>
       {/* Header */}
       <Headernav />
 
@@ -73,16 +73,14 @@ export default function Upcoming() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="w-full max-w-2xl mx-auto">
-          {lessons.length > 0 ? (
-            lessons.map((lesson) => (
-              <Lesson key={lesson._id} lesson={lesson} />
-            ))
-          ) : (
-            <p className="text-gray-500 text-center">No upcoming lessons available.</p>
-          )}
-        </div>
+      <div className="flex-1 p-8 bg-gray-100/80 rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
+        {lessons.length > 0 ? (
+          lessons.map((lesson) => (
+            <Lesson key={lesson._id} lesson={lesson} />
+          ))
+        ) : (
+          <p className="text-gray-500 text-center">No upcoming lessons available.</p>
+        )}
       </div>
 
       {/* Footer */}
