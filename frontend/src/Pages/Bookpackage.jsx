@@ -83,9 +83,13 @@ export default function Bookpackage() {
     <div>
       <Headernav /> {/* Include the Header */}
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-          <h1 className="text-3xl font-bold mb-6 text-center">Book Now</h1>
+      {/* Main container with background image */}
+      <div 
+        className="flex justify-center items-center min-h-screen bg-cover bg-center" 
+        style={{ backgroundImage: 'url("/public/images/form1.jpeg")' }} // Replace with your image URL
+      >
+        <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-md w-full max-w-md backdrop-blur-md">
+          <h1 className="text-4xl font-bold mb-6 text-center text-gray-900">Book Now</h1>
 
           {/* Booking Form */}
           <form onSubmit={handleSubmit}>
@@ -97,7 +101,7 @@ export default function Bookpackage() {
                 value={inputs.name}
                 name="name"
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your full name"
                 required
               />
@@ -111,7 +115,7 @@ export default function Bookpackage() {
                 value={inputs.packagename}
                 onChange={handleChange}
                 name="packagename"
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter package name"
                 required
               />
@@ -125,7 +129,7 @@ export default function Bookpackage() {
                 name="email"
                 value={inputs.email}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your email"
                 required
               />
@@ -139,7 +143,7 @@ export default function Bookpackage() {
                 name="mobileno"
                 onChange={handleChange}
                 value={inputs.mobileno}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your mobile number"
                 required
               />
@@ -152,7 +156,7 @@ export default function Bookpackage() {
                 name="address"
                 value={inputs.address}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your address"
                 required
               />
