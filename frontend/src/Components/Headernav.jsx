@@ -11,7 +11,7 @@ export default function Headernav() {
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         {/* Logo and Title */}
         <Link to="/" className="flex items-center">
-          <img src="public/images/logo1.jpg" alt="Surf Deck Logo" className="h-8 sm:h-12" />
+          <img src="public/images/logoh.jpeg" alt="Surf Deck Logo" className="h-8 sm:h-12" />
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap ml-2">
             <span className="text-slate-500">Surf</span>
             <span className="text-slate-900">Deck</span>
