@@ -27,6 +27,14 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
+import Staffm from './Staff/Staffm';
+import Staffdetails from './Staff/Staffdetails';
+import Staffnavi from './Staff/Staffnavi';
+import Viewstaff from './Staff/Viewstaff';
+import Staffdescription from './Staff/Staffdescription';
+import Addstaff from './Staff/Addstaff';
+import Upstaff from './Staff/Upstaff';
+
 
 
 export default function App() {
@@ -50,6 +58,7 @@ export default function App() {
       <Route path ='/support' element={<Support/>}/>
 
 
+
 //Booking pages
       <Route path ='/adminhome' element={<Adminhome/>}/>
       <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
@@ -68,11 +77,18 @@ export default function App() {
       <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
       <Route path ='/lessondescription' element={<Lessondescription/>}/>
       <Route path ='/upcoming' element={<Upcoming/>}/>
-
-
-     
-
+      
+      //Staff
+      <Route path='/staffm' element={<Staffm />} />
+      <Route path='/staffnavi' element={<Staffnavi />} />
+      <Route path='/viewstaff' element={<Viewstaff />} />
+      <Route path='/staffdescription' element={<Staffdescription />} />
+      <Route path="/staffdetails" element={<Staffdetails />} />
+      <Route path='/addstaff' element={<Addstaff />} />  
+      <Route path='/upstaff/:id' element={<Upstaff />} />  
+      
     </Routes>
     </BrowserRouter>
+    
   )
 }

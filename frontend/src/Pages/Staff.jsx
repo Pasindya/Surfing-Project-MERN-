@@ -1,6 +1,7 @@
 import React from 'react';
-import Headernav from '../Components/Headernav';  // Adjust the path as needed
-import Footer from '../Components/Footer';        // Adjust the path as needed
+import Headernav from '../Components/Headernav'; // Adjust the path as needed
+import Footer from '../Components/Footer';       // Adjust the path as needed
+
 
 // Sample data for staff members
 const staffMembers = [
@@ -21,7 +22,7 @@ const staffMembers = [
   },
 ];
 
-export default function Staff() {
+export default function Staffpage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Headernav />
