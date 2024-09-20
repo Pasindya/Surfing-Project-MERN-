@@ -10,6 +10,8 @@ export default function Staffdetails() {
   const [staff, setStaff] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [noResults, setNoResults] = useState(false);
 
   // Fetch staff data
   const fetchHandler = async () => {
@@ -62,15 +64,46 @@ export default function Staffdetails() {
     onAfterPrint: () => alert('Staff member report successfully downloaded!'),
   });
 
+  // Handle search functionality
+  const handleSearch = () => {
+    fetchHandler().then((data) => {
+      const filteredStaff = data.staff.filter((staff) =>
+        Object.values(staff).some((field) =>
+          field.toString().toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+      setStaff(filteredStaff);
+      setNoResults(filteredStaff.length === 0);
+    });
+  };
+
   return (
     <div className="flex">
       <Staffnavi /> {/* Include the Staffnavi component */}
       <main className="flex-1 ml-64 p-8 bg-gray-100 min-h-screen" ref={componentsRef}>
         <h1 className="text-3xl font-bold mb-6">Staff Details</h1>
 
+        {/* Search bar */}
+        <div className="mb-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search staff..."
+            className="px-4 py-2 border rounded"
+          />
+          <button
+            onClick={handleSearch}
+            className="ml-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Search
+          </button>
+        </div>
+
         {/* Loading and error handling */}
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        {noResults && <p>No results found for "{searchQuery}".</p>}
 
         {/* Staff list */}
         <div className="bg-white shadow-lg rounded-lg p-6">
@@ -87,11 +120,12 @@ export default function Staffdetails() {
             <p>No staff members available.</p>
           )}
         </div>
-        
+
         {/* Print button */}
-        <button 
-          onClick={handlePrint} 
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <button
+          onClick={handlePrint}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
           Download Report
         </button>
       </main>
