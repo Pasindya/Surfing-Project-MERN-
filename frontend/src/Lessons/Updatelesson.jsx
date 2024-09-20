@@ -9,6 +9,8 @@ export default function Updatelesson() {
     const [loading, setLoading] = useState(true); // State to handle loading state
     const navigate = useNavigate();
     const { id } = useParams();
+    
+    const currentDate = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
 
     useEffect(() => {
         const fetchHandler = async () => {
@@ -86,6 +88,7 @@ export default function Updatelesson() {
                                 name="date"
                                 onChange={handleChange}
                                 className="mt-1 p-2 border border-gray-300 rounded w-full"
+                                min={currentDate} // Restrict to upcoming dates only
                                 required
                             />
                         </div>
