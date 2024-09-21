@@ -9,7 +9,6 @@ const salesRouter = require("./Route/SalesRoute");
 
 const app = express();
 
-
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -21,8 +20,8 @@ app.use("/staff", staffRouter);
 app.use("/sales",salesRouter);
 
 mongoose.connect("mongodb+srv://surfdeck:surfdeck1234@cluster0.kcpia.mongodb.net/")
-    .then(() => console.log("Connected to MongoDB"))
     .then(() => {
+        console.log("Connected to MongoDB");
         app.listen(5009, () => console.log("Server running on port 5009"));
     })
     .catch((err) => console.log(err));
