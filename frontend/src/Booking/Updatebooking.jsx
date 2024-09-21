@@ -9,13 +9,20 @@ export default function UpdateBooking() {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  // Package options for the dropdown
+  const packageOptions = [
+    { value: 'Beginner', label: 'Beginner' },
+    { value: 'Intermediate', label: 'Intermediate' },
+    { value: 'Advanced', label: 'Advanced' },
+  ];
+
   useEffect(() => {
     const fetchHandler = async () => {
       try {
         const response = await axios.get(`http://Localhost:5009/bookings/${id}`);
         setInputs(response.data);
       } catch (err) {
-        console.error("Error fetching booking details: ", err);
+        console.error('Error fetching booking details: ', err);
       }
     };
     fetchHandler();
@@ -33,7 +40,7 @@ export default function UpdateBooking() {
       setShowSuccess(true); // Show success animation
       setTimeout(() => navigate('/bookingdetails'), 2000); // Redirect after 2 seconds
     } catch (err) {
-      console.error("Error updating booking: ", err);
+      console.error('Error updating booking: ', err);
     }
   };
 
@@ -56,13 +63,13 @@ export default function UpdateBooking() {
 
     // Validate mobile number length
     if (inputs.mobileno.length !== 10) {
-      alert("Mobile number must be exactly 10 digits long.");
+      alert('Mobile number must be exactly 10 digits long.');
       return;
     }
 
     // Validate address length
     if (inputs.address.length < 10) {
-      alert("Address must be at least 10 characters long.");
+      alert('Address must be at least 10 characters long.');
       return;
     }
 
@@ -72,7 +79,7 @@ export default function UpdateBooking() {
   return (
     <div>
       <Headernav /> {/* Include Navigation Bar */}
-      
+
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
           <h1 className="text-3xl font-bold mb-6 text-center">Update Booking</h1>
@@ -92,18 +99,23 @@ export default function UpdateBooking() {
               />
             </div>
 
-            {/* Package Name */}
+            {/* Package Name (Dropdown) */}
             <div className="mb-4">
               <label className="block text-gray-700 font-medium" htmlFor="packagename">Package Name</label>
-              <input
-                type="text"
-                value={inputs.packagename || ''}
+              <select
                 name="packagename"
+                value={inputs.packagename || ''}
                 onChange={handleChange}
                 className="mt-1 p-2 border border-gray-300 rounded w-full"
-                placeholder="Enter package name"
                 required
-              />
+              >
+                <option value="" disabled>Select a package</option>
+                {packageOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Email */}
