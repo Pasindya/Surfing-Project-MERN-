@@ -17,7 +17,7 @@ import Viewbooking from './Booking/Viewbooking';
 import Booking from './Booking/Booking';
 import Updatebooking from './Booking/Updatebooking';
 import Bookingdescription from './Booking/Bookingdescription';
-import Adminhome from './Dashboard/Adminhome';
+
 import Support from './Pages/Support';
 import Lessondetails from './Lessons/Lessondetails';
 import Viewlesson from './Lessons/Viewlesson';
@@ -34,6 +34,8 @@ import Viewstaff from './Staff/Viewstaff';
 import Staffdescription from './Staff/Staffdescription';
 import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
+import AdminHome from './Dashboard/AdminHome';
+import Surfboard from './Sales/Surfboard';
 
 
 
@@ -60,7 +62,7 @@ export default function App() {
 
 
 //Booking pages
-      <Route path ='/adminhome' element={<Adminhome/>}/>
+      <Route path ='/adminhome' element={<AdminHome/>}/>
       <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
       <Route path ='/viewbooking' element={<Viewbooking/>}/>
       <Route path ='/booking' element={<Booking/>}/>
@@ -86,6 +88,10 @@ export default function App() {
       <Route path="/staffdetails" element={<Staffdetails />} />
       <Route path='/addstaff' element={<Addstaff />} />  
       <Route path='/upstaff/:id' element={<Upstaff />} />  
+      
+      //Staffdetails
+      <Route path='/surfboard' element={<Surfboard />} />  
+
       
     </Routes>
     </BrowserRouter>
