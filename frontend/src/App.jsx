@@ -35,7 +35,11 @@ import Staffdescription from './Staff/Staffdescription';
 import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
+ Seles
+import Lessonlist from './Lessons/Lessonlist';
+
 import Surfboard from './Sales/Surfboard';
+ main
 
 
 
@@ -79,6 +83,7 @@ export default function App() {
       <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
       <Route path ='/lessondescription' element={<Lessondescription/>}/>
       <Route path ='/upcoming' element={<Upcoming/>}/>
+      <Route path ='/lessonlist' element={<Lessonlist/>}/>
       
       //Staff
       <Route path='/staffm' element={<Staffm />} />

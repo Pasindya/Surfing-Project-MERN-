@@ -3,6 +3,13 @@ import Lessonnav from './Lessonnav';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const lessonTitles = [
+  'Beginner Surfing',
+  'Intermediate Surfing',
+  'Advanced Surfing',
+  // Add more lesson titles as needed
+];
+
 export default function Addlesson() {
   const [inputs, setInputs] = useState({
     title: '',
@@ -17,6 +24,15 @@ export default function Addlesson() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Restrict special characters for location and description
+    if (name === 'location' || name === 'description') {
+      const regex = /^[a-zA-Z0-9\s]*$/; // Allow only letters, numbers, and spaces
+      if (!regex.test(value)) {
+        return; // Ignore input if it doesn't match the regex
+      }
+    }
+
     setInputs(prevState => ({
       ...prevState,
       [name]: value
@@ -65,6 +81,12 @@ export default function Addlesson() {
                 className="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                 required
               >
+ Seles
+                <option value="" disabled>Select a lesson title</option>
+                {lessonTitles.map((title, index) => (
+                  <option key={index} value={title}>{title}</option>
+                ))}
+
                 <option value="" disabled>Select Lesson</option>
                 <optgroup label="Beginner Lessons">
                   <option value="Beginner Lesson 1">Beginner Lesson 1</option>
@@ -88,6 +110,7 @@ export default function Addlesson() {
                   <option value="Yoga Lesson">Yoga Lesson</option>
                   <option value="Self-Guard Lesson">Self-Guard Lesson</option>
                 </optgroup>
+ main
               </select>
             </div>
 
