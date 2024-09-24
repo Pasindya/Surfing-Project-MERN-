@@ -16,7 +16,7 @@ export default function Updatelesson() {
         const fetchHandler = async () => {
             try {
                 const response = await axios.get(`http://localhost:5009/lessons/${id}`);
-                setInputs(response.data);
+                setInputs(response.data.lesson);
                 setLoading(false); // Data has been fetched, update loading state
             } catch (err) {
                 console.error("Error fetching lesson details: ", err);
