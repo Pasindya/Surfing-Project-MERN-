@@ -19,8 +19,8 @@ export default function Bookpackage() {
     const { name, value } = e.target;
 
     // Handle input restrictions
-    if (name === 'name' || name === 'packagename') {
-      // Allow only letters and spaces for name and package name
+    if (name === 'name') {
+      // Allow only letters and spaces for name
       const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
       setInputs((prevState) => ({
         ...prevState,
@@ -107,18 +107,21 @@ export default function Bookpackage() {
               />
             </div>
 
-            {/* Package Name */}
+            {/* Package Name - Dropdown */}
             <div className="mb-4">
               <label className="block text-gray-700 font-medium" htmlFor="packageName">Package Name</label>
-              <input
-                type="text"
+              <select
+                name="packagename"
                 value={inputs.packagename}
                 onChange={handleChange}
-                name="packagename"
                 className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
-                placeholder="Enter package name"
                 required
-              />
+              >
+                <option value="">Select a package</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
 
             {/* Email */}

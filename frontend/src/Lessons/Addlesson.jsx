@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Lessonnav from './Lessonnav'; // Import the Lessonnav component
+import Lessonnav from './Lessonnav';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,8 +20,6 @@ export default function Addlesson() {
   });
 
   const navigate = useNavigate();
-
-  // Get today's date in YYYY-MM-DD format
   const today = new Date().toISOString().split('T')[0];
 
   const handleChange = (e) => {
@@ -43,30 +41,25 @@ export default function Addlesson() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('http://localhost:5009/lessons', inputs);
-      // Clear form fields after successful submission
-      setInputs({
-        title: '',
-        date: '',
-        time: '',
-        location: '',
-        description: ''
-      });
-      // Redirect to the lessons list or any appropriate page after submission
-      navigate('/adminhome');
-    } catch (err) {
-      console.error('Error adding lesson:', err);
-      // Optionally, show an error message to the user
-    }
+    console.log(inputs);
+    await sendRequest();
+    navigate('/lessondetails'); // Navigate to the lesson details page
+  }
+
+  const sendRequest = async () => {
+    await axios.post('http://localhost:5009/lessons', {
+      title: String(inputs.title),
+      date: inputs.date, // No need to convert to Date
+      time: String(inputs.time),
+      location: String(inputs.location),
+      description: String(inputs.description),
+    }).then(res => res.data);
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar Navigation */}
       <Lessonnav />
 
-      {/* Main Content */}
       <div className="flex-1 ml-64 p-8 lg:ml-80 lg:p-12">
         <header className="relative bg-gradient-to-r from-blue-500 to-blue-700 text-white py-8 px-6 rounded-lg shadow-lg overflow-hidden">
           <div className="absolute inset-0 opacity-50 bg-cover bg-center" style={{ backgroundImage: 'url(https://source.unsplash.com/random/1920x1080?lesson)' }}></div>
@@ -76,7 +69,6 @@ export default function Addlesson() {
           </div>
         </header>
 
-        {/* Form for Adding Lesson */}
         <div className="mt-12 bg-white shadow-lg rounded-lg p-8 border-l-4 border-blue-500">
           <form onSubmit={handleSubmit}>
             {/* Title Dropdown */}
@@ -89,10 +81,36 @@ export default function Addlesson() {
                 className="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                 required
               >
+ Seles
                 <option value="" disabled>Select a lesson title</option>
                 {lessonTitles.map((title, index) => (
                   <option key={index} value={title}>{title}</option>
                 ))}
+
+                <option value="" disabled>Select Lesson</option>
+                <optgroup label="Beginner Lessons">
+                  <option value="Beginner Lesson 1">Beginner Lesson 1</option>
+                  <option value="Beginner Lesson 2">Beginner Lesson 2</option>
+                  <option value="Beginner Lesson 3">Beginner Lesson 3</option>
+                  <option value="Beginner Final">Beginner Final</option>
+                </optgroup>
+                <optgroup label="Intermediate Lessons">
+                  <option value="Intermediate Lesson 1">Intermediate Lesson 1</option>
+                  <option value="Intermediate Lesson 2">Intermediate Lesson 2</option>
+                  <option value="Intermediate Lesson 3">Intermediate Lesson 3</option>
+                  <option value="Intermediate Final">Intermediate Final</option>
+                </optgroup>
+                <optgroup label="Advanced Lessons">
+                  <option value="Advanced Lesson 1">Advanced Lesson 1</option>
+                  <option value="Advanced Lesson 2">Advanced Lesson 2</option>
+                  <option value="Advanced Lesson 3">Advanced Lesson 3</option>
+                  <option value="Advanced Final">Advanced Final</option>
+                </optgroup>
+                <optgroup label="Other Lessons">
+                  <option value="Yoga Lesson">Yoga Lesson</option>
+                  <option value="Self-Guard Lesson">Self-Guard Lesson</option>
+                </optgroup>
+ main
               </select>
             </div>
 
@@ -104,7 +122,7 @@ export default function Addlesson() {
                 name="date"
                 value={inputs.date}
                 onChange={handleChange}
-                min={today} // Restrict to future dates
+                min={today}
                 className="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                 required
               />

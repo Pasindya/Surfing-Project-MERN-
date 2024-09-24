@@ -63,7 +63,7 @@ export default function Headernav() {
           <Link to="/supplier" className="text-slate-700 hover:underline">
             Supplier
           </Link>
-          <Link to="/surfboards" className="text-slate-700 hover:underline">
+          <Link to="/surfboard" className="text-slate-700 hover:underline">
             Surfboards
           </Link>
         </nav>
