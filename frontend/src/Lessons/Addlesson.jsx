@@ -3,6 +3,13 @@ import Lessonnav from './Lessonnav'; // Import the Lessonnav component
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const lessonTitles = [
+  'Beginner Surfing',
+  'Intermediate Surfing',
+  'Advanced Surfing',
+  // Add more lesson titles as needed
+];
+
 export default function Addlesson() {
   const [inputs, setInputs] = useState({
     title: '',
@@ -19,6 +26,15 @@ export default function Addlesson() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Restrict special characters for location and description
+    if (name === 'location' || name === 'description') {
+      const regex = /^[a-zA-Z0-9\s]*$/; // Allow only letters, numbers, and spaces
+      if (!regex.test(value)) {
+        return; // Ignore input if it doesn't match the regex
+      }
+    }
+
     setInputs(prevState => ({
       ...prevState,
       [name]: value
@@ -63,18 +79,21 @@ export default function Addlesson() {
         {/* Form for Adding Lesson */}
         <div className="mt-12 bg-white shadow-lg rounded-lg p-8 border-l-4 border-blue-500">
           <form onSubmit={handleSubmit}>
-            {/* Title */}
+            {/* Title Dropdown */}
             <div className="mb-5">
               <label className="block text-gray-700 font-medium" htmlFor="title">Title</label>
-              <input
-                type="text"
+              <select
                 name="title"
                 value={inputs.title}
                 onChange={handleChange}
                 className="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                placeholder="Enter lesson title"
                 required
-              />
+              >
+                <option value="" disabled>Select a lesson title</option>
+                {lessonTitles.map((title, index) => (
+                  <option key={index} value={title}>{title}</option>
+                ))}
+              </select>
             </div>
 
             {/* Date */}
