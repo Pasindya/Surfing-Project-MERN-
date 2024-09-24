@@ -44,10 +44,24 @@ export default function Updatelesson() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setInputs((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+
+        // Regular expression to allow only alphanumeric characters, spaces, and basic punctuation
+        const regex = /^[a-zA-Z0-9\s.,!?'-]*$/;
+
+        // Validate input based on the name of the input field
+        if (name === 'location' || name === 'description') {
+            if (regex.test(value) || value === '') {
+                setInputs((prevState) => ({
+                    ...prevState,
+                    [name]: value,
+                }));
+            }
+        } else {
+            setInputs((prevState) => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -65,18 +79,24 @@ export default function Updatelesson() {
                     <h1 className="text-3xl font-bold mb-6 text-center">Update Lesson</h1>
 
                     <form onSubmit={handleSubmit}>
-                        {/* Lesson Title */}
+                        {/* Lesson Title Dropdown */}
                         <div className="mb-4">
                             <label className="block text-gray-700 font-medium" htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                value={inputs.title || ''}
+                            <select
                                 name="title"
+                                value={inputs.title || ''}
                                 onChange={handleChange}
                                 className="mt-1 p-2 border border-gray-300 rounded w-full"
-                                placeholder="Enter lesson title"
                                 required
-                            />
+                            >
+                                <option value="" disabled>Select lesson title</option>
+                                <option value="Surf Basics">Surf Basics</option>
+                                <option value="Intermediate Techniques">Intermediate Techniques</option>
+                                <option value="Advanced Surfing">Advanced Surfing</option>
+                                <option value="Surf Safety">Surf Safety</option>
+                                <option value="Wave Riding Techniques">Wave Riding Techniques</option>
+                                {/* Add more options as necessary */}
+                            </select>
                         </div>
 
                         {/* Date */}
