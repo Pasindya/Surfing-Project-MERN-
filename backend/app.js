@@ -4,8 +4,10 @@ const cors = require("cors");
 
 const bookingRouter = require("./Route/BookingRoute");
 const lessonRouter = require("./Route/LessonRoute");
+const studentRouter =require("./Route/StudentRoute");
 
 const app = express();
+
 
 // Middleware
 app.use(express.json());
@@ -14,6 +16,7 @@ app.use(cors());
 // Routes
 app.use("/bookings", bookingRouter);
 app.use("/lessons", lessonRouter);
+app.use("/students",studentRouter);
 
 mongoose.connect("mongodb+srv://surfdeck:surfdeck1234@cluster0.kcpia.mongodb.net/")
     .then(() => console.log("Connected to MongoDB"))
