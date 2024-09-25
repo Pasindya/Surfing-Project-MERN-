@@ -47,6 +47,7 @@ import Viewstudent from './Students/Viewstudent';
 import Addstudent from './Students/Addstudent';
 import Studentdetails from './Students/Studentdetails';
 import UpdateStudent from './Students/Updatestudent';
+import Adminlogin from './Components/Adminlogin';
 
 export default function App() {
   return (
@@ -68,6 +69,7 @@ export default function App() {
         <Route path='/advanced' element={<Advanced />} />
         <Route path='/bookpackage' element={<Bookpackage />} />
         <Route path='/support' element={<Support />} />
+        <Route path='/adminlogin' element={<Adminlogin/>} />
 
         {/* Booking pages */}
         <Route path='/adminhome' element={<AdminHome />} />

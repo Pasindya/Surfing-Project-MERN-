@@ -66,7 +66,7 @@ export default function Footer() {
             <span className="toggle-label" />
           </label>
           {isDashboardVisible && (
-            <Link to="/adminhome">
+            <Link to="/adminlogin">
               <button className="ml-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300">
                 Go to Dashboard
               </button>
