@@ -27,7 +27,6 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
- register
 import RegisterStu from './Pages/RegisterStu';
 import Studentnav from './Students/Studentnav';
 import Studentdescription from './Students/Studentdescription';
@@ -43,21 +42,11 @@ import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
 import LessonList from './Lessons/Lessonlist';
 
- main
-
-
 import Student from './Students/Student';
 import Viewstudent from './Students/Viewstudent';
 import Addstudent from './Students/Addstudent';
 import Studentdetails from './Students/Studentdetails';
 import UpdateStudent from './Students/Updatestudent';
-import AdminHome from './Dashboard/AdminHome';
-
-
-
- register
-
-
 
 export default function App() {
   return (
@@ -73,14 +62,13 @@ export default function App() {
         <Route path='/equipments' element={<Equipments />} />
         <Route path='/supplier' element={<Supplier />} />
         <Route path='/signin' element={<Signin />} />
-        <Route path="/RegisterStu" element={<RegisterStu />} />
+        <Route path='/RegisterStu' element={<RegisterStu />} />
         <Route path='/beginner' element={<Beginner />} />
         <Route path='/intermediate' element={<Intermidiate />} />
         <Route path='/advanced' element={<Advanced />} />
         <Route path='/bookpackage' element={<Bookpackage />} />
         <Route path='/support' element={<Support />} />
-       
-        
+
         {/* Booking pages */}
         <Route path='/adminhome' element={<AdminHome />} />
         <Route path='/bookingdetails' element={<Bookingdetails />} />
@@ -98,58 +86,27 @@ export default function App() {
         <Route path='/updatelesson/:id' element={<Updatelesson />} />
         <Route path='/lessondescription' element={<Lessondescription />} />
         <Route path='/upcoming' element={<Upcoming />} />
+        <Route path='/lessonlist' element={<LessonList />} />
 
-        {/* student pages */}
-        <Route path='/studentnav' element={<Studentnav/>} />
-        <Route path='/studentdescription ' element={<Studentdescription />} />
-       <Route path='/student' element={<Student />} />
+        {/* Staff pages */}
+        <Route path='/staffm' element={<Staffm />} />
+        <Route path='/staffnavi' element={<Staffnavi />} />
+        <Route path='/viewstaff' element={<Viewstaff />} />
+        <Route path='/staffdescription' element={<Staffdescription />} />
+        <Route path='/staffdetails' element={<Staffdetails />} />
+        <Route path='/addstaff' element={<Addstaff />} />
+        <Route path='/upstaff/:id' element={<Upstaff />} />
+        <Route path='/surfboard' element={<Surfboard />} />
+
+        {/* Student pages */}
+        <Route path='/studentnav' element={<Studentnav />} />
+        <Route path='/studentdescription' element={<Studentdescription />} />
+        <Route path='/student' element={<Student />} />
         <Route path='/Viewstudent' element={<Viewstudent />} />
-        <Route path='/addstudent' element={<Addstudent/>} />
+        <Route path='/addstudent' element={<Addstudent />} />
         <Route path='/studentdetails' element={<Studentdetails />} />
         <Route path='/updateStudent/:id' element={<UpdateStudent />} />
-        
-        
       </Routes>
     </BrowserRouter>
   );
-
-
-//Booking pages
-      <Route path ='/adminhome' element={<AdminHome/>}/>
-      <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
-      <Route path ='/viewbooking' element={<Viewbooking/>}/>
-      <Route path ='/booking' element={<Booking/>}/>
-      <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
-      <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
-
-      //Lesson pages
-      
-      <Route path ='/lessondetails' element={<Lessondetails/>}/>
-     < Route path ='/addlesson' element={<Addlesson/>}/>
-      <Route path ='/viewlesson' element={<Viewlesson/>}/>
-      <Route path ='/lesson' element={<Lesson/>}/>
-      <Route path ='/lessonnav' element={<Lessonnav/>}/>
-      <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
-      <Route path ='/lessondescription' element={<Lessondescription/>}/>
-      <Route path ='/upcoming' element={<Upcoming/>}/>
-      <Route path ='/lessonlist' element={<LessonList />}/>
-      
-      //Staff
-      <Route path='/staffm' element={<Staffm />} />
-      <Route path='/staffnavi' element={<Staffnavi />} />
-      <Route path='/viewstaff' element={<Viewstaff />} />
-      <Route path='/staffdescription' element={<Staffdescription />} />
-      <Route path="/staffdetails" element={<Staffdetails />} />
-      <Route path='/addstaff' element={<Addstaff />} />  
-      <Route path='/upstaff/:id' element={<Upstaff />} />  
-      
-      //Staffdetails
-      <Route path='/surfboard' element={<Surfboard />} />  
-
-      
-    </Routes>
-    </BrowserRouter>
-    
-  )
-main
 }

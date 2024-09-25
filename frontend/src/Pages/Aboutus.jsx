@@ -73,7 +73,7 @@ export default function Aboutus() {
       <div className="bg-gradient-to-r from-blue-600 to-purple-500 py-20 text-center text-white">
         <h2 className="text-5xl font-semibold mb-8">Ready to Ride the Waves?</h2>
         <p className="text-lg mb-12">Join our community and start your surfing adventure today!</p>
-        <a href="/signup" className="bg-white text-blue-600 font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:-translate-y-1">Get Started</a>
+        <a href="/RegisterStu" className="bg-white text-blue-600 font-semibold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:-translate-y-1">Get Started</a>
       </div>
 
       <Footer/>
