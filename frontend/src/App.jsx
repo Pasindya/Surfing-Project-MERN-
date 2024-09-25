@@ -27,9 +27,23 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
+ register
 import RegisterStu from './Pages/RegisterStu';
 import Studentnav from './Students/Studentnav';
 import Studentdescription from './Students/Studentdescription';
+
+import Staffm from './Staff/Staffm';
+import Staffdetails from './Staff/Staffdetails';
+import Staffnavi from './Staff/Staffnavi';
+import Viewstaff from './Staff/Viewstaff';
+import Staffdescription from './Staff/Staffdescription';
+import Addstaff from './Staff/Addstaff';
+import Upstaff from './Staff/Upstaff';
+import AdminHome from './Dashboard/AdminHome';
+import Surfboard from './Sales/Surfboard';
+import LessonList from './Lessons/Lessonlist';
+
+ main
 
 
 import Student from './Students/Student';
@@ -41,6 +55,7 @@ import AdminHome from './Dashboard/AdminHome';
 
 
 
+ register
 
 
 
@@ -97,4 +112,44 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
+
+
+//Booking pages
+      <Route path ='/adminhome' element={<AdminHome/>}/>
+      <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
+      <Route path ='/viewbooking' element={<Viewbooking/>}/>
+      <Route path ='/booking' element={<Booking/>}/>
+      <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
+      <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
+
+      //Lesson pages
+      
+      <Route path ='/lessondetails' element={<Lessondetails/>}/>
+     < Route path ='/addlesson' element={<Addlesson/>}/>
+      <Route path ='/viewlesson' element={<Viewlesson/>}/>
+      <Route path ='/lesson' element={<Lesson/>}/>
+      <Route path ='/lessonnav' element={<Lessonnav/>}/>
+      <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
+      <Route path ='/lessondescription' element={<Lessondescription/>}/>
+      <Route path ='/upcoming' element={<Upcoming/>}/>
+      <Route path ='/lessonlist' element={<LessonList />}/>
+      
+      //Staff
+      <Route path='/staffm' element={<Staffm />} />
+      <Route path='/staffnavi' element={<Staffnavi />} />
+      <Route path='/viewstaff' element={<Viewstaff />} />
+      <Route path='/staffdescription' element={<Staffdescription />} />
+      <Route path="/staffdetails" element={<Staffdetails />} />
+      <Route path='/addstaff' element={<Addstaff />} />  
+      <Route path='/upstaff/:id' element={<Upstaff />} />  
+      
+      //Staffdetails
+      <Route path='/surfboard' element={<Surfboard />} />  
+
+      
+    </Routes>
+    </BrowserRouter>
+    
+  )
+main
 }
