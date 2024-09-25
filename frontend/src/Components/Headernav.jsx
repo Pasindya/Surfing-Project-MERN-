@@ -66,9 +66,7 @@ export default function Headernav() {
           <Link to="/surfboard" className="text-slate-700 hover:underline">
             Surfboards
           </Link>
-          <Link to="/signin" className="text-slate-700 hover:underline">
-           Login         
-           </Link>
+          
           
         </nav>
 
