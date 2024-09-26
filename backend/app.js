@@ -2,19 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+// Import necessary routes
 const bookingRouter = require("./Route/BookingRoute");
 const lessonRouter = require("./Route/LessonRoute");
- NewPayment
-const paymentRouter = require("./Route/PaymentRoute");
-const reportRouter = require("./Route/ReportRoute");
-
 
 const studentRouter = require("./Route/StudentRoute");
 const staffRouter = require("./Route/StaffRoute");
 const salesRouter = require("./Route/SalesRoute");
-const equiment = require("./Route/equimentRoute");
-const Sup = require("./Route/suplierRoute");
- main
+const equipmentRouter = require("./Route/equimentRoute"); // Ensure this file exists and is correctly named
+const supplierRouter = require("./Route/suplierRoute");
+const paymentRouter = require("./Route/PaymentRoute");
 
 const app = express();
 
@@ -25,18 +22,13 @@ app.use(cors());
 // Routes
 app.use("/bookings", bookingRouter);
 app.use("/lessons", lessonRouter);
- NewPayment
-app.use("/payments",paymentRouter);
-app.use("/reports", reportRouter);
-
 
 app.use("/students", studentRouter);
 app.use("/staff", staffRouter);
 app.use("/sales", salesRouter);
-app.use('/api/equiment', equiment);
-app.use('/api/suplier', Sup);
-app.use("/users", salesRouter);
-main
+app.use("/api/equipment", equipmentRouter);
+app.use("/api/supplier", supplierRouter);
+app.use("/payments",paymentRouter);
 
 // Connect to MongoDB and start server
 mongoose.connect("mongodb+srv://surfdeck:surfdeck1234@cluster0.kcpia.mongodb.net/")
