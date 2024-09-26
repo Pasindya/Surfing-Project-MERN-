@@ -2,18 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 // Insert User Controller
-const UserController = require("../Conrollers/SalesControl");
+const User = require("../Model/SalesModel");
+const SalesControl = require("../Conrollers/SalesControl");
 
 // Route for getting all users
-router.get("/", UserController.getAllUsers);
+router.get("/", SalesControl.getAllUsers);
 //
-router.post("/", UserController.addUsers);
+router.post("/", SalesControl.addUsers);
 //
-router.get("/:id", UserController.getById);
+router.get("/:id", SalesControl.getById);
 //
-router.put("/:id", UserController.updateUser);
+router.put("/:id", SalesControl.updateUser);
 //Delete
-router.delete("/:id", UserController.deleteUser);
+router.delete("/:id", SalesControl.deleteUser);
 
 // Export the router
 module.exports = router;
