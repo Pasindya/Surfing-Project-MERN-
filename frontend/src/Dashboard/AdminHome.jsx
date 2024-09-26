@@ -71,10 +71,11 @@ export default function AdminHome() {
             <FaShoppingCart className="text-2xl mr-3" />
             Manage Orders
           </Link>
-          <Link to="/manage-students" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/viewstudent" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaUser className="text-2xl mr-3" />
             Manage Students
           </Link>
+
           <Link to="/manage-events" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCalendarAlt className="text-2xl mr-3" />
             Manage Events

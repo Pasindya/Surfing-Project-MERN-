@@ -66,6 +66,8 @@ export default function Headernav() {
           <Link to="/surfboard" className="text-slate-700 hover:underline">
             Surfboards
           </Link>
+          
+          
         </nav>
 
         {/* Profile Dropdown */}
@@ -75,7 +77,7 @@ export default function Headernav() {
             onClick={() => setProfileMenuOpen(!profileMenuOpen)}
             className="text-slate-700 hover:text-slate-900 focus:outline-none"
           >
-            <FaUserCircle className="h-6 w-6 sm:h-8 sm:w-8" />
+            <FaUserCircle className="h-6 w-6 sm:h-8 sm:w-8 " />
           </button>
           {profileMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
