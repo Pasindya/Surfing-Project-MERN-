@@ -70,6 +70,11 @@ import Adminlogin from './Components/Adminlogin';
 import Eqnav from './Equipment/Eqnav';
 import Supnav from './Supplier/Supnav';
 
+import ReportGeneration from './Payment/ReportGeneration'; 
+import PaymentPage from './Payment/PaymentPage';
+import PaymentSummary from './Payment/PaymentSummary';
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -161,6 +166,14 @@ export default function App() {
         <Route path='/addstudent' element={<Addstudent />} />
         <Route path='/studentdetails' element={<Studentdetails />} />
         <Route path='/updateStudent/:id' element={<UpdateStudent />} />
+
+          {/*Payment pages */}
+          <Route path='/paymentpage' element ={<PaymentPage/>}/>
+          <Route path='/paymentsummary' element ={<PaymentSummary/>}/>
+          <Route path="/report" element={<ReportGeneration />} />
+
+                 
+
       </Routes>
     </BrowserRouter>
   );
