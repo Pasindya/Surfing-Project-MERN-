@@ -26,20 +26,8 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
- NewPayment
-import PaymentPage from './Payment/PaymentPage';
-import SpecialOffer from './Payment/SpecialOffer';
-import PaymentConfirm from './Payment/PaymentConfirm';
-import FinalConfirm from './Payment/FinalConfirm';
-import PaymentSummary from './Payment/PaymentSummary';
-import PaymentDetails from './Payment/PaymentDetails';
-import PaymentHistory from './Payment/PaymentHistory';
-import PaymentDescription from './Payment/PaymentDescription';
-import PaymentNav from './Payment/PaymentNav';
-import ViewPayment from './Payment/ViewPayment';
-import ReportGenerate from './Report/ReportGenerate';
-import ReportDetails from './Report/ReportDetails';
-import UpdateReport from './Report/UpdateReport';
+
+
 
 
 import RegisterStu from './Pages/RegisterStu';
@@ -63,7 +51,7 @@ import Tab from './Supplier/Table';
 import SupplierAdd from './Supplier/supplierAdd';
 import Supupdate from './Supplier/Supdate';
 import Order from './Supplier/order';
- main
+
 
 import Addoder from './Sales/Addoder';
 import Oderdescription from './Sales/Oderdescription';
@@ -112,15 +100,8 @@ export default function App() {
         <Route path='/bookingdetails/:id' element={<Updatebooking />} />
         <Route path='/bookingdescription' element={<Bookingdescription />} />
 
- NewPayment
 
-//Booking pages
-      <Route path ='/adminhome' element={<Adminhome/>}/>
-      <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
-      <Route path ='/viewbooking' element={<Viewbooking/>}/>
-      <Route path ='/booking' element={<Booking/>}/>
-      <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
-      <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
+
 
         {/* Lesson pages */}
         <Route path='/lessondetails' element={<Lessondetails />} />
@@ -132,7 +113,7 @@ export default function App() {
         <Route path='/lessondescription' element={<Lessondescription />} />
         <Route path='/upcoming' element={<Upcoming />} />
         <Route path='/lessonlist' element={<LessonList />} />
- main
+
 
         {/* Staff pages */}
         <Route path='/staffm' element={<Staffm />} />
@@ -153,26 +134,11 @@ export default function App() {
         <Route path='/oderdetail' element={<Oderdetail />} />
         <Route path='/viewoder' element={<Viewoder />} />
 
- NewPayment
-     // Payment pages 
 
-     <Route path='/paymentpage' element ={<PaymentPage/>}/>
-     <Route path='/specialoffer' element ={<SpecialOffer/>}/>
-     <Route path="/paymentconfirm" element={<PaymentConfirm />} />
-     <Route path='/finalconfirm' element ={<FinalConfirm/>}/>
-     <Route path='/paymentsummary' element ={<PaymentSummary/>}/>
-     <Route path='/paymentdetails' element ={<PaymentDetails/>}/>
-     <Route path='/paymenthistory' element ={<PaymentHistory/>}/>
-     <Route path='/paymentnav' element ={<PaymentNav/>}/>
-     <Route path='/viewpayment' element ={<ViewPayment/>}/>
-     <Route path='/paymentdescription' element ={<PaymentDescription/>}/>
 
-     //Report pages
 
-     <Route path='/reportgenerate' element ={<ReportGenerate/>}/>
-     <Route path='/reportdetails/:reportId' element ={<ReportDetails/>}/>
-     <Route path='/updatereport' element ={<UpdateReport/>}/>
-    
+
+     
 
         {/* Equipment pages */}
         <Route path='/Etable' element={<ETable />} />
@@ -186,7 +152,6 @@ export default function App() {
         <Route path='/update/:upId' element={<Supupdate />} />
         <Route path='/order' element={<Order />} />
         <Route path='/supnav' element={<Supnav />} />
- main
 
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />
