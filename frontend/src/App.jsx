@@ -74,6 +74,19 @@ import ReportGeneration from './Payment/ReportGeneration';
 import PaymentPage from './Payment/PaymentPage';
 import PaymentSummary from './Payment/PaymentSummary';
 
+import Boardsurf from './Event/Boardsurf';
+import Boatsurf from './Event/Boatsurf';
+import Windsurf from './Event/Windsurf';
+import Specialsurf from './Event/Specialsurf';
+import Eventregister from './Event/Eventregister';
+import Viewevent from './Event/Viewevent';
+import Updateevent from './Event/Updateevent';
+import Notification from './Event/Notification';
+
+
+
+
+
 
 export default function App() {
   return (
@@ -171,6 +184,16 @@ export default function App() {
           <Route path='/paymentpage' element ={<PaymentPage/>}/>
           <Route path='/paymentsummary' element ={<PaymentSummary/>}/>
           <Route path="/report" element={<ReportGeneration />} />
+
+           {/* Event pages */}
+        <Route path='/boardsurf' element={<Boardsurf />} />
+        <Route path='/boatsurf' element={<Boatsurf />} />
+        <Route path='/windsurf' element={<Windsurf />} />
+        <Route path='/specialsurf' element={<Specialsurf />} />
+        <Route path='/eventregister' element={<Eventregister />} />
+        <Route path='/viewevent/:eventId' element={<Viewevent />} />
+        <Route path='/updateevent' element={<Updateevent />} />
+        <Route path='/notification' element={<Notification />} />
 
                  
 
