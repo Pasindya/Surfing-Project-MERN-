@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
+  const [isDashboardVisible, setIsDashboardVisible] = useState(false); // State for toggling dashboard visibility
+
+  const toggleDashboard = () => {
+    setIsDashboardVisible((prev) => !prev); // Toggle the state
+  };
+
   return (
     <footer className="bg-slate-900 text-white py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +16,6 @@ export default function Footer() {
           {/* Logo and Description */}
           <div className="mb-6 sm:mb-0">
             <Link to="/" className="flex items-center">
-             
               <h1 className="font-bold text-lg sm:text-2xl ml-3">
                 <span className="text-slate-500">Surf</span>
                 <span className="text-white">Deck</span>
@@ -34,7 +39,7 @@ export default function Footer() {
           {/* Navigation Links */}
           <ul className="flex flex-col sm:flex-row gap-4 text-sm sm:text-base">
             <Link to="/aboutus">
-              <li className="hover:underline">AboutUs</li>
+              <li className="hover:underline">About Us</li>
             </Link>
             <Link to="/packages">
               <li className="hover:underline">Packages</li>
@@ -42,14 +47,31 @@ export default function Footer() {
             <Link to="/events">
               <li className="hover:underline">Events</li>
             </Link>
-            <Link to="/Support">
+            <Link to="/support">
               <li className="hover:underline">Support</li>
             </Link>
-           
-            <Link to="/adminhome">
-              <li className="hover:underline">Dashboard</li>
-            </Link>
           </ul>
+        </div>
+
+        {/* Switch Button for Dashboard */}
+        <div className="mt-6 flex justify-center sm:justify-end">
+          <label className="flex items-center">
+            <span className="mr-2">Dashboard</span>
+            <input
+              type="checkbox"
+              checked={isDashboardVisible}
+              onChange={toggleDashboard}
+              className="toggle-checkbox"
+            />
+            <span className="toggle-label" />
+          </label>
+          {isDashboardVisible && (
+            <Link to="/adminlogin">
+              <button className="ml-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300">
+                Go to Dashboard
+              </button>
+            </Link>
+          )}
         </div>
 
         {/* Social Media Links */}

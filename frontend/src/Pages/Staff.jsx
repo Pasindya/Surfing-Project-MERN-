@@ -1,6 +1,6 @@
 import React from 'react';
-import Headernav from '../Components/Headernav';  // Adjust the path as needed
-import Footer from '../Components/Footer';        // Adjust the path as needed
+import Headernav from '../Components/Headernav'; // Adjust the path as needed
+import Footer from '../Components/Footer';       // Adjust the path as needed
 
 // Sample data for staff members
 const staffMembers = [
@@ -21,28 +21,35 @@ const staffMembers = [
   },
 ];
 
-export default function Staff() {
+export default function Staffpage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Headernav />
 
+      {/* Hero Section */}
+      <section 
+        className="h-64 flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(/images/baywactch.png)',
+          backgroundSize: 'cover',        // Ensures image covers the container
+          backgroundPosition: 'center 20%',   // Moves the image slightly lower
+          backgroundRepeat: 'no-repeat',  // Prevents image repetition
+        }}
+      >
+        <h1 className="text-5xl font-bold text-white drop-shadow-lg">Meet Our Team</h1>
+      </section>
+
       <main className="flex-grow p-6 bg-gray-100">
-        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
-          Staff
-        </h1>
+        <h2 className="text-3xl font-bold text-center my-12 text-gray-800">
+          Our Dedicated Staff
+        </h2>
 
-        {/* Staff Content */}
-        <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-3xl font-semibold mb-4">Staff Information</h2>
-          <p className="text-gray-700 mb-6">
-            This page provides information about our team members, their roles, and their contributions to the company. We value our team and their efforts in making our organization successful.
-          </p>
-
-          {/* Staff Details */}
+        {/* Staff Card Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {staffMembers.map((member, index) => (
-            <div key={index} className="mb-6">
+            <div key={index} className="bg-white rounded-lg shadow-lg p-6 transform transition-transform hover:scale-105 hover:shadow-xl">
               <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
-              <p className="text-gray-700 font-semibold">{member.role}</p>
+              <p className="text-gray-500 mb-2">{member.role}</p>
               <p className="text-gray-700 mt-2">{member.contributions}</p>
             </div>
           ))}

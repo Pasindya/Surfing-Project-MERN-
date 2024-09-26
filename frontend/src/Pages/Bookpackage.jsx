@@ -19,8 +19,8 @@ export default function Bookpackage() {
     const { name, value } = e.target;
 
     // Handle input restrictions
-    if (name === 'name' || name === 'packagename') {
-      // Allow only letters and spaces for name and package name
+    if (name === 'name') {
+      // Allow only letters and spaces for name
       const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
       setInputs((prevState) => ({
         ...prevState,
@@ -83,9 +83,13 @@ export default function Bookpackage() {
     <div>
       <Headernav /> {/* Include the Header */}
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-          <h1 className="text-3xl font-bold mb-6 text-center">Book Now</h1>
+      {/* Main container with background image */}
+      <div 
+        className="flex justify-center items-center min-h-screen bg-cover bg-center" 
+        style={{ backgroundImage: 'url("/public/images/form1.jpeg")' }} // Replace with your image URL
+      >
+        <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-md w-full max-w-md backdrop-blur-md">
+          <h1 className="text-4xl font-bold mb-6 text-center text-gray-900">Book Now</h1>
 
           {/* Booking Form */}
           <form onSubmit={handleSubmit}>
@@ -97,24 +101,27 @@ export default function Bookpackage() {
                 value={inputs.name}
                 name="name"
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your full name"
                 required
               />
             </div>
 
-            {/* Package Name */}
+            {/* Package Name - Dropdown */}
             <div className="mb-4">
               <label className="block text-gray-700 font-medium" htmlFor="packageName">Package Name</label>
-              <input
-                type="text"
+              <select
+                name="packagename"
                 value={inputs.packagename}
                 onChange={handleChange}
-                name="packagename"
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
-                placeholder="Enter package name"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 required
-              />
+              >
+                <option value="">Select a package</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
 
             {/* Email */}
@@ -125,7 +132,7 @@ export default function Bookpackage() {
                 name="email"
                 value={inputs.email}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your email"
                 required
               />
@@ -139,7 +146,7 @@ export default function Bookpackage() {
                 name="mobileno"
                 onChange={handleChange}
                 value={inputs.mobileno}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your mobile number"
                 required
               />
@@ -152,7 +159,7 @@ export default function Bookpackage() {
                 name="address"
                 value={inputs.address}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border border-gray-300 rounded w-full bg-white bg-opacity-70"
                 placeholder="Enter your address"
                 required
               />

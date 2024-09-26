@@ -34,6 +34,8 @@ export default function Lesson({ lesson }) {
     }
   };
 
+  
+
   return (
     <div className="p-4 mb-4 bg-white shadow rounded">
       <h2 className="text-xl font-bold mb-2">Lesson Information</h2>
