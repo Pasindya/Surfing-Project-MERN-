@@ -12,6 +12,7 @@ const salesRouter = require("./Route/SalesRoute");
 const equipmentRouter = require("./Route/equimentRoute"); // Ensure this file exists and is correctly named
 const supplierRouter = require("./Route/suplierRoute");
 const paymentRouter = require("./Route/PaymentRoute");
+const planeventRouter = require("./Route/PlaneventRoutes");
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(cors());
 // Routes
 app.use("/bookings", bookingRouter);
 app.use("/lessons", lessonRouter);
-
+app.use("/events", planeventRouter);
 app.use("/students", studentRouter);
 app.use("/staff", staffRouter);
 app.use("/sales", salesRouter);
