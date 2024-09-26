@@ -5,11 +5,9 @@ import Packages from './Pages/Packages';
 import Staff from './Pages/Staff';
 import Events from './Pages/Events';
 import Payment from './Pages/Payment';
-
-
 import Signin from './Pages/Signin';
 import Beginner from './Pages/Beginner';
-import Intermidiate from './Pages/Intermidiate';
+import Intermediate from './Pages/Intermediate'; // Fixed spelling
 import Advanced from './Pages/Advanced';
 import Bookpackage from './Pages/Bookpackage';
 import Bookingdetails from './Booking/Bookingdetails';
@@ -26,9 +24,29 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
+
+// Events
+import Boardsurf from './Event/Boardsurf';
+import Boatsurf from './Event/Boatsurf';
+import Windsurf from './Event/Windsurf';
+import Specialsurf from './Event/Specialsurf';
+import Eventregister from './Event/Eventregister';
+import Viewevent from './Event/Viewevent';
+import Updateevent from './Event/Updateevent';
+import Notification from './Event/Notification';
+import Report from './Event/Report';
+
+// Students
 import RegisterStu from './Pages/RegisterStu';
 import Studentnav from './Students/Studentnav';
 import Studentdescription from './Students/Studentdescription';
+import Student from './Students/Student';
+import Viewstudent from './Students/Viewstudent';
+import Addstudent from './Students/Addstudent';
+import Studentdetails from './Students/Studentdetails';
+import UpdateStudent from './Students/Updatestudent';
+
+// Staff
 import Staffm from './Staff/Staffm';
 import Staffdetails from './Staff/Staffdetails';
 import Staffnavi from './Staff/Staffnavi';
@@ -36,18 +54,13 @@ import Viewstaff from './Staff/Viewstaff';
 import Staffdescription from './Staff/Staffdescription';
 import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
+
+// Dashboard
 import AdminHome from './Dashboard/AdminHome';
+import Adminlogin from './Components/Adminlogin';
+
+// Sales
 import Surfboard from './Sales/Surfboard';
-
-import ETable from './Equipment/ETable';
-import EsupplierAdd from './Equipment/EsupplierAdd';
-import ESupdate from './Equipment/ESupdate';
-
-import Tab from './Supplier/Table';
-import SupplierAdd from './Supplier/supplierAdd';
-import Supupdate from './Supplier/Supdate';
-import Order from './Supplier/order';
-
 import Addoder from './Sales/Addoder';
 import Oderdescription from './Sales/Oderdescription';
 import Oder from './Sales/Oder';
@@ -55,15 +68,18 @@ import Odernav from './Sales/Odernav';
 import Updateoder from './Sales/Updateoder';
 import Oderdetail from './Sales/Oderdetail';
 import Viewoder from './Sales/Viewoder';
-import LessonList from './Lessons/Lessonlist';
-import Student from './Students/Student';
-import Viewstudent from './Students/Viewstudent';
-import Addstudent from './Students/Addstudent';
-import Studentdetails from './Students/Studentdetails';
-import UpdateStudent from './Students/Updatestudent';
-import Adminlogin from './Components/Adminlogin';
+
+// Equipment
+import ETable from './Equipment/ETable';
+import EsupplierAdd from './Equipment/EsupplierAdd';
+import ESupdate from './Equipment/ESupdate';
 import Eqnav from './Equipment/Eqnav';
-import Supnav from './Supplier/Supnav';
+
+// Supplier
+import Tab from './Supplier/Table';
+import SupplierAdd from './Supplier/supplierAdd';
+import Supupdate from './Supplier/Supdate';
+import Order from './Supplier/order';
 
 export default function App() {
   return (
@@ -76,16 +92,16 @@ export default function App() {
         <Route path='/staff' element={<Staff />} />
         <Route path='/events' element={<Events />} />
         <Route path='/payment' element={<Payment />} />
-        
-     
         <Route path='/signin' element={<Signin />} />
         <Route path='/RegisterStu' element={<RegisterStu />} />
+        
+        {/* Skill level packages */}
         <Route path='/beginner' element={<Beginner />} />
-        <Route path='/intermediate' element={<Intermidiate />} />
+        <Route path='/intermediate' element={<Intermediate />} />
         <Route path='/advanced' element={<Advanced />} />
         <Route path='/bookpackage' element={<Bookpackage />} />
         <Route path='/support' element={<Support />} />
-        <Route path='/adminlogin' element={<Adminlogin />} />
+        <Route path='/upcoming' element={<Upcoming />} />
 
         {/* Booking pages */}
         <Route path='/adminhome' element={<AdminHome />} />
@@ -103,7 +119,6 @@ export default function App() {
         <Route path='/lessonnav' element={<Lessonnav />} />
         <Route path='/updatelesson/:id' element={<Updatelesson />} />
         <Route path='/lessondescription' element={<Lessondescription />} />
-        <Route path='/upcoming' element={<Upcoming />} />
         <Route path='/lessonlist' element={<LessonList />} />
 
         {/* Staff pages */}
@@ -136,7 +151,17 @@ export default function App() {
         <Route path='/add' element={<SupplierAdd />} />
         <Route path='/update/:upId' element={<Supupdate />} />
         <Route path='/order' element={<Order />} />
-        <Route path='/supnav' element={<Supnav />} />
+        
+        {/* Event pages */}
+        <Route path='/boardsurf' element={<Boardsurf />} />
+        <Route path='/boatsurf' element={<Boatsurf />} />
+        <Route path='/windsurf' element={<Windsurf />} />
+        <Route path='/specialsurf' element={<Specialsurf />} />
+        <Route path='/eventregister' element={<Eventregister />} />
+        <Route path='/viewevent/:eventId' element={<Viewevent />} />
+        <Route path='/updateevent' element={<Updateevent />} />
+        <Route path='/notification' element={<Notification />} />
+        <Route path='/report' element={<Report />} />
 
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />
@@ -146,6 +171,9 @@ export default function App() {
         <Route path='/addstudent' element={<Addstudent />} />
         <Route path='/studentdetails' element={<Studentdetails />} />
         <Route path='/updateStudent/:id' element={<UpdateStudent />} />
+        
+        {/* Admin login */}
+        <Route path='/adminlogin' element={<Adminlogin />} />
       </Routes>
     </BrowserRouter>
   );
