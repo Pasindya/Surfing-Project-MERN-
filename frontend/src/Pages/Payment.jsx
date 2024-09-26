@@ -1,75 +1,123 @@
 import React from 'react';
-import Headernav from '../Components/Headernav';  // Adjust the path as needed
-import Footer from '../Components/Footer';        // Adjust the path as needed
+import Headernav from '../Components/Headernav';
+import Footer from '../Components/Footer';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Payment() {
+export default function PaymentDashboard() {
+  const navigate = useNavigate();
+
+  // Function to handle button clicks
+  const handlePaymentClick = (type) => {
+    navigate(`/payment?type=${type}`);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Headernav />
+    <div className="min-h-screen" style={{ 
+      backgroundImage: 'url(/images/beach1.jpg)', // High-quality beach background
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+    }}>
+      <div className="bg-gradient-to-t from-blue-900/60 via-blue-800/30 to-transparent min-h-screen"> {/* Subtle gradient overlay */}
+        <Headernav />
 
-      <main className="flex-grow p-6 bg-gray-100">
-        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
-          Payment
-        </h1>
+        {/* Payment Dashboard Title */}
+        <h2 className="text-5xl md:text-6xl font-extrabold text-center my-10 text-black drop-shadow-lg">
+          Payment Dashboard
+        </h2>
 
-        {/* Payment Content */}
-        <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-3xl font-semibold mb-4">Complete Your Payment</h2>
-          <p className="text-gray-700 mb-6">
-            Please fill in your payment details below to complete your purchase. Ensure all information is correct before submitting.
-          </p>
+        {/* Main Content Wrapper */}
+        <div className="bg-white/40 shadow-2xl rounded-xl max-w-7xl mx-auto p-10 md:p-16 mb-16 backdrop-blur-lg border border-white border-opacity-30">
 
-          {/* Payment Form */}
-          <form>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cardNumber">
-                Card Number
-              </label>
-              <input
-                type="text"
-                id="cardNumber"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="1234 5678 9012 3456"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+
+            {/* Equipment Payment */}
+            <div className="text-center p-8 bg-white/70 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-500">
+              <p className="text-2xl font-semibold text-blue-700 mb-4">Equipment Payment</p>
+              <p className="text-sm text-gray-800 mb-6">Easily pay for your surfing equipment, from boards to wetsuits, 
+                and get geared up for your next adventure.</p>
+              <img
+                src="/images/equ1.jpg"
+                alt="Equipment Payment"
+                className="rounded-lg w-56 h-56 object-cover mx-auto mb-6 shadow-lg"
               />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="expiryDate">
-                Expiry Date
-              </label>
-              <input
-                type="text"
-                id="expiryDate"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="MM/YY"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cvv">
-                CVV
-              </label>
-              <input
-                type="text"
-                id="cvv"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="123"
-              />
-            </div>
-
-            <div className="text-center">
+              <Link to="/paymentpage">
               <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-6 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
+                className="w-full py-3 text-white font-semibold bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full shadow-lg hover:from-teal-600 hover:to-cyan-700 transition-all duration-300 ease-out transform hover:scale-105"
+                onClick={() => handlePaymentClick('equipment')}
               >
-                Pay Now
+                Go to Payment
               </button>
+              </Link>
             </div>
-          </form>
-        </div>
-      </main>
 
-      <Footer />
+            {/* Event Payment */}
+            <div className="text-center p-8 bg-white/70 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-500">
+              <p className="text-2xl font-semibold text-pink-600 mb-4">Event Payment</p>
+              <p className="text-sm text-gray-800 mb-6">Make payments for upcoming surfing events and competitions. 
+                Don’t miss your chance to participate in the best experiences.</p>
+              <img
+                src="/images/event1.jpg"
+                alt="Event Payment"
+                className="rounded-lg w-56 h-56 object-cover mx-auto mb-6 shadow-lg"
+              />
+               <Link to="/paymentpage">
+              <button
+                className="w-full py-3 text-white font-semibold bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full shadow-lg hover:from-teal-600 
+                hover:to-cyan-700 transition-all duration-300 ease-out transform hover:scale-105"
+                onClick={() => handlePaymentClick('event')}
+              >
+                Go to Payments
+              </button>
+              </Link>
+            </div>
+
+             {/* Package Payment */}
+             <div className="text-center p-8 bg-white/70 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-500">
+              <p className="text-2xl font-semibold text-cyan-700 mb-4">Package Payment</p>
+              <p className="text-sm text-gray-800 mb-6">Quickly settle payments for your surfing packages, you're booking 
+              beginner lessons, advanced training.</p>
+              <img
+                src="/images/equ1.jpg"
+                alt="Equipment Payment"
+                className="rounded-lg w-56 h-56 object-cover mx-auto mb-6 shadow-lg"
+              />
+              <Link to="/paymentpage">
+              <button
+                className="w-full py-3 text-white font-semibold bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full shadow-lg hover:from-teal-600 hover:to-cyan-700 transition-all duration-300 ease-out transform hover:scale-105"
+                onClick={() => handlePaymentClick('equipment')}
+              >
+                Go to Payment
+              </button>
+              </Link>
+            </div>
+
+            {/* Other Payment */}
+            <div className="text-center p-8 bg-white/50 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-500">
+              <p className="text-2xl font-semibold text-green-800 mb-4">Other Payment</p>
+              <p className="text-sm text-gray-800 mb-6">Handle all miscellaneous payments related to your surfing experience, 
+                from special bookings to equipment rentals.</p>
+              <img
+                src="/images/other1.webp"
+                alt="Other Payment"
+                className="rounded-lg w-56 h-56 object-cover mx-auto mb-6 shadow-lg"
+              />
+              <Link to="/paymentpage">
+              <button
+                className="w-full py-3 text-white font-semibold bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full shadow-lg hover:from-teal-600 
+                hover:to-cyan-700 transition-all duration-300 ease-out transform hover:scale-105"
+                onClick={() => handlePaymentClick('other')}
+              >
+                Go to Payment
+              </button>
+              </Link>
+            </div>
+
+          </div>
+        </div>
+
+        <Footer />
+      </div>
     </div>
   );
 }

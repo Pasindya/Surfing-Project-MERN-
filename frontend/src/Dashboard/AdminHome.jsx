@@ -63,7 +63,7 @@ export default function AdminHome() {
             <FaBook className="text-2xl mr-3" />
             Manage Lessons
           </Link>
-          <Link to="/viewbooking" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/viewpayment" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaClipboardList className="text-2xl mr-3" />
             Manage Bookings
           </Link>
@@ -90,7 +90,7 @@ export default function AdminHome() {
           </Link>
           <Link to="/view-reports" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaRegChartBar className="text-2xl mr-3" />
-            View Reports
+            Manage Payment
           </Link>
           <Link to="/table" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCogs className="text-2xl mr-3" />
