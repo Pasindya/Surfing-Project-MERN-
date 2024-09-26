@@ -38,6 +38,16 @@ import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
+
+import ETable from './Equipment/ETable';
+import EsupplierAdd from './Equipment/EsupplierAdd';
+import ESupdate from './Equipment/ESupdate';
+
+import Tab from './Supplier/Table';
+import SupplierAdd from './Supplier/SupplierAdd';
+import Supupdate from './Supplier/Supdate';
+import Order from './Supplier/Order';
+
 import Addoder from './Sales/Addoder';
 import Oderdescription from './Sales/Oderdescription';
 import Oder from './Sales/Oder';
@@ -112,6 +122,17 @@ export default function App() {
         <Route path='/updateoder/:id' element={<Updateoder />} />
         <Route path='/oderdetail' element={<Oderdetail />} />
         <Route path='/viewoder' element={<Viewoder />} />
+
+        {/* Equipment pages */}
+        <Route path='/Etable' element={<ETable />} />
+        <Route path='/Eadd' element={<EsupplierAdd />} />
+        <Route path='/Eupdate/:upId' element={<ESupdate />} />
+
+        {/* Supplier pages */}
+        <Route path='/table' element={<Tab />} />
+        <Route path='/add' element={<SupplierAdd />} />
+        <Route path='/update/:upId' element={<Supupdate />} />
+        <Route path='/order' element={<Order />} />
 
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />

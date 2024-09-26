@@ -9,6 +9,8 @@ const studentRouter =require("./Route/StudentRoute");
 
 const staffRouter = require("./Route/StaffRoute");
 const salesRouter = require("./Route/SalesRoute");
+const equiment = require("./Route/equimentRoute");
+const Sup = require("./Route/suplierRoute");
 
 
 const app = express();
@@ -25,8 +27,14 @@ app.use("/lessons", lessonRouter);
 app.use("/students",studentRouter);
 
 app.use("/staff", staffRouter);
+ sup
+app.use("/sales",salesRouter);
+app.use('/api/equiment', equiment);
+app.use('/api/suplier', Sup);
+
 app.use("/users",salesRouter);
 
+ main
 
 mongoose.connect("mongodb+srv://surfdeck:surfdeck1234@cluster0.kcpia.mongodb.net/")
     .then(() => console.log("Connected to MongoDB"))
