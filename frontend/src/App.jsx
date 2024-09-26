@@ -63,6 +63,7 @@ import Studentdetails from './Students/Studentdetails';
 import UpdateStudent from './Students/Updatestudent';
 import Adminlogin from './Components/Adminlogin';
 import Eqnav from './Equipment/Eqnav';
+import Supnav from './Supplier/Supnav';
 
 export default function App() {
   return (
@@ -135,6 +136,7 @@ export default function App() {
         <Route path='/add' element={<SupplierAdd />} />
         <Route path='/update/:upId' element={<Supupdate />} />
         <Route path='/order' element={<Order />} />
+        <Route path='/supnav' element={<Supnav />} />
 
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />

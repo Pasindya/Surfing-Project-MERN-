@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Cat from "../../public/images/piccc.jpg";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
+
+import Supnav from "../Supplier/Supnav";
 
 
 
@@ -122,7 +122,7 @@ export default function Schedul() {
 
   return (
 
-    <div> <Headernav/>
+    <div> <Supnav/>
     <div className="h-[600px] relative">
       <img src={Cat} alt="" className="w-full h-full object-cover" />
 
@@ -339,7 +339,7 @@ export default function Schedul() {
 
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5"></div>
     </div>
-    <Footer/>
+    
     </div>
   );
 }

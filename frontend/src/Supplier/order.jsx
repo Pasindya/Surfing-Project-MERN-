@@ -38,7 +38,7 @@ export default function Order() {
           setPublishError(null);
           console.log("sussessfull");
           alert('successfull')
-          navigate("/table")
+          navigate("/")
          
         }
       } catch (error) {
