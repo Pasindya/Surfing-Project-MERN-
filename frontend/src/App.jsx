@@ -38,6 +38,16 @@ import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
 
 
+import ETable from "./Equipment/ETable";
+import EsupplierAdd from "./Equipment/EsupplierAdd";
+import ESupdate from "./Equipment/ESupdate";
+
+
+import Tab from "./Supplier/Table";
+import SupplierAdd from "./Supplier/supplierAdd";
+import Supupdate from "./Supplier/Supdate";
+import Order from "./Supplier/order";
+
 
 export default function App() {
   return (
@@ -91,6 +101,20 @@ export default function App() {
       
       //Staffdetails
       <Route path='/surfboard' element={<Surfboard />} />  
+
+
+
+      //Equipment
+      <Route path="/Etable" element={<ETable />} />
+      <Route path="/Eadd" element={<EsupplierAdd />} />
+      <Route path="/Eupdate/:upId" element={<ESupdate />} />
+
+
+      //supllier
+      <Route path="/table" element={<Tab />} />
+          <Route path="/add" element={<SupplierAdd />} />
+          <Route path="/update/:upId" element={<Supupdate />} />
+          <Route path="/order" element={<Order />} />
 
       
     </Routes>

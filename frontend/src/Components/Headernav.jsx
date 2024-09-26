@@ -54,13 +54,13 @@ export default function Headernav() {
           <Link to="/events" className="text-slate-700 hover:underline">
             Events
           </Link>
-          <Link to="/equipments" className="text-slate-700 hover:underline">
+          <Link to="/Etable" className="text-slate-700 hover:underline">
             Equipments
           </Link>
           <Link to="/payment" className="text-slate-700 hover:underline">
             Payments
           </Link>
-          <Link to="/supplier" className="text-slate-700 hover:underline">
+          <Link to="/table" className="text-slate-700 hover:underline">
             Supplier
           </Link>
           <Link to="/surfboard" className="text-slate-700 hover:underline">
