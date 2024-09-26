@@ -28,10 +28,10 @@ export default function Beginner() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <img src="surf-lesson.jpg" alt="Surf Lesson" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="beginner-group.jpg" alt="Beginner Group" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="surfboard-rental.jpg" alt="Surfboard Rental" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="beach-scene.jpg" alt="Beach Scene" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="public/images/beg2.jpeg" alt="Surf Lesson" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="public/images/begi1.jpg" alt="Beginner Group" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="public/images/package2.jpg" alt="Surfboard Rental" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="public/images/p2.jpg" alt="Beach Scene" className="w-full h-48 object-cover rounded-md shadow" />
         </div>
 
         <ul className="list-disc list-inside text-gray-700 mb-6">
