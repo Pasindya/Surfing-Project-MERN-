@@ -36,6 +36,7 @@ import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
+import Staffinfo from './Staff/Staffinfo';
 
 
 
@@ -87,7 +88,9 @@ export default function App() {
       <Route path='/staffdescription' element={<Staffdescription />} />
       <Route path="/staffdetails" element={<Staffdetails />} />
       <Route path='/addstaff' element={<Addstaff />} />  
-      <Route path='/upstaff/:id' element={<Upstaff />} />  
+      <Route path="/updatestaff/:id" element={<Upstaff />} />
+      <Route path='/staffinfo' element={<Staffinfo />} />
+
       
       //Staffdetails
       <Route path='/surfboard' element={<Surfboard />} />  
