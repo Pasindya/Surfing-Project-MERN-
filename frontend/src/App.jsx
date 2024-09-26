@@ -17,7 +17,6 @@ import Viewbooking from './Booking/Viewbooking';
 import Booking from './Booking/Booking';
 import Updatebooking from './Booking/Updatebooking';
 import Bookingdescription from './Booking/Bookingdescription';
-
 import Support from './Pages/Support';
 import Lessondetails from './Lessons/Lessondetails';
 import Viewlesson from './Lessons/Viewlesson';
@@ -30,7 +29,6 @@ import Upcoming from './Pages/Upcoming';
 import RegisterStu from './Pages/RegisterStu';
 import Studentnav from './Students/Studentnav';
 import Studentdescription from './Students/Studentdescription';
-
 import Staffm from './Staff/Staffm';
 import Staffdetails from './Staff/Staffdetails';
 import Staffnavi from './Staff/Staffnavi';
@@ -40,8 +38,14 @@ import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
+import Addoder from './Sales/Addoder';
+import Oderdescription from './Sales/Oderdescription';
+import Oder from './Sales/Oder';
+import Odernav from './Sales/Odernav';
+import Updateoder from './Sales/Updateoder';
+import Oderdetail from './Sales/Oderdetail';
+import Viewoder from './Sales/Viewoder';
 import LessonList from './Lessons/Lessonlist';
-
 import Student from './Students/Student';
 import Viewstudent from './Students/Viewstudent';
 import Addstudent from './Students/Addstudent';
@@ -69,7 +73,7 @@ export default function App() {
         <Route path='/advanced' element={<Advanced />} />
         <Route path='/bookpackage' element={<Bookpackage />} />
         <Route path='/support' element={<Support />} />
-        <Route path='/adminlogin' element={<Adminlogin/>} />
+        <Route path='/adminlogin' element={<Adminlogin />} />
 
         {/* Booking pages */}
         <Route path='/adminhome' element={<AdminHome />} />
@@ -98,7 +102,16 @@ export default function App() {
         <Route path='/staffdetails' element={<Staffdetails />} />
         <Route path='/addstaff' element={<Addstaff />} />
         <Route path='/upstaff/:id' element={<Upstaff />} />
+
+        {/* Sales pages */}
         <Route path='/surfboard' element={<Surfboard />} />
+        <Route path='/addoder' element={<Addoder />} />
+        <Route path='/oderdescription' element={<Oderdescription />} />
+        <Route path='/oder' element={<Oder />} />
+        <Route path='/odernav' element={<Odernav />} />
+        <Route path='/updateoder/:id' element={<Updateoder />} />
+        <Route path='/oderdetail' element={<Oderdetail />} />
+        <Route path='/viewoder' element={<Viewoder />} />
 
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />
