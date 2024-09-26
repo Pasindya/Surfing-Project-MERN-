@@ -35,6 +35,14 @@ import Staffdescription from './Staff/Staffdescription';
 import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
+import Surfboard from './Sales/Surfboard';
+import Addoder from './Sales/Addoder';
+import Oderdescription from './Sales/Oderdescription';
+import Oder from './Sales/Oder';
+import Odernav from './Sales/Odernav';
+import Updateoder from './Sales/Updateoder';
+import Oderdetail from './Sales/Oderdetail';
+import Viewoder from './Sales/Viewoder';
 
 
 
@@ -86,7 +94,17 @@ export default function App() {
       <Route path='/staffdescription' element={<Staffdescription />} />
       <Route path="/staffdetails" element={<Staffdetails />} />
       <Route path='/addstaff' element={<Addstaff />} />  
-      <Route path='/upstaff/:id' element={<Upstaff />} />  
+      <Route path='/upstaff/:id' element={<Upstaff />} /> 
+
+      //sales 
+      <Route path='/surfboard' element={<Surfboard />} /> 
+      <Route path='/addoder' element={<Addoder />} /> 
+      <Route path='/oderdescription' element={<Oderdescription />} /> 
+      <Route path='/oder' element={<Oder />} /> 
+      <Route path='/odernav' element={<Odernav />} /> 
+      <Route path='/updateoder/:id' element={<Updateoder />} /> 
+      <Route path='/oderdetail' element={<Oderdetail />} /> 
+      <Route path='/viewoder' element={<Viewoder />} />
       
     </Routes>
     </BrowserRouter>

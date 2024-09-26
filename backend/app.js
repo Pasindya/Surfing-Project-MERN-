@@ -18,7 +18,7 @@ app.use(cors());
 app.use("/bookings", bookingRouter);
 app.use("/lessons", lessonRouter);
 app.use("/staff", staffRouter);
-app.use("/sales",salesRouter);
+app.use("/users",salesRouter);
 
 mongoose.connect("mongodb+srv://surfdeck:surfdeck1234@cluster0.kcpia.mongodb.net/")
     .then(() => console.log("Connected to MongoDB"))
