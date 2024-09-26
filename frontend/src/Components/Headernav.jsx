@@ -54,13 +54,13 @@ export default function Headernav() {
           <Link to="/events" className="text-slate-700 hover:underline">
             Events
           </Link>
-          <Link to="/Etable" className="text-slate-700 hover:underline">
+          <Link to="/Eadd" className="text-slate-700 hover:underline">
             Equipments
           </Link>
           <Link to="/payment" className="text-slate-700 hover:underline">
             Payments
           </Link>
-          <Link to="/table" className="text-slate-700 hover:underline">
+          <Link to="/order" className="text-slate-700 hover:underline">
             Supplier
           </Link>
           <Link to="/surfboard" className="text-slate-700 hover:underline">
@@ -114,7 +114,7 @@ export default function Headernav() {
             <Link to="/payment" className="px-4 py-2 text-slate-700 hover:bg-slate-100">
               Payments
             </Link>
-            <Link to="/supplier" className="px-4 py-2 text-slate-700 hover:bg-slate-100">
+            <Link to="/order" className="px-4 py-2 text-slate-700 hover:bg-slate-100">
               Supplier
             </Link>
             <Link to="/support" className="px-4 py-2 text-slate-700 hover:bg-slate-100">

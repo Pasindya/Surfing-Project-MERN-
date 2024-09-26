@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import girl from "../../public/images/image.jpg";
+import Headernav from '../Components/Headernav';
+import Footer from '../Components/Footer';
 
 export default function supplierAdd() {
   const [formData, setFormData] = useState({});

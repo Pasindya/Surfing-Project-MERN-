@@ -5,6 +5,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import Headernav from '../Components/Headernav';
 import Footer from '../Components/Footer';
+import Eqnav from "./Eqnav";
 
 export default function Schedul() {
   const [publishError, setPublishError] = useState(null);
@@ -130,7 +131,7 @@ export default function Schedul() {
   return (
 
    <div>
-    <Headernav/>
+    <Eqnav />
     <div className="h-[600px] relative">
       
       <img src={Cat} alt="" className="w-full h-full object-cover" />
@@ -348,7 +349,7 @@ export default function Schedul() {
 
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5"></div>
     </div>
-    <Footer/>
+    
 
     </div>
   );

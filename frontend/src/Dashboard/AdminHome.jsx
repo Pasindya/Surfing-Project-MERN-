@@ -80,7 +80,7 @@ export default function AdminHome() {
             <FaCalendarAlt className="text-2xl mr-3" />
             Manage Events
           </Link>
-          <Link to="/manage-equipments" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/etable" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaWaveSquare className="text-2xl mr-3" />
             Manage Equipments
           </Link>
@@ -92,9 +92,9 @@ export default function AdminHome() {
             <FaRegChartBar className="text-2xl mr-3" />
             View Reports
           </Link>
-          <Link to="/settings" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/table" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCogs className="text-2xl mr-3" />
-            Settings
+            Suppliers
           </Link>
         </div>
       </section>

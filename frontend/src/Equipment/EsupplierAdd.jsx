@@ -39,7 +39,7 @@ export default function supplierAdd() {
         setPublishError(null);
         console.log("sussessfull");
         alert("suscessfull")
-        navigate('/Etable')
+        navigate('/')
        
       }
     } catch (error) {

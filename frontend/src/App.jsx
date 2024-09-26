@@ -5,8 +5,8 @@ import Packages from './Pages/Packages';
 import Staff from './Pages/Staff';
 import Events from './Pages/Events';
 import Payment from './Pages/Payment';
-import Equipments from './Pages/Equipments';
-import Supplier from './Pages/Supplier';
+
+
 import Signin from './Pages/Signin';
 import Beginner from './Pages/Beginner';
 import Intermidiate from './Pages/Intermidiate';
@@ -44,9 +44,9 @@ import EsupplierAdd from './Equipment/EsupplierAdd';
 import ESupdate from './Equipment/ESupdate';
 
 import Tab from './Supplier/Table';
-import SupplierAdd from './Supplier/SupplierAdd';
+import SupplierAdd from './Supplier/supplierAdd';
 import Supupdate from './Supplier/Supdate';
-import Order from './Supplier/Order';
+import Order from './Supplier/order';
 
 import Addoder from './Sales/Addoder';
 import Oderdescription from './Sales/Oderdescription';
@@ -62,6 +62,7 @@ import Addstudent from './Students/Addstudent';
 import Studentdetails from './Students/Studentdetails';
 import UpdateStudent from './Students/Updatestudent';
 import Adminlogin from './Components/Adminlogin';
+import Eqnav from './Equipment/Eqnav';
 
 export default function App() {
   return (
@@ -74,8 +75,8 @@ export default function App() {
         <Route path='/staff' element={<Staff />} />
         <Route path='/events' element={<Events />} />
         <Route path='/payment' element={<Payment />} />
-        <Route path='/equipments' element={<Equipments />} />
-        <Route path='/supplier' element={<Supplier />} />
+        
+     
         <Route path='/signin' element={<Signin />} />
         <Route path='/RegisterStu' element={<RegisterStu />} />
         <Route path='/beginner' element={<Beginner />} />
@@ -127,6 +128,7 @@ export default function App() {
         <Route path='/Etable' element={<ETable />} />
         <Route path='/Eadd' element={<EsupplierAdd />} />
         <Route path='/Eupdate/:upId' element={<ESupdate />} />
+        <Route path='/eqnav' element={<Eqnav />} />
 
         {/* Supplier pages */}
         <Route path='/table' element={<Tab />} />
