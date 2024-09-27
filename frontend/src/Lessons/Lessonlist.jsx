@@ -1,12 +1,10 @@
-// LessonList .jsx
-
-
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import LessonNav from '../Lessons/Lessonnav'; // Adjust the import path as needed
 import { useReactToPrint } from 'react-to-print';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // For generating tables in PDFs
+import logo from '/images/logoh.jpeg'; // Add the correct path to your logo image
 
 export default function LessonList() {
   const [lessons, setLessons] = useState([]);
@@ -32,24 +30,38 @@ export default function LessonList() {
 
   const handleDownloadReport = () => {
     const doc = new jsPDF();
-    const tableColumn = ["ID", "Title", "Date", "Time", "Location", "Description"];
-    const tableRows = [];
 
-    lessons.forEach(lesson => {
-      const lessonData = [
-        lesson._id,
-        lesson.title,
-        new Date(lesson.date).toLocaleDateString(),
-        new Date(`1970-01-01T${lesson.time}:00`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }),
-        lesson.location,
-        lesson.description
-      ];
-      tableRows.push(lessonData);
-    });
+    // Add logo
+    const img = new Image();
+    img.src = logo;  // Use the imported logo image path
+    img.onload = function() {
+      // Add header information: Logo, Company Name, Address, Date
+      doc.addImage(img, 'JPEG', 10, 10, 30, 30); // Adjust logo dimensions and position
+      doc.setFontSize(16);
+      doc.text('SurfDeck', 50, 20);
+      doc.setFontSize(12);
+      doc.text('123 Surf Lane, Beach City, CA', 50, 28);
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, 50, 36);
 
-    doc.autoTable(tableColumn, tableRows, { startY: 20 });
-    doc.text("Lesson Report", 14, 15);
-    doc.save('lessons_report.pdf');
+      // Add table with lesson data
+      const tableColumn = ["ID", "Title", "Date", "Time", "Location", "Description"];
+      const tableRows = [];
+
+      lessons.forEach(lesson => {
+        const lessonData = [
+          lesson._id,
+          lesson.title,
+          new Date(lesson.date).toLocaleDateString(),
+          new Date(`1970-01-01T${lesson.time}:00`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }),
+          lesson.location,
+          lesson.description
+        ];
+        tableRows.push(lessonData);
+      });
+
+      doc.autoTable(tableColumn, tableRows, { startY: 50 }); // Adjust position to accommodate the header
+      doc.save('lessons_report.pdf');
+    };
   };
 
   const handlePrint = useReactToPrint({
