@@ -5,8 +5,6 @@ import Packages from './Pages/Packages';
 import Staff from './Pages/Staff';
 import Events from './Pages/Events';
 import Payment from './Pages/Payment';
-
-
 import Signin from './Pages/Signin';
 import Beginner from './Pages/Beginner';
 import Intermidiate from './Pages/Intermidiate';
@@ -26,10 +24,6 @@ import Lessondescription from './Lessons/Lessondescription';
 import Lessonnav from './Lessons/Lessonnav';
 import Addlesson from './Lessons/Addlesson';
 import Upcoming from './Pages/Upcoming';
-
-
-
-
 import RegisterStu from './Pages/RegisterStu';
 import Studentnav from './Students/Studentnav';
 import Studentdescription from './Students/Studentdescription';
@@ -43,17 +37,13 @@ import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
 import Staffinfo from './Staff/Staffinfo';
-
 import ETable from './Equipment/ETable';
 import EsupplierAdd from './Equipment/EsupplierAdd';
 import ESupdate from './Equipment/ESupdate';
-
 import Tab from './Supplier/Table';
 import SupplierAdd from './Supplier/supplierAdd';
 import Supupdate from './Supplier/Supdate';
 import Order from './Supplier/order';
-
-
 import Addoder from './Sales/Addoder';
 import Oderdescription from './Sales/Oderdescription';
 import Oder from './Sales/Oder';
@@ -70,11 +60,9 @@ import UpdateStudent from './Students/Updatestudent';
 import Adminlogin from './Components/Adminlogin';
 import Eqnav from './Equipment/Eqnav';
 import Supnav from './Supplier/Supnav';
-
 import ReportGeneration from './Payment/ReportGeneration'; 
 import PaymentPage from './Payment/PaymentPage';
 import PaymentSummary from './Payment/PaymentSummary';
-
 import Boardsurf from './Event/Boardsurf';
 import Boatsurf from './Event/Boatsurf';
 import Windsurf from './Event/Windsurf';
@@ -84,89 +72,26 @@ import Viewevent from './Event/Viewevent';
 import Updateevent from './Event/Updateevent';
 import Notification from './Event/Notification';
 
-
-
-
-
-
 export default function App() {
   return (
     <BrowserRouter>
-Staff
-    <Routes>
-      //main pages
-      <Route path ='' element={<Home/>}/>
-      <Route path ='/aboutus' element={<Aboutus/>}/>
-      <Route path ='/packages' element={<Packages/>}/>
-      <Route path ='/staff' element={<Staff/>}/>
-      <Route path ='/events' element={<Events/>}/>
-      <Route path ='/payment' element={<Payment/>}/>
-      <Route path ='/equipments' element={<Equipments/>}/>
-      <Route path ='/supplier' element={<Supplier/>}/>
-      <Route path ='/signin' element={<Signin/>}/>
-      <Route path ='/beginner' element={<Beginner/>}/>
-      <Route path ='/intermediate' element={<Intermidiate/>}/>
-      <Route path ='/advanced' element={<Advanced/>}/>
-      <Route path ='/bookpackage' element={<Bookpackage/>}/>
-      <Route path ='/support' element={<Support/>}/>
-
-
-
-//Booking pages
-      <Route path ='/adminhome' element={<AdminHome/>}/>
-      <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
-      <Route path ='/viewbooking' element={<Viewbooking/>}/>
-      <Route path ='/booking' element={<Booking/>}/>
-      <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
-      <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
-
-      //Lesson pages
-      
-      <Route path ='/lessondetails' element={<Lessondetails/>}/>
-     < Route path ='/addlesson' element={<Addlesson/>}/>
-      <Route path ='/viewlesson' element={<Viewlesson/>}/>
-      <Route path ='/lesson' element={<Lesson/>}/>
-      <Route path ='/lessonnav' element={<Lessonnav/>}/>
-      <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
-      <Route path ='/lessondescription' element={<Lessondescription/>}/>
-      <Route path ='/upcoming' element={<Upcoming/>}/>
-      
-      //Staff
-      <Route path='/staffm' element={<Staffm />} />
-      <Route path='/staffnavi' element={<Staffnavi />} />
-      <Route path='/viewstaff' element={<Viewstaff />} />
-      <Route path='/staffdescription' element={<Staffdescription />} />
-      <Route path="/staffdetails" element={<Staffdetails />} />
-      <Route path='/addstaff' element={<Addstaff />} />  
-      <Route path="/updatestaff/:id" element={<Upstaff />} />
-      <Route path='/staffinfo' element={<Staffinfo />} />
-
-      
-      //Staffdetails
-      <Route path='/surfboard' element={<Surfboard />} />  
-
-      
-    </Routes>
-
       <Routes>
         {/* Main pages */}
-        <Route path='' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/aboutus' element={<Aboutus />} />
         <Route path='/packages' element={<Packages />} />
         <Route path='/staff' element={<Staff />} />
         <Route path='/events' element={<Events />} />
         <Route path='/payment' element={<Payment />} />
-        
-     
         <Route path='/signin' element={<Signin />} />
-        <Route path='/RegisterStu' element={<RegisterStu />} />
+        <Route path='/registerStu' element={<RegisterStu />} />
         <Route path='/beginner' element={<Beginner />} />
         <Route path='/intermediate' element={<Intermidiate />} />
         <Route path='/advanced' element={<Advanced />} />
         <Route path='/bookpackage' element={<Bookpackage />} />
         <Route path='/support' element={<Support />} />
         <Route path='/adminlogin' element={<Adminlogin />} />
-
+        
         {/* Booking pages */}
         <Route path='/adminhome' element={<AdminHome />} />
         <Route path='/bookingdetails' element={<Bookingdetails />} />
@@ -174,10 +99,7 @@ Staff
         <Route path='/booking' element={<Booking />} />
         <Route path='/bookingdetails/:id' element={<Updatebooking />} />
         <Route path='/bookingdescription' element={<Bookingdescription />} />
-
-
-
-
+        
         {/* Lesson pages */}
         <Route path='/lessondetails' element={<Lessondetails />} />
         <Route path='/addlesson' element={<Addlesson />} />
@@ -189,7 +111,6 @@ Staff
         <Route path='/upcoming' element={<Upcoming />} />
         <Route path='/lessonlist' element={<LessonList />} />
 
-
         {/* Staff pages */}
         <Route path='/staffm' element={<Staffm />} />
         <Route path='/staffnavi' element={<Staffnavi />} />
@@ -198,7 +119,7 @@ Staff
         <Route path='/staffdetails' element={<Staffdetails />} />
         <Route path='/addstaff' element={<Addstaff />} />
         <Route path='/upstaff/:id' element={<Upstaff />} />
-
+        
         {/* Sales pages */}
         <Route path='/surfboard' element={<Surfboard />} />
         <Route path='/addoder' element={<Addoder />} />
@@ -208,26 +129,20 @@ Staff
         <Route path='/updateoder/:id' element={<Updateoder />} />
         <Route path='/oderdetail' element={<Oderdetail />} />
         <Route path='/viewoder' element={<Viewoder />} />
-
-
-
-
-
-     
-
+        
         {/* Equipment pages */}
         <Route path='/Etable' element={<ETable />} />
         <Route path='/Eadd' element={<EsupplierAdd />} />
         <Route path='/Eupdate/:upId' element={<ESupdate />} />
         <Route path='/eqnav' element={<Eqnav />} />
-
+        
         {/* Supplier pages */}
         <Route path='/table' element={<Tab />} />
         <Route path='/add' element={<SupplierAdd />} />
         <Route path='/update/:upId' element={<Supupdate />} />
         <Route path='/order' element={<Order />} />
         <Route path='/supnav' element={<Supnav />} />
-
+        
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />
         <Route path='/studentdescription' element={<Studentdescription />} />
@@ -237,12 +152,12 @@ Staff
         <Route path='/studentdetails' element={<Studentdetails />} />
         <Route path='/updateStudent/:id' element={<UpdateStudent />} />
 
-          {/*Payment pages */}
-          <Route path='/paymentpage' element ={<PaymentPage/>}/>
-          <Route path='/paymentsummary' element ={<PaymentSummary/>}/>
-          <Route path="/report" element={<ReportGeneration />} />
-
-           {/* Event pages */}
+        {/* Payment pages */}
+        <Route path='/paymentpage' element={<PaymentPage />} />
+        <Route path='/paymentsummary' element={<PaymentSummary />} />
+        <Route path="/report" element={<ReportGeneration />} />
+        
+        {/* Event pages */}
         <Route path='/boardsurf' element={<Boardsurf />} />
         <Route path='/boatsurf' element={<Boatsurf />} />
         <Route path='/windsurf' element={<Windsurf />} />
@@ -251,11 +166,7 @@ Staff
         <Route path='/viewevent/:eventId' element={<Viewevent />} />
         <Route path='/updateevent' element={<Updateevent />} />
         <Route path='/notification' element={<Notification />} />
-
-                 
-
       </Routes>
- main
     </BrowserRouter>
   );
 }
