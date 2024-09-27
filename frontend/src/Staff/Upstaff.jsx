@@ -39,9 +39,19 @@ export default function Upstaff() {
     };
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        // For the "name" field, restrict input to letters and spaces
+        if (name === 'name') {
+            const regex = /^[A-Za-z\s]*$/;
+            if (!regex.test(value)) {
+                return; // Do not update if invalid character is typed
+            }
+        }
+
         setInputs((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value,
+            [name]: value,
         }));
     };
 
