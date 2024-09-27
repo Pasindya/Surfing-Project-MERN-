@@ -1,0 +1,68 @@
+import React from 'react';
+import { Link } from 'react-router-dom';  // Import the Link component
+import Headernav from '../Components/Headernav';
+import Footer from '../Components/Footer';
+
+export default function Event() {
+  return (
+    <div className="bg-gray-100 min-h-screen flex flex-col justify-between">
+      <Headernav />
+      
+      {/* Main Content */}
+      <div className="relative">
+        {/* Background Image */}
+        <div
+          className="w-full h-screen bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/images/boatsurfback.jpg)', // Replace with the actual image URL
+          }}
+        >
+          {/* Overlay with content */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+
+          {/* Text and Price Section */}
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4">
+            {/* Heading with rounded shadow, hover shadow, transform, yellow, and black */}
+            <h1 className="text-5xl font-bold mb-5 text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-700 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 hover:from-orange-700 hover:to-yellow-600">
+              Boat Surfing
+            </h1>
+            
+            <p className="text-center max-w-xl text-lg mb-7">
+            Boat surfing, or wakesurfing, is a water sport where a rider surfs the wake of a moving boat, starting 
+              with a rope and then riding the wave without it. It blends surfing and 
+              wakeboarding for a fun experience on calm waters.
+            </p>
+
+            {/* Event Prices */}
+            <div className="bg-black bg-opacity-70 p-6 rounded-lg">
+              <h2 className="text-3xl font-semibold mb-4">Event Prices</h2>
+              <ul className="space-y-4">
+                <li className="flex justify-between text-xl">
+                  <span>For Beginners</span>
+                  <span className="font-bold">Rs 5000</span>
+                </li>
+                <li className="flex justify-between text-xl">
+                  <span>For Intermediates</span>
+                  <span className="font-bold">Rs 3500</span>
+                </li>
+                <li className="flex justify-between text-xl">
+                  <span>For Experts</span>
+                  <span className="font-bold">Rs 2000</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Let's Go Button - Link to Event Register page */}
+            <Link to="/eventregister">
+              <button className="mt-10 bg-yellow-500 text-black px-8 py-3 rounded-full text-2xl font-bold shadow-lg transition-colors duration-300 ease-in-out transform hover:scale-105 hover:bg-black hover:text-yellow-500">
+                Let's Go
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}

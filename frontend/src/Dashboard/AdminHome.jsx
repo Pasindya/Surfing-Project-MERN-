@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import { FaBook, FaCalendarAlt, FaUser, FaClipboardList, FaCogs, FaChalkboardTeacher, FaWaveSquare, FaRegChartBar } from 'react-icons/fa';
+import { FaBook, FaCalendarAlt, FaUser, FaClipboardList, FaCogs, FaChalkboardTeacher, FaWaveSquare, FaRegChartBar, FaShoppingCart } from 'react-icons/fa';
 
 export default function AdminHome() {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -63,19 +63,24 @@ export default function AdminHome() {
             <FaBook className="text-2xl mr-3" />
             Manage Lessons
           </Link>
-          <Link to="/viewbooking" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/viewpayment" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaClipboardList className="text-2xl mr-3" />
             Manage Bookings
           </Link>
-          <Link to="/manage-students" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/oderdescription" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+            <FaShoppingCart className="text-2xl mr-3" />
+            Manage Orders
+          </Link>
+          <Link to="/viewstudent" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaUser className="text-2xl mr-3" />
             Manage Students
           </Link>
+
           <Link to="/manage-events" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCalendarAlt className="text-2xl mr-3" />
             Manage Events
           </Link>
-          <Link to="/manage-equipments" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/etable" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaWaveSquare className="text-2xl mr-3" />
             Manage Equipments
           </Link>
@@ -85,11 +90,11 @@ export default function AdminHome() {
           </Link>
           <Link to="/view-reports" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaRegChartBar className="text-2xl mr-3" />
-            View Reports
+            Manage Payment
           </Link>
-          <Link to="/settings" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/table" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCogs className="text-2xl mr-3" />
-            Settings
+            Suppliers
           </Link>
         </div>
       </section>

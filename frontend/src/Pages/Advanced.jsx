@@ -28,7 +28,7 @@ export default function Advanced() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <img src="big-wave-surfing.jpg" alt="Big Wave Surfing" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src=".public/images/ad1.jpg" alt="Big Wave Surfing" className="w-full h-48 object-cover rounded-md shadow" />
           <img src="advanced-maneuvers.jpg" alt="Advanced Maneuvers" className="w-full h-48 object-cover rounded-md shadow" />
           <img src="surf-instructor.jpg" alt="Surf Instructor Coaching" className="w-full h-48 object-cover rounded-md shadow" />
           <img src="video-analysis.jpg" alt="Video Analysis" className="w-full h-48 object-cover rounded-md shadow" />
