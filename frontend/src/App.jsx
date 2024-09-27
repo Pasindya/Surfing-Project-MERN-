@@ -42,6 +42,7 @@ import Addstaff from './Staff/Addstaff';
 import Upstaff from './Staff/Upstaff';
 import AdminHome from './Dashboard/AdminHome';
 import Surfboard from './Sales/Surfboard';
+import Staffinfo from './Staff/Staffinfo';
 
 import ETable from './Equipment/ETable';
 import EsupplierAdd from './Equipment/EsupplierAdd';
@@ -91,6 +92,62 @@ import Notification from './Event/Notification';
 export default function App() {
   return (
     <BrowserRouter>
+Staff
+    <Routes>
+      //main pages
+      <Route path ='' element={<Home/>}/>
+      <Route path ='/aboutus' element={<Aboutus/>}/>
+      <Route path ='/packages' element={<Packages/>}/>
+      <Route path ='/staff' element={<Staff/>}/>
+      <Route path ='/events' element={<Events/>}/>
+      <Route path ='/payment' element={<Payment/>}/>
+      <Route path ='/equipments' element={<Equipments/>}/>
+      <Route path ='/supplier' element={<Supplier/>}/>
+      <Route path ='/signin' element={<Signin/>}/>
+      <Route path ='/beginner' element={<Beginner/>}/>
+      <Route path ='/intermediate' element={<Intermidiate/>}/>
+      <Route path ='/advanced' element={<Advanced/>}/>
+      <Route path ='/bookpackage' element={<Bookpackage/>}/>
+      <Route path ='/support' element={<Support/>}/>
+
+
+
+//Booking pages
+      <Route path ='/adminhome' element={<AdminHome/>}/>
+      <Route path ='/bookingdetails' element={<Bookingdetails/>}/>
+      <Route path ='/viewbooking' element={<Viewbooking/>}/>
+      <Route path ='/booking' element={<Booking/>}/>
+      <Route path ='/bookingdetails/:id' element={<Updatebooking/>}/>
+      <Route path ='/bookingdescription' element={<Bookingdescription/>}/>
+
+      //Lesson pages
+      
+      <Route path ='/lessondetails' element={<Lessondetails/>}/>
+     < Route path ='/addlesson' element={<Addlesson/>}/>
+      <Route path ='/viewlesson' element={<Viewlesson/>}/>
+      <Route path ='/lesson' element={<Lesson/>}/>
+      <Route path ='/lessonnav' element={<Lessonnav/>}/>
+      <Route path ='/updatelesson/:id' element={<Updatelesson/>}/>
+      <Route path ='/lessondescription' element={<Lessondescription/>}/>
+      <Route path ='/upcoming' element={<Upcoming/>}/>
+      
+      //Staff
+      <Route path='/staffm' element={<Staffm />} />
+      <Route path='/staffnavi' element={<Staffnavi />} />
+      <Route path='/viewstaff' element={<Viewstaff />} />
+      <Route path='/staffdescription' element={<Staffdescription />} />
+      <Route path="/staffdetails" element={<Staffdetails />} />
+      <Route path='/addstaff' element={<Addstaff />} />  
+      <Route path="/updatestaff/:id" element={<Upstaff />} />
+      <Route path='/staffinfo' element={<Staffinfo />} />
+
+      
+      //Staffdetails
+      <Route path='/surfboard' element={<Surfboard />} />  
+
+      
+    </Routes>
+
       <Routes>
         {/* Main pages */}
         <Route path='' element={<Home />} />
@@ -198,6 +255,7 @@ export default function App() {
                  
 
       </Routes>
+ main
     </BrowserRouter>
   );
 }
