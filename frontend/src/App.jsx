@@ -77,7 +77,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* Main pages */}
-        <Route path='/' element={<Home />} />
+        <Route path='' element={<Home />} />
         <Route path='/aboutus' element={<Aboutus />} />
         <Route path='/packages' element={<Packages />} />
         <Route path='/staff' element={<Staff />} />

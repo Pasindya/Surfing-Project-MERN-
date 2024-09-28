@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import Addoder from './Addoder'; // Assuming this component is needed elsewhere
+import Addoder from './Addoder';
 import Oder from './Oder';
-import OrderNav from '../Sales/Odernav'; // Import the OrderNav component
 
 const URL = "http://localhost:5009/users"; // Fixed URL capitalization
 
@@ -11,7 +10,7 @@ const fetchHandler = async () => {
 };
 
 export default function Oderdetail() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     fetchHandler().then((data) => setUsers(data.users));
@@ -19,37 +18,22 @@ export default function Oderdetail() {
 
   return (
     <div className="order-detail-container">
-      <div className="sidebar">
-        <OrderNav /> {/* Render the OrderNav component here */}
-      </div>
-      <div className="main-content">
-        <h1 className="heading">Order Details Display Page</h1>
-        <div className="order-list">
-          {users && users.map((user, i) => (
-            <div key={i} className="order-item">
-              <Oder user={user} />
-            </div>
-          ))}
-        </div>
+      <h1 className="heading">Order Details Display Page</h1>
+      <div className="order-list">
+        {users && users.map((user, i) => (
+          <div key={i} className="order-item">
+            <Oder user={user} />
+          </div>
+        ))}
       </div>
 
       {/* Internal CSS */}
       <style>
         {`
           .order-detail-container {
-            display: flex;
             padding: 20px;
             max-width: 1000px;
             margin: 0 auto;
-          }
-
-          .sidebar {
-            width: 250px; /* Set a fixed width for the sidebar */
-            margin-right: 20px; /* Space between sidebar and main content */
-          }
-
-          .main-content {
-            flex: 1; /* Takes the remaining space */
           }
 
           .heading {

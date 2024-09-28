@@ -26,7 +26,7 @@ app.use("/lessons", lessonRouter);
 app.use("/events", planeventRouter);
 app.use("/students", studentRouter);
 app.use("/staff", staffRouter);
-app.use("/sales", salesRouter);
+app.use("/users",salesRouter);
 app.use("/api/equipment", equipmentRouter);
 app.use("/api/supplier", supplierRouter);
 app.use("/payments",paymentRouter);
