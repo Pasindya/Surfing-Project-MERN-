@@ -9,8 +9,9 @@ const lessonRouter = require("./Route/LessonRoute");
 const studentRouter = require("./Route/StudentRoute");
 const staffRouter = require("./Route/StaffRoute");
 const salesRouter = require("./Route/SalesRoute");
-const equipmentRouter = require("./Route/equimentRoute"); // Ensure this file exists and is correctly named
-const supplierRouter = require("./Route/suplierRoute");
+const equiment = require("./Route/equimentRoute");
+const Sup = require("./Route/suplierRoute");
+
 const paymentRouter = require("./Route/PaymentRoute");
 const planeventRouter = require("./Route/PlaneventRoutes");
 
@@ -27,8 +28,9 @@ app.use("/events", planeventRouter);
 app.use("/students", studentRouter);
 app.use("/staff", staffRouter);
 app.use("/users",salesRouter);
-app.use("/api/equipment", equipmentRouter);
-app.use("/api/supplier", supplierRouter);
+app.use('/api/equiment', equiment);
+app.use('/api/suplier', Sup);
+
 app.use("/payments",paymentRouter);
 
 // Connect to MongoDB and start server
