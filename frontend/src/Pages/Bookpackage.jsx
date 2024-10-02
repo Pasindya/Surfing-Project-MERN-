@@ -62,7 +62,7 @@ export default function Bookpackage() {
         address: "",
       });
       // Redirect to home page after booking
-      navigate('/');
+      navigate('/paymentpage');
     } catch (err) {
       console.error("Error: ", err);
     }
