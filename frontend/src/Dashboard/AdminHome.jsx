@@ -1,14 +1,15 @@
+// AdminHome.js
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBook, FaCalendarAlt, FaUser, FaClipboardList, FaCogs, FaChalkboardTeacher, FaWaveSquare, FaRegChartBar, FaShoppingCart } from 'react-icons/fa';
 
+
+
 export default function AdminHome() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Add your logout logic here
     console.log('User logged out');
-    // After logout, redirect to the home page
     navigate('/'); // Redirect to the home page
   };
 
@@ -30,7 +31,8 @@ export default function AdminHome() {
       <section className="admin-home-overview p-6 bg-white rounded-lg shadow-md mt-8">
         <h2 className="text-3xl font-semibold text-blue-700">Overview</h2>
         <p className="mt-2 text-gray-700">Welcome back! Here are your quick links to manage the surfing school effectively.</p>
-        
+
+        {/* Stats Section */}
         <div className="stats mt-6 grid grid-cols-3 gap-6">
           <div className="stat bg-blue-100 p-6 rounded-lg shadow-sm flex items-center">
             <FaUser className="text-blue-600 text-4xl mr-4" />
@@ -55,6 +57,8 @@ export default function AdminHome() {
           </div>
         </div>
       </section>
+
+
 
       <section className="admin-home-actions p-6 bg-white rounded-lg shadow-md mt-8">
         <h2 className="text-3xl font-semibold text-blue-700 mb-6">Admin Actions</h2>
