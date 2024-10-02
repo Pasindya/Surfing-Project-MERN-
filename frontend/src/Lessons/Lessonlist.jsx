@@ -83,7 +83,7 @@ export default function LessonList() {
       <LessonNav />
       <h1 className="text-2xl font-bold mb-4 text-center">Lessons List</h1>
 
-      <div ref={componentRef}>
+      <div ref={componentRef} className="ml-auto"> {/* Aligning the table to the right */}
         <table className="min-w-full bg-white border border-gray-300 rounded shadow mb-4">
           <thead>
             <tr className="bg-gray-200">
