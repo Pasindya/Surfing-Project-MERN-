@@ -71,6 +71,7 @@ import Eventregister from './Event/Eventregister';
 import Viewevent from './Event/Viewevent';
 import Updateevent from './Event/Updateevent';
 import Notification from './Event/Notification';
+import Lessoncalender from './Lessons/Lessoncalender';
 
 export default function App() {
   return (
@@ -110,6 +111,8 @@ export default function App() {
         <Route path='/lessondescription' element={<Lessondescription />} />
         <Route path='/upcoming' element={<Upcoming />} />
         <Route path='/lessonlist' element={<LessonList />} />
+        <Route path='/lessoncalender' element={<Lessoncalender />} />
+
 
         {/* Staff pages */}
         <Route path='/staffm' element={<Staffm />} />
