@@ -22,7 +22,11 @@ export default function Lessondetails() {
     const [noResults, setNoResults] = useState(false);
     const componentRef = useRef();  // Create a ref to be used with useReactToPrint
 
+    // Debounce timer state
+    const [debounceTimeout, setDebounceTimeout] = useState(null);
+
     useEffect(() => {
+        // Initial fetch on component mount
         fetchHandler().then((data) => {
             if (data && data.lessons) {
                 setLessons(data.lessons);  // Set lessons if available
@@ -31,6 +35,20 @@ export default function Lessondetails() {
             }
         });
     }, []);  // Empty dependency array ensures this effect runs only once on mount
+
+    // Auto-search effect with debounce
+    useEffect(() => {
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);  // Clear previous debounce if exists
+        }
+
+        // Set a new debounce timeout
+        setDebounceTimeout(setTimeout(() => {
+            handleSearch();
+        }, 500));  // Wait for 500ms after the user stops typing before searching
+
+        return () => clearTimeout(debounceTimeout);  // Cleanup the timeout on component unmount or before a new search
+    }, [searchQuery]);
 
     // useReactToPrint to handle printing
     const handlePrint = useReactToPrint({
@@ -70,28 +88,17 @@ export default function Lessondetails() {
                     <input
                         type="text"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => setSearchQuery(e.target.value)}  // Update search query
                         placeholder="Search lessons by any field..."
                         className="border border-gray-300 rounded p-2 w-64"
                     />
-                    <button
-                        onClick={handleSearch}
-                        className="bg-blue-500 text-white py-2 px-4 rounded ml-2"
-                    >
-                        Search
-                    </button>
                     <button
                         onClick={handleClearSearch}
                         className="bg-gray-500 text-white py-2 px-4 rounded ml-2"
                     >
                         Clear Search
                     </button>
-
-
-
                 </div>
-
-               
 
                 {/* Button to trigger printing/download */}
                 <button
@@ -117,8 +124,7 @@ export default function Lessondetails() {
                         <p className="text-red-500">No lessons found matching your search.</p>
                     ) : (
                         <div>
-                            {lessons &&
-                            lessons.length > 0 ? (
+                            {lessons && lessons.length > 0 ? (
                                 lessons.map((lesson, i) => (
                                     <Lesson key={i} lesson={lesson} />  // Render each lesson
                                 ))
