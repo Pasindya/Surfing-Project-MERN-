@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const shortid = require("shortid");
+
+// Custom function to generate numeric short IDs
+function generateNumericId() {
+  return Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit numeric ID
+}
 
 const lessonSchema = new Schema({
   _id: {
     type: String,
     default: function() {
-      return `LS${shortid.generate()}`;
+      return `LS${generateNumericId()}`; // Prefix with 'LS' and generate numeric ID
     },
   },
   title: {
