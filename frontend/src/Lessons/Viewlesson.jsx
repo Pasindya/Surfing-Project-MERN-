@@ -1,10 +1,23 @@
-// Viewlesson.js
-import React from 'react';
+import React, { useState } from 'react';
 import Lessonnav from './Lessonnav';
 import Lessondescription from './Lessondescription';
 import LessonCalendar from './Lessoncalender'; // Import the LessonCalendar component
 
 export default function Viewlesson() {
+  // Sample scheduled lessons data
+  const [scheduledLessons, setScheduledLessons] = useState([
+    { name: 'Surf Lesson', time: '10:00 AM', date: '2024-10-07' }, // Use ISO date format for easier sorting
+    { name: 'Yoga Lesson', time: '12:00 PM', date: '2024-10-08' },
+    { name: 'Safety Lesson', time: '2:00 PM', date: '2024-10-09' },
+    { name: 'Advanced Surf Lesson', time: '11:00 AM', date: '2024-10-06' }, // Added another lesson for demonstration
+  ]);
+
+  // Function to handle changes in input fields (for future use)
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setScheduledLessons((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar Navigation */}
@@ -18,16 +31,19 @@ export default function Viewlesson() {
           <p className="text-lg mt-2 opacity-90">Explore and manage the lesson details below.</p>
         </header>
 
-        {/* Lesson Description */}
-        <div className="mt-8 bg-white shadow-lg rounded-lg p-8 transition-transform transform hover:scale-105 duration-300">
-          <h2 className="text-3xl font-semibold mb-4 text-blue-600 border-b-2 border-blue-400 pb-2">Lesson Overview</h2>
-          <Lessondescription />
-        </div>
+        {/* Lesson Overview and Calendar Section */}
+        <div className="flex flex-wrap gap-8">
+          {/* Lesson Description */}
+          <div className="flex-1 bg-white shadow-lg rounded-lg p-8 transition-transform transform hover:scale-105 duration-300">
+            <h2 className="text-3xl font-semibold mb-4 text-blue-600 border-b-2 border-blue-400 pb-2">Lesson Overview</h2>
+            <Lessondescription />
+          </div>
 
-        {/* Lesson Calendar */}
-        <div className="mt-8 bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 duration-300">
-          <h2 className="text-3xl font-semibold mb-4 text-blue-600 border-b-2 border-blue-400 pb-2">Lesson Calendar</h2>
-          <LessonCalendar /> {/* Add the Lesson Calendar here */}
+          {/* Lesson Calendar */}
+          <div className="bg-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 duration-300 w-full md:w-1/2">
+            <h2 className="text-3xl font-semibold mb-4 text-blue-600 border-b-2 border-blue-400 pb-2">Lesson Calendar</h2>
+            <LessonCalendar /> {/* Add the Lesson Calendar here */}
+          </div>
         </div>
       </div>
     </div>
