@@ -72,6 +72,8 @@ import Viewevent from './Event/Viewevent';
 import Updateevent from './Event/Updateevent';
 import Notification from './Event/Notification';
 import Lessoncalender from './Lessons/Lessoncalender';
+import Explorelessons from './Pages/Explorelessons';
+import Bookinglist from './Booking/Bookinglist';
 
 export default function App() {
   return (
@@ -100,6 +102,7 @@ export default function App() {
         <Route path='/booking' element={<Booking />} />
         <Route path='/bookingdetails/:id' element={<Updatebooking />} />
         <Route path='/bookingdescription' element={<Bookingdescription />} />
+        <Route path='/bookinglist' element={<Bookinglist />} />
         
         {/* Lesson pages */}
         <Route path='/lessondetails' element={<Lessondetails />} />
@@ -112,6 +115,7 @@ export default function App() {
         <Route path='/upcoming' element={<Upcoming />} />
         <Route path='/lessonlist' element={<LessonList />} />
         <Route path='/lessoncalender' element={<Lessoncalender />} />
+        <Route path='/explorelessons' element={<Explorelessons />} />
 
 
         {/* Staff pages */}
