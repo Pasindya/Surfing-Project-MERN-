@@ -1,13 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const shortid = require("shortid"); // You need to install shortid
+
+const generateShortId = () => {
+    // Generate a random number between 10000 and 99999
+    const randomNum = Math.floor(10000 + Math.random() * 90000); 
+    return 'BK' + randomNum; // Prefix + 5-digit unique ID
+};
 
 const bookingSchema = new Schema({
     _id: {
         type: String,
-        default: function () {
-            return 'BK' + shortid.generate(); // Prefix + unique ID
-        }
+        default: generateShortId // Use the custom function to generate the ID
     },
     name: {
         type: String,
