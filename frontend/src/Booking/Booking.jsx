@@ -9,7 +9,7 @@ export default function Booking({ booking }) {
   const deleteHandler = async () => {
     try {
       await axios.delete(`http://localhost:5009/bookings/${_id}`);
-      navigate("/"); // Redirect to home after deletion
+      navigate("/viewbooking"); // Redirect to home after deletion
       // Optionally navigate to booking details or any other page
     } catch (error) {
       console.error('Failed to delete the booking:', error);
