@@ -4,7 +4,7 @@ import BookingNav from './Bookingnav'; // Ensure this is the correct path to you
 import { useReactToPrint } from 'react-to-print';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // For generating tables in PDFs
-import logo from '/images/logoh.jpeg'; // Ensure this is the correct path to your logo image
+import logo from '/images/logo.png'; // Ensure this is the correct path to your logo image
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'; // Import Recharts components
 
 const URL = "http://localhost:5009/bookings"; // Ensure your backend API is running and the URL is correct
@@ -49,6 +49,10 @@ export default function BookingList() {
   const handleDownloadReport = () => {
     const doc = new jsPDF();
 
+    // Set the background color to light blue
+    doc.setFillColor(173, 216, 230); // Light blue color (RGB)
+    doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F'); // Fill the background
+
     // Add logo
     const img = new Image();
     img.src = logo;
@@ -78,10 +82,23 @@ export default function BookingList() {
 
       doc.autoTable(tableColumn, tableRows, { startY: 50 }); // Adjust position to accommodate the header
 
-      // Add signature placeholder
+      // Add signature section
       const pageHeight = doc.internal.pageSize.height;
-      doc.text("____________________", 14, pageHeight - 40); // Placeholder for signature
-      doc.text("Signature", 14, pageHeight - 35); // Signature label
+
+      // Name "Pasindya" above the signature
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "italic"); // Using italic to simulate a cursive signature
+      doc.text("Pasindya", 14, pageHeight - 30); // Position of the name
+
+      // Signature line
+      doc.setLineWidth(0.5);
+      doc.line(14, pageHeight - 25, 60, pageHeight - 25); // Line centered below the name
+
+      // Add role and company below the signature line
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal"); // Reset to normal font
+      doc.text("Administrator", 14, pageHeight - 20); // Role name set as "Administrator"
+      doc.text("SurfDeck", 14, pageHeight - 15); // Company name
 
       doc.save('bookings_report.pdf');
     };
@@ -130,13 +147,13 @@ export default function BookingList() {
       <div className="flex justify-between w-full mb-4">
         <button
           onClick={handlePrint}
-          className="bg-green-500 text-white py-1 px-3 rounded mr-2" // Reduced padding for buttons
+          className="bg-green-500 text-white py-1 px-3 rounded mr-2"
         >
           Print Booking Report
         </button>
         <button
           onClick={handleDownloadReport}
-          className="bg-blue-500 text-white py-1 px-3 rounded" // Reduced padding for buttons
+          className="bg-blue-500 text-white py-1 px-3 rounded"
         >
           Download Report
         </button>
@@ -155,7 +172,6 @@ export default function BookingList() {
           <div className="mb-4">
             <img src={logo} alt="SurfDeck Logo" className="w-16 h-16 mx-auto mb-2" />
             <h2 className="text-center text-xl font-bold">SurfDeck Bookings</h2>
-            {/* Add the current date here */}
             <p className="text-center text-sm">Date: {new Date().toLocaleDateString()}</p>
           </div>
 
