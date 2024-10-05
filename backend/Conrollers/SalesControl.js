@@ -19,12 +19,12 @@ const getAllUsers = async (req, res, next) => {
 
 //data Insert
 const addUsers = async (req, res, next) =>{
-    const {cnumber,mmyy,cvc,name,address,email,pnumber} = req.body;
+    const {cnumber,mmyy,cvc,name,address,email,pnumber,type} = req.body;
 
     let users;
 
     try{
-     users = new User({cnumber,mmyy,cvc,name,address,email,pnumber});
+     users = new User({cnumber,mmyy,cvc,name,address,email,pnumber,type});
      await users.save();
     }catch (err){
      console.log(err);
@@ -60,12 +60,12 @@ const getById = async (req, res, next) => {
 //Update User Details
 const updateUser = async (req, res, next) =>{
     const id = req.params.id;
-    const {cnumber,mmyy,cvc,name,address,email,pnumber} = req.body;
+    const {cnumber,mmyy,cvc,name,address,email,pnumber,type} = req.body;
 
     let users;
 
     try{
-        users = await User.findByIdAndUpdate(id, {cnumber:cnumber,mmyy:mmyy,cvc:cvc,name:name,address:address,email:email,pnumber:pnumber});
+        users = await User.findByIdAndUpdate(id, {cnumber:cnumber,mmyy:mmyy,cvc:cvc,name:name,address:address,email:email,pnumber:pnumber,type:type});
         users = await users.save();
     }catch(err) {
         console.log(err);

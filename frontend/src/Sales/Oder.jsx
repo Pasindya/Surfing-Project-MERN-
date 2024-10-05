@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Consolidate imports fro
 import axios from 'axios'; // Import axios
 
 export default function Oder(props) {
-    const { _id, cnumber, mmyy, cvc, name, address, email, pnumber } = props.user;
+    const { _id, cnumber, mmyy, cvc, name, address, email, pnumber, type } = props.user;
     const navigate = useNavigate(); // Use navigate instead of history
 
     // Delete user handler
@@ -31,7 +31,7 @@ export default function Oder(props) {
         <div className="order-container">
             <h1 className="heading">User</h1>
             <div className="order-details">
-                <p><strong>ID:</strong> {_id}</p>
+                
                 <p><strong>Card number:</strong> {cnumber}</p>
                 <p><strong>MMYY:</strong> {mmyy}</p>
                 <p><strong>CVC:</strong> {cvc}</p>
@@ -39,6 +39,7 @@ export default function Oder(props) {
                 <p><strong>Address:</strong> {address}</p>
                 <p><strong>Email:</strong> {email}</p>
                 <p><strong>Phone Number:</strong> {pnumber}</p>
+                <p><strong>Surfboard Type:</strong> {type}</p>
             </div>
 
             <div className="button-container">
@@ -47,7 +48,7 @@ export default function Oder(props) {
                 </Link>
                 <button onClick={deleteHandler} className="delete-btn">Delete</button>
             </div>
-
+ 
             {/* Internal CSS */}
             <style>
                 {`
@@ -114,3 +115,5 @@ export default function Oder(props) {
         </div>
     );
 }
+
+//<p><strong>ID:</strong> {_id}</p>

@@ -74,6 +74,7 @@ import Notification from './Event/Notification';
 import Lessoncalender from './Lessons/Lessoncalender';
 import Explorelessons from './Pages/Explorelessons';
 import Bookinglist from './Booking/Bookinglist';
+import Odersummary from './Sales/Odersummary';
 
 export default function App() {
   return (
@@ -136,6 +137,7 @@ export default function App() {
         <Route path='/updateoder/:id' element={<Updateoder />} />
         <Route path='/oderdetail' element={<Oderdetail />} />
         <Route path='/viewoder' element={<Viewoder />} />
+        <Route path='/odersummary' element={<Odersummary />} />
         
         {/* Equipment pages */}
         <Route path='/Etable' element={<ETable />} />

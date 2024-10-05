@@ -30,6 +30,10 @@ const userSchema = new Schema({
     pnumber: {
         type: Number,
         required: true // This field is required
+    },
+    type: {
+        type: String,
+        required: true
     }
 });
 

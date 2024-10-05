@@ -1,86 +1,68 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation and useNavigate for redirection
-import { FaShoppingCart, FaHome } from 'react-icons/fa'; // Import icons
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import { FaShoppingCart, FaHome, FaClipboardList, FaSignOutAlt, FaListUl } from 'react-icons/fa'; // Import icons
 
 export default function OrderNav() {
-  const navigate = useNavigate(); // Initialize the navigate hook
-
-  const handleLogout = () => {
-    // Add your logout logic here
-    console.log('User logged out');
-    
-    // Redirect to the admin home page after logout
-    navigate('/adminhome');
-  };
-
   return (
-    <div className="order-nav bg-blue-700 text-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Order Management</h2>
-      
-      <nav className="flex flex-col space-y-4">
-        <Link to="/adminhome" className="flex items-center text-white hover:bg-blue-600 p-3 rounded transition duration-200">
-          <FaHome className="mr-3" />
-          Home
+    <div className="bg-gradient-to-b from-blue-800 to-blue-900 text-white h-screen w-64 fixed top-0 left-0 flex flex-col shadow-lg z-50">
+      {/* Logo/Title Section */}
+      <div className="p-4 text-2xl font-bold border-b border-blue-700 bg-blue-800">
+        Order Management
+      </div>
+
+      {/* Navigation Links */}
+      <ul className="mt-4 flex-1 space-y-2">
+        <li>
+          <Link
+            to="/adminhome"
+            className="flex items-center p-4 rounded-lg hover:bg-blue-700 transition duration-200"
+          >
+            <FaHome className="mr-3 text-xl transition-transform duration-200 hover:scale-110" />
+            <span className="font-medium">Home</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/viewoder"
+            className="flex items-center p-4 rounded-lg hover:bg-blue-700 transition duration-200"
+          >
+            <FaShoppingCart className="mr-3 text-xl transition-transform duration-200 hover:scale-110" />
+            <span className="font-medium">View Orders</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/odersummary" // Link to Order List
+            className="flex items-center p-4 rounded-lg hover:bg-blue-700 transition duration-200"
+          >
+            <FaListUl className="mr-3 text-xl transition-transform duration-200 hover:scale-110" />
+            <span className="font-medium">Order List</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/oderdetail"
+            className="flex items-center p-4 rounded-lg hover:bg-blue-700 transition duration-200"
+          >
+            <FaClipboardList className="mr-3 text-xl transition-transform duration-200 hover:scale-110" />
+            <span className="font-medium">Order Details</span>
+          </Link>
+        </li>
+      </ul>
+
+      {/* Logout Button */}
+      <div className="mt-auto mb-4">
+        <Link
+          to="/"
+          className="flex items-center p-4 rounded-lg hover:bg-red-700 transition duration-200 w-full"
+        >
+          <FaSignOutAlt className="mr-3 text-xl transition-transform duration-200 hover:scale-110" />
+          <span className="font-medium">Logout</span>
         </Link>
-        <Link to="/viewoder" className="flex items-center text-white hover:bg-blue-600 p-3 rounded transition duration-200">
-          <FaShoppingCart className="mr-3" />
-          View Orders
-        </Link>
-      </nav>
-
-      <button 
-        onClick={handleLogout}
-        className="bg-red-600 hover:bg-red-700 text-white p-3 rounded mt-6 transition duration-200 w-full"
-      >
-        Logout
-      </button>
-
-      <style>
-        {`
-          .order-nav {
-            max-width: 280px; /* Slightly reduce the width for better layout */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            margin: 20px auto; /* Center the nav vertically with space */
-          }
-
-          nav {
-            display: flex;
-            flex-direction: column; /* Ensure vertical stacking */
-            gap: 10px; /* Add space between links */
-          }
-
-          nav a {
-            display: flex;
-            align-items: center; /* Align text and icons */
-            font-size: 1rem; /* Adjust font size */
-            padding: 10px 15px; /* Add more padding for a clickable area */
-            transition: background-color 0.3s ease; /* Smooth transition */
-          }
-
-          nav a:hover {
-            background-color: #0053a0; /* Change hover color to a darker shade */
-          }
-
-          button {
-            font-size: 1rem; /* Make logout button font larger */
-          }
-
-          @media (max-width: 768px) {
-            .order-nav {
-              max-width: 100%; /* Make it responsive for mobile */
-              padding: 20px; /* Adjust padding for smaller screens */
-            }
-
-            nav a {
-              justify-content: center; /* Center links on mobile */
-            }
-
-            h2 {
-              font-size: 1.5rem; /* Adjust font size for smaller screens */
-            }
-          }
-        `}
-      </style>
+      </div>
     </div>
   );
 }

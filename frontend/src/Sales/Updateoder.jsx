@@ -11,6 +11,7 @@ export default function UpdateOrder() {
     address: '',
     email: '',
     pnumber: '',
+    type: '',
   });
   
   const [errors, setErrors] = useState({});
@@ -65,6 +66,9 @@ export default function UpdateOrder() {
     if (!/^\d{10}$/.test(inputs.pnumber)) {
       tempErrors.pnumber = 'Phone number must be 10 digits.';
     }
+    if (!inputs.type) {
+      errors.type = 'Surfboard type is required';
+    }
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -80,6 +84,7 @@ export default function UpdateOrder() {
         address: String(inputs.address),
         email: String(inputs.email),
         pnumber: Number(inputs.pnumber),
+        type: String(inputs.type),
       });
       return res.data;
     } catch (error) {
@@ -113,6 +118,22 @@ export default function UpdateOrder() {
       <h1 style={{ textAlign: 'center', marginBottom: '30px', fontSize: '2.5rem', color: '#333' }}>Update Order</h1>
 
       <form onSubmit={handleSubmit} className="order-form">
+      <div className="form-group">
+            <label>Surfboard Type:</label>
+            <select
+              name="type"
+              value={inputs.type}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>Select Surfboard Type</option>
+              <option value="shortboard">Shortboard</option>
+              <option value="longboard">Longboard</option>
+              <option value="funboard">Funboard</option>
+              <option value="fish">Fish</option>
+            </select>
+            {errors.type && <p className="error-message">{errors.type}</p>}
+          </div>
           <div className="form-group">
             <label>Card Number:</label>
             <input
@@ -254,29 +275,64 @@ export default function UpdateOrder() {
 
       <style>
         {`
-          .order-form {
+           .order-form {
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
-            background-color: #f9f9f9;
+            background-color: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           }
+
           .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
           }
+
           .form-group label {
             display: block;
-            margin-bottom: 5px;
             font-weight: bold;
+            margin-bottom: 5px;
           }
-          .form-group input {
+
+          .form-group input,
+          .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
           }
+
+          .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff; /* Bootstrap primary color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+          }
+
+          .submit-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+          }
+
+          p {
+            color: red; /* Style error messages in red */
+            margin: 5px 0;
+          }
+          
+          .success-message {
+            color: green; /* Style success messages in green */
+          }
+
+          .error-message {
+            color: red; /* Style error messages in red */
+          }
+
           .btn {
             padding: 10px 20px;
             border: none;
