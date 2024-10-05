@@ -78,6 +78,7 @@ import Odersummary from './Sales/Odersummary';
 import Eventlogin from './Event/Eventlogin';
 import Eventuser from './Event/Eventuser';
 import Eventnav from './Event/Eventnav';
+import Instructorlog from './Lessons/Instructorlog';
 
 export default function App() {
   return (
@@ -120,6 +121,7 @@ export default function App() {
         <Route path='/lessonlist' element={<LessonList />} />
         <Route path='/lessoncalender' element={<Lessoncalender />} />
         <Route path='/explorelessons' element={<Explorelessons />} />
+        <Route path='/instructorlog' element={<Instructorlog />} />
 
 
         {/* Staff pages */}

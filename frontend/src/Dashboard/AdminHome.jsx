@@ -63,7 +63,7 @@ export default function AdminHome() {
       <section className="admin-home-actions p-6 bg-white rounded-lg shadow-md mt-8">
         <h2 className="text-3xl font-semibold text-blue-700 mb-6">Admin Actions</h2>
         <div className="grid grid-cols-2 gap-6">
-          <Link to="/viewlesson" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/instructorlog" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaBook className="text-2xl mr-3" />
             Manage Lessons
           </Link>
