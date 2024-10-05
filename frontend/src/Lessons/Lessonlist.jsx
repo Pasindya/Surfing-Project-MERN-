@@ -60,6 +60,12 @@ export default function LessonList() {
       });
 
       doc.autoTable(tableColumn, tableRows, { startY: 50 }); // Adjust position to accommodate the header
+
+      // Add signature section
+      const finalY = doc.lastAutoTable.finalY; // Get the Y position after the table
+      doc.text('__________________________', 10, finalY + 20); // Line for signature
+      doc.text('Signature', 10, finalY + 25); // Signature label
+
       doc.save('lessons_report.pdf');
     };
   };
