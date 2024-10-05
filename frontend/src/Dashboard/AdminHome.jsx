@@ -67,7 +67,7 @@ export default function AdminHome() {
             <FaBook className="text-2xl mr-3" />
             Manage Lessons
           </Link>
-          <Link to="/viewbooking" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/adminlog" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaClipboardList className="text-2xl mr-3" />
             Manage Bookings
           </Link>

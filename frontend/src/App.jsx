@@ -79,6 +79,7 @@ import Eventlogin from './Event/Eventlogin';
 import Eventuser from './Event/Eventuser';
 import Eventnav from './Event/Eventnav';
 import Instructorlog from './Lessons/Instructorlog';
+import Adminlog from './Booking/Adminlog';
 
 export default function App() {
   return (
@@ -108,6 +109,7 @@ export default function App() {
         <Route path='/bookingdetails/:id' element={<Updatebooking />} />
         <Route path='/bookingdescription' element={<Bookingdescription />} />
         <Route path='/bookinglist' element={<Bookinglist />} />
+        <Route path='/adminlog' element={<Adminlog />} />
         
         {/* Lesson pages */}
         <Route path='/lessondetails' element={<Lessondetails />} />
