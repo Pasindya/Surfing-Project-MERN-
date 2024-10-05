@@ -4,7 +4,7 @@ import LessonNav from '../Lessons/Lessonnav'; // Adjust the import path as neede
 import { useReactToPrint } from 'react-to-print';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // For generating tables in PDFs
-import logo from '/images/logoh.jpeg'; // Add the correct path to your logo image
+import logo from '/images/logo.png'; // Add the correct path to your logo image
 
 export default function LessonList() {
   const [lessons, setLessons] = useState([]);
@@ -29,7 +29,14 @@ export default function LessonList() {
   }, []);
 
   const handleDownloadReport = () => {
+    setReportLoading(true);  // Set loading state for the report generation
     const doc = new jsPDF();
+
+    // Set light blue background
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    doc.setFillColor(173, 216, 230);  // Light blue color in RGB
+    doc.rect(0, 0, pageWidth, pageHeight, 'F');  // Cover the whole page with the background
 
     // Add logo
     const img = new Image();
@@ -38,6 +45,7 @@ export default function LessonList() {
       // Add header information: Logo, Company Name, Address, Date
       doc.addImage(img, 'JPEG', 10, 10, 30, 30); // Adjust logo dimensions and position
       doc.setFontSize(16);
+      doc.setTextColor(0, 51, 102); // Dark blue for professional look
       doc.text('SurfDeck', 50, 20);
       doc.setFontSize(12);
       doc.text('123 Surf Lane, Beach City, CA', 50, 28);
@@ -59,14 +67,35 @@ export default function LessonList() {
         tableRows.push(lessonData);
       });
 
-      doc.autoTable(tableColumn, tableRows, { startY: 50 }); // Adjust position to accommodate the header
+      doc.autoTable({
+        startY: 50,  // Adjust position to accommodate the header
+        head: [tableColumn],
+        body: tableRows,
+        styles: {
+          fillColor: [255, 255, 255],  // Table row background to white
+          textColor: [0, 0, 0],        // Black text
+          fontSize: 10,
+        },
+        headStyles: {
+          fillColor: [0, 51, 102],     // Dark blue header
+          textColor: [255, 255, 255],  // White text in header
+        },
+        theme: 'striped',
+      });
 
       // Add signature section
       const finalY = doc.lastAutoTable.finalY; // Get the Y position after the table
-      doc.text('__________________________', 10, finalY + 20); // Line for signature
-      doc.text('Signature', 10, finalY + 25); // Signature label
+
+      // Signature with line below the name
+      doc.setFontSize(14);
+      doc.text('Pasindya', 10, finalY + 20); // Signature name
+      doc.setLineWidth(0.5);
+      doc.line(10, finalY + 22, 60, finalY + 22); // Line for signature (aligned after the name)
+      doc.setFontSize(12);
+      doc.text('Senior Instructor, SurfDeck', 10, finalY + 30); // Role and company name
 
       doc.save('lessons_report.pdf');
+      setReportLoading(false);  // Reset loading state
     };
   };
 
