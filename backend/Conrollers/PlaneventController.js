@@ -25,7 +25,6 @@ const generatePDF = () => {
 
     pdf.text("Email", 130, 40);
 
-
     // Add a line for the header
     pdf.line(14, 42, 190, 42); // Start x, Start y, End x, End y
 
@@ -43,7 +42,6 @@ const generatePDF = () => {
     // Save the PDF
     pdf.save("events-report.pdf");
 };
-
 
 // Add a new planevent
 const addPlanevents = async(req, res, next) => {

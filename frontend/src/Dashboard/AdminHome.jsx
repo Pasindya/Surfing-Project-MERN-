@@ -80,7 +80,7 @@ export default function AdminHome() {
             Manage Students
           </Link>
 
-          <Link to="/manage-events" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/eventlogin" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaCalendarAlt className="text-2xl mr-3" />
             Manage Events
           </Link>

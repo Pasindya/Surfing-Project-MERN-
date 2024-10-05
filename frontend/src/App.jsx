@@ -75,6 +75,9 @@ import Lessoncalender from './Lessons/Lessoncalender';
 import Explorelessons from './Pages/Explorelessons';
 import Bookinglist from './Booking/Bookinglist';
 import Odersummary from './Sales/Odersummary';
+import Eventlogin from './Event/Eventlogin';
+import Eventuser from './Event/Eventuser';
+import Eventnav from './Event/Eventnav';
 
 export default function App() {
   return (
@@ -175,6 +178,9 @@ export default function App() {
         <Route path='/viewevent/:eventId' element={<Viewevent />} />
         <Route path='/updateevent' element={<Updateevent />} />
         <Route path='/notification' element={<Notification />} />
+        <Route path='/eventlogin' element={<Eventlogin />} />
+        <Route path='/eventuser' element={<Eventuser />} />
+        <Route path='/eventnav' element={<Eventnav />} />
       </Routes>
     </BrowserRouter>
   );

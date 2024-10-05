@@ -1,10 +1,11 @@
+// src/Pages/Events.jsx
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headernav from '../Components/Headernav';
 import Footer from '../Components/Footer';
 
 export default function Events() {
-
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     StudentName: '',
@@ -15,14 +16,15 @@ export default function Events() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [nameError, setNameError] = useState(''); // State for name error
+  const [submissionMessage, setSubmissionMessage] = useState(''); // State for submission feedback
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Validate StudentName input to only accept letters
+    // Validate StudentName input to only accept letters and spaces
     if (name === 'StudentName') {
       if (!/^[a-zA-Z\s]*$/.test(value)) {  // Check if the value contains anything other than letters or spaces
-        setNameError('Only letters are allowed');
+        setNameError('Only letters and spaces are allowed');
         return;  // Do not update the state with invalid input
       } else {
         setNameError(''); // Clear error message if valid
@@ -37,6 +39,9 @@ export default function Events() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Reset submission message
+    setSubmissionMessage('');
 
     // Basic client-side validation
     if (formData.age <= 0) {
@@ -64,22 +69,37 @@ export default function Events() {
 
       if (response.ok) {
         const newEvent = await response.json();
-        alert('Event registration successful');
-        navigate(`/viewevent/${newEvent._id}`);
+        setSubmissionMessage('Event registration successful!');
+        // Save to localStorage
+        localStorage.setItem('userEvent', JSON.stringify(newEvent));
+        // Optionally, reset the form
+        setFormData({
+          StudentName: '',
+          EventName: '',
+          age: '',
+          gmail: '',
+          gender: ''
+        });
+        
+        // Delay navigation to allow the message to be seen
+        setTimeout(() => {
+          navigate('/eventuser');
+        }, 2000); // 2-second delay
       } else {
         const errorData = await response.json();
-        serError(`Error registering for event: ${errorData.message}`);
+        setSubmissionMessage(`Error registering for event: ${errorData.message}`);
       }
     } catch (err) {
       console.error('Error:', err);
-      alert('Error registering for event');
+      setSubmissionMessage('Error registering for event. Please try again later.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex flex-col justify-between relative" 
+    <div
+      className="bg-cover bg-center min-h-screen flex flex-col justify-between relative"
       style={{ backgroundImage: "url('/images/beach.jpg')" }}
     >
       <Headernav />
@@ -98,8 +118,21 @@ export default function Events() {
           Register for an Event
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Display submission message if any */}
+          {submissionMessage && (
+            <p
+              className={`text-center ${
+                submissionMessage.startsWith('Error') ? 'text-red-500' : 'text-green-500'
+              }`}
+            >
+              {submissionMessage}
+            </p>
+          )}
+
           <div>
-            <label htmlFor="StudentName" className="block text-lg font-semibold text-gray-800">Student Name:</label>
+            <label htmlFor="StudentName" className="block text-lg font-semibold text-gray-800">
+              Student Name:
+            </label>
             <input
               type="text"
               id="StudentName"
@@ -113,7 +146,9 @@ export default function Events() {
             {nameError && <p className="text-red-500">{nameError}</p>} {/* Error message */}
           </div>
           <div>
-            <label htmlFor="EventName" className="block text-lg font-semibold text-gray-800">Event Name:</label>
+            <label htmlFor="EventName" className="block text-lg font-semibold text-gray-800">
+              Event Name:
+            </label>
             <select
               id="EventName"
               name="EventName"
@@ -130,7 +165,9 @@ export default function Events() {
             </select>
           </div>
           <div>
-            <label htmlFor="age" className="block text-lg font-semibold text-gray-800">Age:</label>
+            <label htmlFor="age" className="block text-lg font-semibold text-gray-800">
+              Age:
+            </label>
             <input
               type="number"
               id="age"
@@ -140,10 +177,13 @@ export default function Events() {
               className="mt-2 block w-full px-4 py-3 rounded-lg border-2 border-blue-600 focus:ring-4 focus:ring-blue-800 transition-all"
               placeholder="Enter your age"
               required
+              min="1"
             />
           </div>
           <div>
-            <label htmlFor="gmail" className="block text-lg font-semibold text-gray-800">Gmail:</label>
+            <label htmlFor="gmail" className="block text-lg font-semibold text-gray-800">
+              Gmail:
+            </label>
             <input
               type="email"
               id="gmail"
@@ -156,7 +196,9 @@ export default function Events() {
             />
           </div>
           <div>
-            <label htmlFor="gender" className="block text-lg font-semibold text-gray-800">Gender:</label>
+            <label htmlFor="gender" className="block text-lg font-semibold text-gray-800">
+              Gender:
+            </label>
             <select
               id="gender"
               name="gender"
@@ -175,7 +217,9 @@ export default function Events() {
             <button
               type="submit"
               disabled={isLoading}
-              className={`bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform ${isLoading ? 'bg-gray-400 cursor-not-allowed' : ''}`}
+              className={`bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform ${
+                isLoading ? 'bg-gray-400 cursor-not-allowed' : ''
+              }`}
             >
               {isLoading ? 'Submitting...' : 'Submit'}
             </button>
@@ -185,5 +229,5 @@ export default function Events() {
 
       <Footer />
     </div>
-  );
+  )
 }

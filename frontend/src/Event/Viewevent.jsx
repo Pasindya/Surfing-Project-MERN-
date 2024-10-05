@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable'; // For autoTable plugin
+import Eventnav from '../Event/Eventnav'; // Import the Eventnav component
 
 export default function Viewevent() {
   const [events, setEvents] = useState([]); // State to hold all events data
@@ -53,7 +53,6 @@ export default function Viewevent() {
   // Function to navigate back
   const handleBack = () => {
     navigate(-1); // Navigate to the previous page
-    // Alternatively, navigate to a specific route, e.g., navigate('/home');
   };
 
   // Filter events based on search query
@@ -63,46 +62,91 @@ export default function Viewevent() {
 
   // Function to generate PDF
   const generatePDF = () => {
-    const pdf = new jsPDF();
-    
-    // Add Title
-    pdf.setFontSize(20);
-    pdf.text("Events Report", 14, 22);
+    fetch('/images/logo.png') // Fetch the logo image
+      .then(response => response.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64Logo = reader.result;
 
-    // Add Column Headers
-    pdf.setFontSize(12);
-    pdf.text("Student Name", 14, 40);
-    pdf.text("Event Name", 60, 40);
-    
-    pdf.text("Email", 130, 40);
-   
+          const doc = new jsPDF();
 
-    // Add a line for the header
-    pdf.line(14, 42, 190, 42); // Start x, Start y, End x, End y
+          // Set the background color to light blue
+          doc.setFillColor(173, 216, 230); // Light blue color (RGB)
+          doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F'); // Fill the background
 
-    // Adding data to PDF
-    let y = 45; // Start position for data
-    filteredEvents.forEach((event) => {
-      pdf.text(event.StudentName, 14, y);
-      pdf.text(event.EventName, 60, y);
-    
-      pdf.text(event.gmail, 130, y);
-      
-      y += 10; // Increase y position for next row
-    });
+          // Add Logo
+          doc.addImage(base64Logo, 'JPEG', 10, 10, 50, 20); // Position and size of the logo
 
-    // Save the PDF
-    pdf.save("events-report.pdf");
+          // Add Title
+          doc.setFontSize(20);
+          doc.text("Events Report", 105, 40, null, null, 'center');
+
+          // Add Company Info
+          doc.setFontSize(12);
+          doc.text("SurfDeck", 60, 50);
+          doc.text("123 Surf Lane, Beach City, CA", 60, 56);
+
+          const currentDate = new Date().toLocaleDateString();
+          doc.text(`Date: ${currentDate}`, 60, 62);
+
+          // Define the table columns
+          const tableColumns = ["Student Name", "Event Name", "Age", "Email", "Gender"];
+          
+          // Map event data to table rows
+          const tableRows = filteredEvents.map(event => [
+            event.StudentName,
+            event.EventName,
+            event.age.toString(),
+            event.gmail,
+            event.gender
+          ]);
+
+          // Add the table using autoTable
+          doc.autoTable({
+            startY: 70, // Y position to start the table
+            head: [tableColumns],
+            body: tableRows,
+            styles: { fontSize: 12, fillColor: [255, 255, 255], textColor: [0, 0, 0] }, // Table styles
+            headStyles: { fillColor: [128, 128, 128], textColor: [255, 255, 255] }, // Header styles
+            theme: 'striped',
+          });
+
+          // Add Signature Section
+          const finalY = doc.lastAutoTable.finalY || 60; // Get the final Y position after the table
+
+          // Add Signature ("Thenujaa") above the line
+          doc.setFontSize(14);
+          doc.setFont("helvetica", "italic"); // Using italic to simulate a cursive signature
+          doc.text("Thenujaa", 60, finalY + 20, null, null, 'center');
+
+          // Add line below the signature
+          doc.setLineWidth(0.5);
+          doc.line(40, finalY + 22, 80, finalY + 22); // Adjusted x-coordinates for better centering
+
+          // Add Role and Company below the line
+          doc.setFontSize(12);
+          doc.setFont("helvetica", "normal"); // Reset to normal font
+          doc.text("Event Manager, Surf Deck.", 60, finalY + 28, null, null, 'center');
+
+          // Save the PDF
+          doc.save("events-report.pdf");
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(error => {
+        console.error('Error fetching the logo:', error);
+      });
   };
 
   if (isLoading) return <div>Loading...</div>; // Loading state
   if (error) return <div>{error}</div>; // Error state
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
-      <Headernav />
+    <div className="min-h-screen flex flex-col">
+      <Eventnav /> {/* Added Event Navigation Bar */}
       <div
-        className="relative bg-cover bg-center"
+        className="relative bg-cover bg-center flex-grow"
         style={{
           backgroundImage: 'url(/images/viewback.jpg)',
           minHeight: '100vh',
@@ -167,14 +211,14 @@ export default function Viewevent() {
                       <td className="py-3 px-4">{event.gender}</td>
                       <td className="py-3 px-4 flex space-x-2">
                         <button
-                          onClick={() => handleEdit(event)} // Call handleEdit with the event data
-                          className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-transform duration-300"
+                          onClick={() => handleEdit(event)}
+                          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-transform duration-300"
                         >
                           Edit
                         </button>
                         <button
-                          onClick={() => handleDelete(event._id)} // Call handleDelete with event ID
-                          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-transform duration-300"
+                          onClick={() => handleDelete(event._id)}
+                          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-transform duration-300"
                         >
                           Delete
                         </button>
@@ -193,7 +237,6 @@ export default function Viewevent() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

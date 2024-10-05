@@ -5,7 +5,7 @@ import Footer from '../Components/Footer';
 
 export default function Event() {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col justify-between">
+    <div className="bg-gray-100 min-h-screen flex flex-col justify-between relative">
       <Headernav />
       
       {/* Main Content */}
@@ -28,7 +28,7 @@ export default function Event() {
             </h1>
             
             <p className="text-center max-w-xl text-lg mb-7">
-            Boat surfing, or wakesurfing, is a water sport where a rider surfs the wake of a moving boat, starting 
+              Boat surfing, or wakesurfing, is a water sport where a rider surfs the wake of a moving boat, starting 
               with a rope and then riding the wave without it. It blends surfing and 
               wakeboarding for a fun experience on calm waters.
             </p>
@@ -39,15 +39,15 @@ export default function Event() {
               <ul className="space-y-4">
                 <li className="flex justify-between text-xl">
                   <span>For Beginners</span>
-                  <span className="font-bold">Rs 5000</span>
+                  <span className="font-bold">$ 20</span>
                 </li>
                 <li className="flex justify-between text-xl">
                   <span>For Intermediates</span>
-                  <span className="font-bold">Rs 3500</span>
+                  <span className="font-bold">$ 12</span>
                 </li>
                 <li className="flex justify-between text-xl">
                   <span>For Experts</span>
-                  <span className="font-bold">Rs 2000</span>
+                  <span className="font-bold">$ 8</span>
                 </li>
               </ul>
             </div>
@@ -61,6 +61,13 @@ export default function Event() {
           </div>
         </div>
       </div>
+
+      {/* "I Pay" Button Positioned at Bottom-Right */}
+      <Link to="/payment"> {/* Adjust the 'to' prop to your desired payment route */}
+        <button className="fixed bottom-20 right-5 bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-transform duration-300 ease-in-out transform hover:scale-110">
+           Pay
+        </button>
+      </Link>
 
       <Footer />
     </div>

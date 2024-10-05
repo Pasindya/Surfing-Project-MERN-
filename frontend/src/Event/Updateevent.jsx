@@ -1,7 +1,10 @@
+// src/Pages/EditEvent.jsx
+
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
+
+import Eventnav from './Eventnav';
+
 
 export default function EditEvent() {
   const { state } = useLocation(); // Accessing the passed state
@@ -25,7 +28,14 @@ export default function EditEvent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Validation: Ensure StudentName contains only letters and spaces
+    const nameRegex = /^[A-Za-z\s]+$/;
+    if (!nameRegex.test(formData.StudentName)) {
+      alert('Student Name can only contain letters and spaces.');
+      return; // Prevent form submission
+    }
+
     try {
       const response = await fetch(`http://localhost:5009/events/${formData._id}`, {
         method: 'PUT', // Use PUT or PATCH depending on your backend implementation
@@ -34,7 +44,7 @@ export default function EditEvent() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         alert('Event updated successfully');
         navigate(`/viewevent/${formData._id}`); // Navigate to the View Event page with the event's ID
@@ -47,8 +57,6 @@ export default function EditEvent() {
       alert('Error updating event');
     }
   };
-  
-
 
   const handleBack = () => {
     navigate(-1); // Go back to the previous page
@@ -56,7 +64,7 @@ export default function EditEvent() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Headernav />
+      <Eventnav />
 
       {/* Background with Image */}
       <div
@@ -91,18 +99,25 @@ export default function EditEvent() {
                 value={formData.StudentName}
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
+                required
               />
             </div>
 
             <div className="flex justify-between items-center">
               <label className="font-semibold">Event Name:</label>
-              <input
-                type="text"
+              <select
                 name="EventName"
                 value={formData.EventName}
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
-              />
+                required
+              >
+                <option value="">Select Event</option>
+                <option value="Board Surfing">Board Surfing</option>
+                <option value="Boat Surfing">Boat Surfing</option>
+                <option value="Wind Surfing">Wind Surfing</option>
+                <option value="Special Events">Special Events</option>
+              </select>
             </div>
 
             <div className="flex justify-between items-center">
@@ -113,6 +128,8 @@ export default function EditEvent() {
                 value={formData.age}
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
+                required
+                min="0"
               />
             </div>
 
@@ -124,6 +141,7 @@ export default function EditEvent() {
                 value={formData.gmail}
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
+                required
               />
             </div>
 
@@ -134,6 +152,7 @@ export default function EditEvent() {
                 value={formData.gender}
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
+                required
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -142,20 +161,18 @@ export default function EditEvent() {
             </div>
 
             <div className="flex justify-center mt-6">
-              
               <button
-                onClick={handleSubmit}
+                type="submit" // Changed to type="submit" for form submission
                 className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-transform duration-300 hover:scale-105 shadow-lg"
               >
                 Update
               </button>
-              
             </div>
           </form>
         </div>
       </div>
 
-      <Footer />
+    
     </div>
   );
 }
