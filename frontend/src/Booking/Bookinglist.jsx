@@ -77,6 +77,12 @@ export default function BookingList() {
       });
 
       doc.autoTable(tableColumn, tableRows, { startY: 50 }); // Adjust position to accommodate the header
+
+      // Add signature placeholder
+      const pageHeight = doc.internal.pageSize.height;
+      doc.text("____________________", 14, pageHeight - 40); // Placeholder for signature
+      doc.text("Signature", 14, pageHeight - 35); // Signature label
+
       doc.save('bookings_report.pdf');
     };
   };
@@ -144,11 +150,19 @@ export default function BookingList() {
       )}
 
       <div ref={componentRef} className="flex w-full">
+        {/* Printable Section */}
         <div className="w-2/3">
+          <div className="mb-4">
+            <img src={logo} alt="SurfDeck Logo" className="w-16 h-16 mx-auto mb-2" />
+            <h2 className="text-center text-xl font-bold">SurfDeck Bookings</h2>
+            {/* Add the current date here */}
+            <p className="text-center text-sm">Date: {new Date().toLocaleDateString()}</p>
+          </div>
+
           <table className="min-w-full bg-white border border-gray-300 rounded shadow">
             <thead>
               <tr className="bg-gray-200">
-                <th className="py-1 px-2 border-b text-sm">ID</th> {/* Reduced padding and font size */}
+                <th className="py-1 px-2 border-b text-sm">ID</th>
                 <th className="py-1 px-2 border-b text-sm">Name</th>
                 <th className="py-1 px-2 border-b text-sm">Email</th>
                 <th className="py-1 px-2 border-b text-sm">Mobile</th>
@@ -180,14 +194,13 @@ export default function BookingList() {
         {/* Bar Chart Section */}
         <div className="w-1/3 pl-4">
           <h2 className="text-xl font-bold mb-2"> Booking Count</h2>
-          <ResponsiveContainer width="65%" height={250}> {/* Reduced height for the chart */}
+          <ResponsiveContainer width="75%" height={250}>
             <BarChart data={packageData}>
               <XAxis dataKey="packageName" />
               <YAxis />
               <Tooltip />
               <Legend />
-              {/* Adjusted barSize to reduce the gap between columns */}
-              <Bar dataKey="count" fill="#FF6347" barSize={20} /> {/* Change #FF6347 to your desired color */}
+              <Bar dataKey="count" fill="#FF6347" barSize={20} />
             </BarChart>
           </ResponsiveContainer>
         </div>
