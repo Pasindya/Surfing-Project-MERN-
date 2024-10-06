@@ -92,7 +92,7 @@ export default function AdminHome() {
             <FaChalkboardTeacher className="text-2xl mr-3" />
             Manage Instructors
           </Link>
-          <Link to="/admin/payments/report" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/paymentlog" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaRegChartBar className="text-2xl mr-3" />
             Manage Payment
           </Link>

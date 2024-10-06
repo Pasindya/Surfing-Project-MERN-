@@ -86,6 +86,8 @@ import Supplierlog from './Supplier/Supplierlog';
 import Stafflog from './Staff/Stafflog';
 import PaymentReport from './PaymentReport/PaymentReport';
 import AdminPaymentSummary from './PaymentReport/AdminPaymentSummary';
+import Paymentlog from './Payment/Paymentlog';
+
 
 export default function App() {
   return (
@@ -181,6 +183,8 @@ export default function App() {
         {/* Payment pages */}
         <Route path='/paymentpage' element={<PaymentPage />} />
         <Route path='/paymentsummary' element={<PaymentSummary />} />
+        <Route path='/paymentlog' element={<Paymentlog />} />
+       
 
         
 
