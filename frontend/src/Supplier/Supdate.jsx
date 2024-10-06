@@ -4,8 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 import girl from "../../public/images/imgg.jpg";
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
+import Supnav from "./Supnav";
 
 export default function supplierAdd() {
   const [formData, setFormData] = useState({});
@@ -82,7 +81,7 @@ export default function supplierAdd() {
 
   return (
 
-    <div> <Headernav/>
+    <div> <Supnav />
     <div className="  min-h-screen ">
       <img
         src={girl}
@@ -193,7 +192,7 @@ export default function supplierAdd() {
         </div>
       </div>
     </div>
-    <Footer/>
+    
     </div>
   );
 }

@@ -87,6 +87,8 @@ import Stafflog from './Staff/Stafflog';
 import PaymentReport from './PaymentReport/PaymentReport';
 import AdminPaymentSummary from './PaymentReport/AdminPaymentSummary';
 import Paymentlog from './Payment/Paymentlog';
+import { BarChart } from 'recharts';
+import Bchart from './Supplier/Bchart';
 
 
 export default function App() {
@@ -170,6 +172,8 @@ export default function App() {
         <Route path='/order' element={<Order />} />
         <Route path='/supnav' element={<Supnav />} />
         <Route path='/supplierlog' element={<Supplierlog />} />
+        <Route path='/bchart' element={<Bchart />} />
+        
         
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />

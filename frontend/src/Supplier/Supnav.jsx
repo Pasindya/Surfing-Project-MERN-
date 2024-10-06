@@ -22,6 +22,10 @@ export default function Supnav() {
           <Link to="/table" className="hover:bg-gray-700 px-3 py-2 rounded-md">
             View Details
           </Link>
+          {/* Link to Bar Chart Page */}
+          <Link to="/bchart" className="hover:bg-gray-700 px-3 py-2 rounded-md">
+            Bar Chart
+          </Link>
         </div>
 
         {/* Logout Button */}
