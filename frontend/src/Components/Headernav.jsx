@@ -68,13 +68,8 @@ export default function Headernav() {
           </button>
           {profileMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-20">
-              <Link to="/profile" className="block px-4 py-2 text-slate-700 hover:bg-blue-100">
-                Profile
-              </Link>
-              <Link to="/settings" className="block px-4 py-2 text-slate-700 hover:bg-blue-100">
-                Settings
-              </Link>
-              <Link to="/logout" className="block px-4 py-2 text-slate-700 hover:bg-blue-100">
+             
+              <Link to="/registerstu" className="block px-4 py-2 text-slate-700 hover:bg-blue-100">
                 Logout
               </Link>
             </div>
