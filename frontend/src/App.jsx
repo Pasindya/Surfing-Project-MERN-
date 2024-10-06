@@ -90,6 +90,8 @@ import Paymentlog from './Payment/Paymentlog';
 import { BarChart } from 'recharts';
 import Bchart from './Supplier/Bchart';
 import Studlog from './Students/Studlog';
+import Barchar from './Equipment/Barchar';
+import Bookingsummary from './Booking/Bookingsummary';
 
 
 export default function App() {
@@ -121,6 +123,7 @@ export default function App() {
         <Route path='/bookingdescription' element={<Bookingdescription />} />
         <Route path='/bookinglist' element={<Bookinglist />} />
         <Route path='/adminlog' element={<Adminlog />} />
+        <Route path='/bookingsummary' element={<Bookingsummary />} />
         
         {/* Lesson pages */}
         <Route path='/lessondetails' element={<Lessondetails />} />
@@ -165,6 +168,7 @@ export default function App() {
         <Route path='/Eupdate/:upId' element={<ESupdate />} />
         <Route path='/eqnav' element={<Eqnav />} />
         <Route path='/maintainelog' element={<Maintainelog />} />
+        <Route path='/barchar' element={<Barchar />} />
         
         {/* Supplier pages */}
         <Route path='/table' element={<Tab />} />

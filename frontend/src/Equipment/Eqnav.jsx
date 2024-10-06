@@ -22,6 +22,10 @@ export default function Eqnav() {
           <Link to="/Eadd" className="hover:bg-gray-700 px-3 py-2 rounded-md">
             Add Equipment
           </Link>
+          {/* New Bar Chart Navigation Link */}
+          <Link to="/barchar" className="hover:bg-gray-700 px-3 py-2 rounded-md">
+            Bar Chart
+          </Link>
         </div>
 
         {/* Logout Button */}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
-import { FaHome, FaListAlt, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
+import { FaHome, FaClipboardList, FaThList, FaChartPie, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
 
 export default function Bookingnav() {
   const navigate = useNavigate(); // Hook for programmatic navigation
@@ -32,15 +32,23 @@ export default function Bookingnav() {
 
         <li>
           <Link to="/bookingdetails" className="flex items-center p-4 hover:bg-gray-700 transition duration-200 rounded">
-            <FaListAlt className="mr-2 text-xl" />
+            <FaClipboardList className="mr-2 text-xl" />
             <span>Booking Details</span>
           </Link>
         </li>
 
         <li>
           <Link to="/bookinglist" className="flex items-center p-4 hover:bg-gray-700 transition duration-200 rounded">
-            <FaListAlt className="mr-2 text-xl" />
+            <FaThList className="mr-2 text-xl" />
             <span>Booking List</span>
+          </Link>
+        </li>
+
+        {/* Summary Section */}
+        <li>
+          <Link to="/bookingsummary" className="flex items-center p-4 hover:bg-gray-700 transition duration-200 rounded">
+            <FaChartPie className="mr-2 text-xl" />
+            <span>Summary</span>
           </Link>
         </li>
 
