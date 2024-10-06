@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cat from "/Surfing-Project-MERN-/frontend/public/images/logo.png";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
+
 import Eqnav from "./Eqnav";
 
 export default function Schedul() {
@@ -229,7 +228,7 @@ export default function Schedul() {
           </div>
         </div>
       </div>
-      <Footer />
+     
     </div>
   );
 }

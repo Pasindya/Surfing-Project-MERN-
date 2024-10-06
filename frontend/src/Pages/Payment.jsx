@@ -78,7 +78,7 @@ export default function PaymentDashboard() {
               <p className="text-sm text-gray-800 mb-6">Quickly settle payments for your surfing packages, you're booking 
               beginner lessons, advanced training.</p>
               <img
-                src="/images/equ1.jpg"
+                src="/images/pack4.jpg"
                 alt="Equipment Payment"
                 className="rounded-lg w-56 h-56 object-cover mx-auto mb-6 shadow-lg"
               />

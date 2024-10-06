@@ -65,7 +65,7 @@ export default function Upcoming() {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-500 via-teal-500 to-yellow-400">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-purple-600 via-blue-500 to-purple-600">
       <Headernav />
 
       <div className="relative p-16 text-center text-white overflow-hidden">
