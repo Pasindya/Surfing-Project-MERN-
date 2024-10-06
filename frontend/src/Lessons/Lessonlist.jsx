@@ -32,24 +32,33 @@ export default function LessonList() {
     setReportLoading(true);  // Set loading state for the report generation
     const doc = new jsPDF();
 
-    // Set light blue background
+    // Set white background (default is white)
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
-    doc.setFillColor(173, 216, 230);  // Light blue color in RGB
-    doc.rect(0, 0, pageWidth, pageHeight, 'F');  // Cover the whole page with the background
+    doc.setFillColor(255, 255, 255);  // Set white color in RGB
+    doc.rect(0, 0, pageWidth, pageHeight, 'F');  // Cover the whole page with the white background
 
     // Add logo
     const img = new Image();
     img.src = logo;  // Use the imported logo image path
     img.onload = function() {
-      // Add header information: Logo, Company Name, Address, Date
+      // Add header information: Logo, Company Name, Address, Date & Time
       doc.addImage(img, 'JPEG', 10, 10, 30, 30); // Adjust logo dimensions and position
       doc.setFontSize(16);
       doc.setTextColor(0, 51, 102); // Dark blue for professional look
       doc.text('SurfDeck', 50, 20);
       doc.setFontSize(12);
       doc.text('123 Surf Lane, Beach City, CA', 50, 28);
-      doc.text(`Date: ${new Date().toLocaleDateString()}`, 50, 36);
+      
+      // Add email and mobile information
+      doc.text('Email: info@surfdeck.com', 50, 34);
+      doc.text('Mobile: +123 456 7890', 50, 40);
+
+      // Add current date and time
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString();
+      doc.text(`Date: ${date} | Time: ${time}`, 50, 46);
 
       // Add table with lesson data
       const tableColumn = ["ID", "Title", "Date", "Time", "Location", "Description"];
@@ -94,7 +103,7 @@ export default function LessonList() {
       doc.setFontSize(12);
       doc.text('Senior Instructor, SurfDeck', 10, finalY + 30); // Role and company name
 
-      doc.save('lessons_report.pdf');
+      doc.save(`lessons_report_${date}.pdf`);  // Save PDF with dynamic filename
       setReportLoading(false);  // Reset loading state
     };
   };
