@@ -26,10 +26,10 @@ export default function Intermediate() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <img src="/images/advanced-surfing.jpg" alt="Advanced Surfing" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="/images/surf-coaching.jpg" alt="Surf Coaching" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="/images/wave-dynamics.jpg" alt="Wave Dynamics" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="/images/intermediate-group.jpg" alt="Intermediate Group" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/pack4.jpg" alt="Advanced Surfing" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/package1.jpg" alt="Surf Coaching" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/pck5.jpg" alt="Wave Dynamics" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="/images/les5.jpg" alt="Intermediate Group" className="w-full h-48 object-cover rounded-md shadow" />
         </div>
 
         <ul className="list-disc list-inside text-gray-700 mb-6">

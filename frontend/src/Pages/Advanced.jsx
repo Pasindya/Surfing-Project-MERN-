@@ -28,10 +28,10 @@ export default function Advanced() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <img src=".public/images/ad1.jpg" alt="Big Wave Surfing" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="advanced-maneuvers.jpg" alt="Advanced Maneuvers" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="surf-instructor.jpg" alt="Surf Instructor Coaching" className="w-full h-48 object-cover rounded-md shadow" />
-          <img src="video-analysis.jpg" alt="Video Analysis" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/adv1.jpg" alt="Big Wave Surfing" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/advan.jpg" alt="Advanced Maneuvers" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/les1.jpg" alt="Surf Instructor Coaching" className="w-full h-48 object-cover rounded-md shadow" />
+          <img src="./images/about.jpg" alt="Video Analysis" className="w-full h-48 object-cover rounded-md shadow" />
         </div>
 
         <ul className="list-disc list-inside text-gray-700 mb-6">
