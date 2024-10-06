@@ -49,11 +49,11 @@ export default function BookingList() {
   const handleDownloadReport = () => {
     const doc = new jsPDF();
 
-    // Set the background color to light blue
-    doc.setFillColor(173, 216, 230); // Light blue color (RGB)
+    // Set the background color to white
+    doc.setFillColor(255, 255, 255); // White color (RGB)
     doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F'); // Fill the background
 
-    // Add logo
+    // Add logo and text
     const img = new Image();
     img.src = logo;
     img.onload = function () {
@@ -62,7 +62,9 @@ export default function BookingList() {
       doc.text('SurfDeck', 50, 20);
       doc.setFontSize(12);
       doc.text('123 Surf Lane, Beach City, CA', 50, 28);
-      doc.text(`Date: ${new Date().toLocaleDateString()}`, 50, 36);
+      doc.text(`Email: info@surfdeck.com`, 50, 32);
+      doc.text(`Mobile: +123 456 7890`, 50, 36);
+      doc.text(`Date: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, 50, 40);
 
       // Add table with booking data
       const tableColumn = ["ID", "Name", "Email", "Mobile", "Address", "Package"];
@@ -208,15 +210,15 @@ export default function BookingList() {
         </div>
 
         {/* Bar Chart Section */}
-        <div className="w-1/3 pl-4">
-          <h2 className="text-xl font-bold mb-2"> Booking Count</h2>
-          <ResponsiveContainer width="75%" height={250}>
+        <div className="w-1/3 ml-4">
+          <h3 className="text-center font-bold">Package Distribution</h3>
+          <ResponsiveContainer width="100%" height={300}>
             <BarChart data={packageData}>
               <XAxis dataKey="packageName" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#FF6347" barSize={20} />
+              <Bar dataKey="count" fill="#82ca9d" />
             </BarChart>
           </ResponsiveContainer>
         </div>
