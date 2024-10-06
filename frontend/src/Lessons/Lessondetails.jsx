@@ -80,59 +80,70 @@ export default function Lessondetails() {
     return (
         <div className="flex">
             <Lessonnav />  {/* Include the navigation bar */}
-            <main className="flex-1 ml-64 p-8 bg-gray-100 min-h-screen">
-                <h1 className="text-3xl font-bold mb-6">Lesson Details</h1>
+            <main
+                className="flex-1 ml-64 p-8 min-h-screen bg-cover bg-center relative"
+                style={{
+                    backgroundImage: `url('./images/les1.jpg')`, // Replace with the actual path to your image
+                }}
+            >
+                {/* Overlay to blur background */}
+                <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-md"></div>
 
-                {/* Search Input and Buttons */}
-                <div className="mb-6">
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}  // Update search query
-                        placeholder="Search lessons by any field..."
-                        className="border border-gray-300 rounded p-2 w-64"
-                    />
+                {/* Content on top of the background */}
+                <div className="relative z-10">
+                    <h1 className="text-3xl font-bold mb-6 text-white">Lesson Details</h1>
+
+                    {/* Search Input and Buttons */}
+                    <div className="mb-6">
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}  // Update search query
+                            placeholder="Search lessons by any field..."
+                            className="border border-gray-300 rounded p-2 w-64"
+                        />
+                        <button
+                            onClick={handleClearSearch}
+                            className="bg-gray-500 text-white py-2 px-4 rounded ml-2"
+                        >
+                            Clear Search
+                        </button>
+                    </div>
+
+                    {/* Button to trigger printing/download */}
                     <button
-                        onClick={handleClearSearch}
-                        className="bg-gray-500 text-white py-2 px-4 rounded ml-2"
+                        onClick={handlePrint}
+                        className="bg-green-500 text-white py-2 px-4 rounded mb-4"
                     >
-                        Clear Search
+                        Download Lesson Report
                     </button>
-                </div>
 
-                {/* Button to trigger printing/download */}
-                <button
-                    onClick={handlePrint}
-                    className="bg-green-500 text-white py-2 px-4 rounded mb-4"
-                >
-                    Download Lesson Report
-                </button>
+                    {/* Display Lesson Count */}
+                    <div className="mb-4">
+                        {lessons.length > 0 && (
+                            <p className="text-gray-100">
+                                Showing {lessons.length} lesson(s)
+                            </p>
+                        )}
+                    </div>
 
-                {/* Display Lesson Count */}
-                <div className="mb-4">
-                    {lessons.length > 0 && (
-                        <p className="text-gray-600">
-                            Showing {lessons.length} lesson(s)
-                        </p>
-                    )}
-                </div>
-
-                {/* Wrap the content to be printed in a ref div */}
-                <div ref={componentRef}>
-                    {/* Render lesson details if available */}
-                    {noResults ? (
-                        <p className="text-red-500">No lessons found matching your search.</p>
-                    ) : (
-                        <div>
-                            {lessons && lessons.length > 0 ? (
-                                lessons.map((lesson, i) => (
-                                    <Lesson key={i} lesson={lesson} />  // Render each lesson
-                                ))
-                            ) : (
-                                <p>No lessons available.</p>  // Message if no lessons found
-                            )}
-                        </div>
-                    )}
+                    {/* Wrap the content to be printed in a ref div */}
+                    <div ref={componentRef} className="bg-white p-6 rounded-lg shadow-lg">
+                        {/* Render lesson details if available */}
+                        {noResults ? (
+                            <p className="text-red-500">No lessons found matching your search.</p>
+                        ) : (
+                            <div>
+                                {lessons && lessons.length > 0 ? (
+                                    lessons.map((lesson, i) => (
+                                        <Lesson key={i} lesson={lesson} />  // Render each lesson
+                                    ))
+                                ) : (
+                                    <p>No lessons available.</p>  // Message if no lessons found
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </main>
         </div>
