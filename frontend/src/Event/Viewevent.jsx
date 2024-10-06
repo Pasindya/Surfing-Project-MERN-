@@ -71,8 +71,8 @@ export default function Viewevent() {
 
           const doc = new jsPDF();
 
-          // Set the background color to light blue
-          doc.setFillColor(173, 216, 230); // Light blue color (RGB)
+          // Set the background color to white
+          doc.setFillColor(255, 255, 255); // White color (RGB)
           doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F'); // Fill the background
 
           // Add Logo
@@ -86,9 +86,12 @@ export default function Viewevent() {
           doc.setFontSize(12);
           doc.text("SurfDeck", 60, 50);
           doc.text("123 Surf Lane, Beach City, CA", 60, 56);
+          doc.text("Email: info@surfdeck.com", 60, 62);
+          doc.text("Mobile: +123 456 7890", 60, 68);
 
-          const currentDate = new Date().toLocaleDateString();
-          doc.text(`Date: ${currentDate}`, 60, 62);
+          // Current date and time for the report
+          const currentDateTime = new Date().toLocaleString();
+          doc.text(`Report Generated on: ${currentDateTime}`, 60, 74);
 
           // Define the table columns
           const tableColumns = ["Student Name", "Event Name", "Age", "Email", "Gender"];
@@ -104,7 +107,7 @@ export default function Viewevent() {
 
           // Add the table using autoTable
           doc.autoTable({
-            startY: 70, // Y position to start the table
+            startY: 80, // Y position to start the table
             head: [tableColumns],
             body: tableRows,
             styles: { fontSize: 12, fillColor: [255, 255, 255], textColor: [0, 0, 0] }, // Table styles
@@ -113,7 +116,7 @@ export default function Viewevent() {
           });
 
           // Add Signature Section
-          const finalY = doc.lastAutoTable.finalY || 60; // Get the final Y position after the table
+          const finalY = doc.lastAutoTable.finalY || 80; // Get the final Y position after the table
 
           // Add Signature ("Thenujaa") above the line
           doc.setFontSize(14);
@@ -209,16 +212,16 @@ export default function Viewevent() {
                       <td className="py-3 px-4">{event.age}</td>
                       <td className="py-3 px-4">{event.gmail}</td>
                       <td className="py-3 px-4">{event.gender}</td>
-                      <td className="py-3 px-4 flex space-x-2">
+                      <td className="py-3 px-4">
                         <button
-                          onClick={() => handleEdit(event)}
-                          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-transform duration-300"
+                          onClick={() => handleEdit(event)} // Call handleEdit with event data
+                          className="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600 transition-transform duration-300 mr-2"
                         >
                           Edit
                         </button>
                         <button
-                          onClick={() => handleDelete(event._id)}
-                          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-transform duration-300"
+                          onClick={() => handleDelete(event._id)} // Call handleDelete with event ID
+                          className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-transform duration-300"
                         >
                           Delete
                         </button>
@@ -227,7 +230,7 @@ export default function Viewevent() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6" className="py-3 px-4 text-center">
+                    <td colSpan="6" className="text-center py-4">
                       No events found.
                     </td>
                   </tr>
