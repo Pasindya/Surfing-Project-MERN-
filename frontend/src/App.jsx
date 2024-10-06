@@ -80,6 +80,8 @@ import Eventuser from './Event/Eventuser';
 import Eventnav from './Event/Eventnav';
 import Instructorlog from './Lessons/Instructorlog';
 import Adminlog from './Booking/Adminlog';
+import Saleslog from './Sales/Saleslog';
+import Maintainelog from './Equipment/Maintainelog';
 
 export default function App() {
   return (
@@ -145,12 +147,14 @@ export default function App() {
         <Route path='/oderdetail' element={<Oderdetail />} />
         <Route path='/viewoder' element={<Viewoder />} />
         <Route path='/odersummary' element={<Odersummary />} />
+        <Route path='/saleslog' element={<Saleslog />} />
         
         {/* Equipment pages */}
         <Route path='/Etable' element={<ETable />} />
         <Route path='/Eadd' element={<EsupplierAdd />} />
         <Route path='/Eupdate/:upId' element={<ESupdate />} />
         <Route path='/eqnav' element={<Eqnav />} />
+        <Route path='/maintainelog' element={<Maintainelog />} />
         
         {/* Supplier pages */}
         <Route path='/table' element={<Tab />} />

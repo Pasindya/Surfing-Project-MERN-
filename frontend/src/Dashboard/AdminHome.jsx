@@ -71,7 +71,7 @@ export default function AdminHome() {
             <FaClipboardList className="text-2xl mr-3" />
             Manage Bookings
           </Link>
-          <Link to="/oderdescription" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/saleslog" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaShoppingCart className="text-2xl mr-3" />
             Manage Orders
           </Link>
@@ -84,7 +84,7 @@ export default function AdminHome() {
             <FaCalendarAlt className="text-2xl mr-3" />
             Manage Events
           </Link>
-          <Link to="/etable" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
+          <Link to="/maintainelog" className="btn bg-blue-600 text-white p-6 rounded-lg shadow-md flex items-center hover:bg-blue-700 transition">
             <FaWaveSquare className="text-2xl mr-3" />
             Manage Equipments
           </Link>
