@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';  // Import jsPDF
-import 'jspdf-autotable';  // Import autotable if you want to generate tables
+import 'jspdf-autotable';  // Import autotable to generate tables
 import Studentnav from './Studentnav';  // Ensure this is the correct path
 import Student from './Student';  // Ensure this is the correct path
 
@@ -35,8 +35,8 @@ export default function Studentdetails() {
         });
     }, []);
 
-    // Filter students based on the search query
-    const handleSearch = () => {
+    // Automatically filter students as search query changes
+    useEffect(() => {
         if (searchQuery) {
             const filtered = students.filter(student =>
                 student.name.toLowerCase().includes(searchQuery.toLowerCase())  // Case-insensitive search
@@ -45,31 +45,69 @@ export default function Studentdetails() {
         } else {
             setFilteredStudents(students);  // Show all students if search is empty
         }
-    };
+    }, [searchQuery, students]);  // Run this effect when searchQuery or students changes
 
-    // Function to download a student's details as a PDF with a frame and custom title
-    const downloadStudentPDF = (student) => {
+    // Function to download all students' details as a PDF with a table and signature section
+    const downloadAllStudentsPDF = () => {
         const doc = new jsPDF();
+
+        // Convert your logo to a Base64 string and use it here
+        const logo = '/images/logoh.jpeg';  // Adjust the path to your logo
+
+        // Add the logo to the PDF
+        doc.addImage(logo, 'PNG', 10, 10, 30, 30);  // x, y, width, height
+
+        // Add the company name
+        doc.setFontSize(16);
+        doc.text('SurfDeck', 50, 20);
+
+        // Add the company address
+        doc.setFontSize(12);
+        doc.text('123 Surf Lane, Beach City, CA', 50, 28);  // Company address
+
+        // Add the current date
+        const currentDate = new Date().toLocaleDateString();
+        doc.text(`Date: ${currentDate}`, 150, 28);  // Current date
 
         // Add a title to the PDF
         doc.setFontSize(18);
-        doc.text('Student Details Report', 105, 20, null, null, 'center');  // Centered title at the top
+        doc.text('All Students Details', 105, 50, null, null, 'center');  // Centered title at the top
 
-        // Draw a frame (rectangle) around the student details
-        doc.setDrawColor(0);  // Black border color
-        doc.setLineWidth(0.5);  // Border thickness
-        doc.rect(10, 30, 190, 60);  // x, y, width, height for the frame
+        // Define the table content (headers and rows)
+        const tableColumns = ["Student Name", "Email", "Phone", "Address"];
+        const tableRows = students.map((student) => [
+            student.name,
+            student.email,
+            student.mobileno,
+            student.address,
+        ]);
 
-        // Add student details inside the frame
-        doc.setFontSize(12);  // Set font size for details
-        doc.text(`Name: ${student.name}`, 15, 40);
-        doc.text(`Email: ${student.email}`, 15, 50);
-        doc.text(`Phone: ${student.mobileno}`, 15, 60);
-        doc.text(`Address: ${student.address}`, 15, 70);
-        doc.text(`Password: ${student.password}`, 15, 80);
+        // Add the student details in a table format
+        doc.autoTable({
+            startY: 70,  // Table start position
+            head: [tableColumns],
+            body: tableRows,
+        });
 
-        // Save the PDF with the student's name and 'Report' in the filename
-        doc.save(`${student.name}-details-report.pdf`);
+        // Add the signature section
+        const finalY = doc.lastAutoTable.finalY || 60;  // Get the final Y position after the table
+
+        // Add Signature ("vishmi") above the line
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "italic");  // Using italic to simulate a cursive signature
+        doc.text("vishmi", 60, finalY + 20, null, null, 'center');  // Adjust positioning as necessary
+
+        // Add line below the signature
+        doc.setLineWidth(0.5);
+        doc.line(40, finalY + 22, 80, finalY + 22);  // Adjusted x-coordinates for better centering
+
+        // Add Role and Company below the line
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");  // Reset to normal font
+        doc.text("Student Manager, Surf Deck.", 60, finalY + 28, null, null, 'center');
+
+        // Save the PDF with 'All-Students-Details-Report' in the filename
+        doc.save(`All-Students-Details-Report.pdf`);
     };
 
     return (
@@ -86,29 +124,15 @@ export default function Studentdetails() {
             <main className="flex-1 ml-64 p-8 bg-gray-100 bg-opacity-70 min-h-screen">
                 <h1 className="text-3xl font-bold mb-6 text-blue-500">Student Details</h1>
 
-                {/* Search Input with Icon */}
-                <div className="mb-6 flex">
+                {/* Search Input */}
+                <div className="mb-6">
                     <input
                         type="text"
                         placeholder="Search by student name"
                         className="w-full p-3 border border-gray-300 rounded-md"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}  // Update search query
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                handleSearch();  // Trigger search on Enter key press
-                            }
-                        }}
+                        onChange={(e) => setSearchQuery(e.target.value)}  // Update search query on each keystroke
                     />
-                    <button
-                        onClick={handleSearch}
-                        className="ml-2 p-3 bg-blue-500 text-white rounded-md"
-                    >
-                        {/* Search Icon as SVG */}
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M8 4a4 4 0 110 8 4 4 0 010-8zM2 8a6 6 0 1111.52 3.387l4.387 4.386a1 1 0 11-1.414 1.415l-4.386-4.387A6 6 0 012 8z" clipRule="evenodd" />
-                        </svg>
-                    </button>
                 </div>
 
                 {/* Render student details if available */}
@@ -118,9 +142,9 @@ export default function Studentdetails() {
                             <div key={i} className="mb-4 p-4 bg-white rounded-lg shadow-md bg-opacity-90">
                                 <Student student={student} />  {/* Render each student */}
                                 
-                                {/* Download PDF Button */}
+                                {/* Download PDF Button for all students */}
                                 <button
-                                    onClick={() => downloadStudentPDF(student)}
+                                    onClick={downloadAllStudentsPDF}
                                     className="mt-4 p-2 bg-blue-500 text-white rounded-md"
                                 >
                                     Download PDF

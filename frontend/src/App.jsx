@@ -89,6 +89,7 @@ import AdminPaymentSummary from './PaymentReport/AdminPaymentSummary';
 import Paymentlog from './Payment/Paymentlog';
 import { BarChart } from 'recharts';
 import Bchart from './Supplier/Bchart';
+import Studlog from './Students/Studlog';
 
 
 export default function App() {
@@ -183,6 +184,7 @@ export default function App() {
         <Route path='/addstudent' element={<Addstudent />} />
         <Route path='/studentdetails' element={<Studentdetails />} />
         <Route path='/updateStudent/:id' element={<UpdateStudent />} />
+        <Route path='/studlog' element={<Studlog />} />
 
         {/* Payment pages */}
         <Route path='/paymentpage' element={<PaymentPage />} />

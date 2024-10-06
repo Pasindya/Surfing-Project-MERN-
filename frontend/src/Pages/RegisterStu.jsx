@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import Headernav from '../Components/Headernav'; // Importing the header
 import Footer from '../Components/Footer'; // Importing the footer
@@ -33,7 +33,6 @@ export default function RegisterStu() {
       return; // Prevent further input if the value contains invalid characters
     }
     
-
     // Validation for mobile number (must be exactly 10 digits)
     if (name === 'mobileno') {
       const regex = /^\d{0,10}$/; // Allows only digits and limits input to 10 digits
@@ -83,6 +82,31 @@ export default function RegisterStu() {
       console.error('Error adding student:', err);
     }
   };
+
+  useEffect(() => {
+    // Adding the chatbot script dynamically
+    const script1 = document.createElement('script');
+    script1.innerHTML = `
+      window.embeddedChatbotConfig = {
+        chatbotId: "brrFnXT5za7asdHqSc_WS",
+        domain: "www.chatbase.co"
+      }
+    `;
+    document.body.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.src = "https://www.chatbase.co/embed.min.js";
+    script2.setAttribute("chatbotId", "brrFnXT5za7asdHqSc_WS");
+    script2.setAttribute("domain", "www.chatbase.co");
+    script2.setAttribute("defer", true);
+    document.body.appendChild(script2);
+
+    // Cleanup function to remove the scripts on component unmount
+    return () => {
+      document.body.removeChild(script1);
+      document.body.removeChild(script2);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col h-screen">
@@ -210,6 +234,8 @@ export default function RegisterStu() {
         </div>
       </div>
 
+      {/* Chatbot scripts will be loaded here */}
+      
       {/* Footer */}
       <Footer />
     </div>
