@@ -83,6 +83,7 @@ import Adminlog from './Booking/Adminlog';
 import Saleslog from './Sales/Saleslog';
 import Maintainelog from './Equipment/Maintainelog';
 import Supplierlog from './Supplier/Supplierlog';
+import Stafflog from './Staff/Stafflog';
 
 export default function App() {
   return (
@@ -137,6 +138,7 @@ export default function App() {
         <Route path='/staffdetails' element={<Staffdetails />} />
         <Route path='/addstaff' element={<Addstaff />} />
         <Route path='/upstaff/:id' element={<Upstaff />} />
+        <Route path='/stafflog' element={<Stafflog />} />
         
         {/* Sales pages */}
         <Route path='/surfboard' element={<Surfboard />} />
