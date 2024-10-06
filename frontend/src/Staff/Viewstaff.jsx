@@ -1,3 +1,4 @@
+//Viewstaff
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import Staffnavi from './Staffnavi'; // Import the navigation bar

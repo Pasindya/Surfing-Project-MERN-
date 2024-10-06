@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
-import Headernav from '../Components/Headernav';
-import Footer from '../Components/Footer';
-import Eqnav from "./Eqnav";
-import { Bar } from 'react-chartjs-2';  // Import the Bar chart component
+import { Bar, Pie } from 'react-chartjs-2';  // Import Bar and Pie chart components
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,11 +8,15 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement  // For the Pie chart
 } from 'chart.js';
+import Headernav from '../Components/Headernav';
+import Footer from '../Components/Footer';
+import Eqnav from "./Eqnav";
 
 // Register the necessary components for Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 export default function Barchar() {
   const [publishError, setPublishError] = useState(null);
@@ -45,7 +44,7 @@ export default function Barchar() {
   }, []);
 
   // Prepare data for the bar chart
-  const chartData = {
+  const barChartData = {
     labels: Info.map((equip) => equip.name),  // Use equipment names as labels
     datasets: [
       {
@@ -53,6 +52,33 @@ export default function Barchar() {
         data: Info.map((equip) => equip.Quantity), // Use quantity as data
         backgroundColor: 'rgba(255, 99, 132, 0.5)', // Red color
         borderColor: 'rgba(255, 99, 132, 1)', // Dark red border
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Prepare data for the pie chart
+  const pieChartData = {
+    labels: Info.map((equip) => equip.name),  // Use equipment names as labels
+    datasets: [
+      {
+        data: Info.map((equip) => equip.Quantity), // Use quantity as data
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)',  // Red
+          'rgba(54, 162, 235, 0.5)',  // Blue
+          'rgba(255, 206, 86, 0.5)',  // Yellow
+          'rgba(75, 192, 192, 0.5)',  // Green
+          'rgba(153, 102, 255, 0.5)', // Purple
+          'rgba(255, 159, 64, 0.5)'   // Orange
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',  // Red border
+          'rgba(54, 162, 235, 1)',  // Blue border
+          'rgba(255, 206, 86, 1)',  // Yellow border
+          'rgba(75, 192, 192, 1)',  // Green border
+          'rgba(153, 102, 255, 1)', // Purple border
+          'rgba(255, 159, 64, 1)'   // Orange border
+        ],
         borderWidth: 1,
       },
     ],
@@ -67,13 +93,16 @@ export default function Barchar() {
             <h1 className="text-4xl font-serif opacity-90 text-gray-800">Equipment Management</h1>
           </div>
 
-          {/* Search Input and Buttons */}
-          {/* Existing code for search and buttons... */}
-
           {/* Render the Bar Chart */}
           <div className="mt-6">
-            <h2 className="text-2xl font-semibold text-gray-800">Equipment Quantity Chart</h2>
-            <Bar data={chartData} />
+            <h2 className="text-2xl font-semibold text-gray-800">Equipment Quantity Bar Chart</h2>
+            <Bar data={barChartData} />
+          </div>
+
+          {/* Render the Pie Chart */}
+          <div className="mt-6">
+            <h2 className="text-2xl font-semibold text-gray-800">Equipment Quantity Pie Chart</h2>
+            <Pie data={pieChartData} />
           </div>
 
           {/* Existing table rendering code... */}

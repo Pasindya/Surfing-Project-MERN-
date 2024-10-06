@@ -1,9 +1,10 @@
+//Staffm
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Staffm(props) {
-  const { _id, name, gmail, age, address, experience, password } = props.staff;
+export default function Staffm({ staff, onDelete }) {
+  const { _id, name, gmail, age, address, experience, nic, salary, designation } = staff;
   const navigate = useNavigate();
 
   const handleUpdate = () => {
@@ -11,13 +12,15 @@ export default function Staffm(props) {
   };
 
   const handleDelete = async () => {
-    try {
-      await axios.delete(`http://localhost:5009/staff/${_id}`);
-      alert('Staff member deleted successfully.');
-      window.location.reload(); // Refresh the page to reflect changes
-    } catch (error) {
-      console.error('Error deleting staff member:', error);
-      alert('Error deleting staff member.');
+    if (window.confirm('Are you sure you want to delete this staff member?')) {
+      try {
+        await axios.delete(`http://localhost:5009/staff/${_id}`);
+        alert('Staff member deleted successfully.');
+        onDelete(_id); // Call the onDelete function passed from the parent
+      } catch (error) {
+        console.error('Error deleting staff member:', error);
+        alert('Error deleting staff member.');
+      }
     }
   };
 
@@ -30,7 +33,9 @@ export default function Staffm(props) {
       <p><strong>Age:</strong> {age || 'Not provided'}</p>
       <p><strong>Address:</strong> {address || 'Not provided'}</p>
       <p><strong>Experience:</strong> {experience || 'Not provided'}</p>
-      <p><strong>Password:</strong> {password || 'Not provided'}</p> {/* Display password field */}
+      <p><strong>Nic:</strong> {nic || 'Not provided'}</p>
+      <p><strong>Salary:</strong> {salary || 'Not provided'}</p>
+      <p><strong>Designation:</strong> {designation || 'Not provided'}</p>
       <div className="mt-4">
         <button
           onClick={handleUpdate}

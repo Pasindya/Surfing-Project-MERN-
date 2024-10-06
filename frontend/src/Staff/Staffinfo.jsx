@@ -1,3 +1,4 @@
+//staffinfo
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Staffnavi from './Staffnavi'; // Ensure this path is correct

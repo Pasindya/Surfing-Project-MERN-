@@ -1,4 +1,4 @@
-
+//Model
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const shortid = require('shortid'); // Import shortid
@@ -13,14 +13,17 @@ const staffSchema = new Schema({
     name: {
         type: String,
         required: true,
+       
     },
     gmail: {
         type: String,
         required: true,
+      
     },
     age: {
         type: Number,
         required: true,
+      
     },
     address: {
         type: String,
@@ -29,11 +32,27 @@ const staffSchema = new Schema({
     experience: {
         type: Number,
         required: true,
+        
     },
     password: {
         type: String,
         required: true,
+       
     },
+    nic: {
+        type: String,
+        required: true,
+        
+    },
+    salary: {
+        type: Number,
+        required: true,
+       
+    },
+    designation: {
+        type: String,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model("StaffModel", staffSchema);

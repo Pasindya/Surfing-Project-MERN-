@@ -149,6 +149,7 @@ export default function App() {
         <Route path='/addstaff' element={<Addstaff />} />
         <Route path='/upstaff/:id' element={<Upstaff />} />
         <Route path='/stafflog' element={<Stafflog />} />
+        <Route path="/updatestaff/:id" element={<Upstaff />} />
         
         {/* Sales pages */}
         <Route path='/surfboard' element={<Surfboard />} />

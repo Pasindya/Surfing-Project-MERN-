@@ -1,6 +1,7 @@
-
+//controll
 const Staff = require("../Model/StaffModel");
 
+// Get all staff members
 const getAllStaff = async (req, res, next) => {
     let staff;
     try {
@@ -14,14 +15,13 @@ const getAllStaff = async (req, res, next) => {
     return res.status(200).json({ staff });
 };
 
-// Data Insert
+// Add a new staff member
 const addStaff = async (req, res, next) => {
-    const { name, gmail, age, address, experience, password } = req.body;
+    const { name, gmail, age, address, experience, password, nic, salary, designation } = req.body;
 
     let staff;
-
     try {
-        staff = new Staff({ name, gmail, age, address, experience, password });
+        staff = new Staff({ name, gmail, age, address, experience, password, nic, salary, designation });
         await staff.save();
     } catch (err) {
         console.log(err);
@@ -34,7 +34,7 @@ const addStaff = async (req, res, next) => {
     return res.status(200).json({ staff });
 };
 
-// Get by ID
+// Get staff member by ID
 const getById = async (req, res, next) => {
     const id = req.params.id;
     let staff;
@@ -52,13 +52,14 @@ const getById = async (req, res, next) => {
     return res.status(200).json({ staff });
 };
 
-// Update staff member
+// Update staff member details
 const updateStaff = async (req, res, next) => {
     const id = req.params.id;
-    const { name, gmail, age, address, experience, password } = req.body;
+    const { name, gmail, age, address, experience, password, nic, salary, designation } = req.body;
     let staff;
 
     try {
+        // Update the staff member's information
         staff = await Staff.findByIdAndUpdate(id, {
             name,
             gmail,
@@ -66,8 +67,11 @@ const updateStaff = async (req, res, next) => {
             address,
             experience,
             password,
-        });
-        staff = await staff.save();
+            nic,
+            salary,
+            designation,
+        }, { new: true }); // Ensure the updated document is returned
+
     } catch (err) {
         console.log(err);
     }
@@ -79,23 +83,23 @@ const updateStaff = async (req, res, next) => {
     return res.status(200).json({ staff });
 };
 
-   //Delete staff memeber details 
-   const deleteStaff = async (req,res,next) => {
+// Delete staff member details
+const deleteStaff = async (req, res, next) => {
     const id = req.params.id;
-
     let staff;
 
-    try{
-        staff = await Staff.findByIdAndDelete(id)
-    }catch (err) {
+    try {
+        staff = await Staff.findByIdAndDelete(id);
+    } catch (err) {
         console.log(err);
     }
-    //unable to delete
+
+    // Unable to delete
     if (!staff) {
         return res.status(404).json({ message: "Unable to delete staff member details" });
     }
-    return res.status(200).json({ staff });
-   }
+    return res.status(200).json({ message: "Staff member deleted successfully" });
+};
 
 // Corrected export
 exports.getAllStaff = getAllStaff;
@@ -103,4 +107,3 @@ exports.addStaff = addStaff;
 exports.getById = getById;
 exports.updateStaff = updateStaff;
 exports.deleteStaff = deleteStaff;
-  

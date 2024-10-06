@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 const URL = "http://localhost:5009/bookings"; // Ensure this is the correct URL to your API
 
@@ -8,7 +14,6 @@ export default function Bookingsummary() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [summaryData, setSummaryData] = useState([]);
   const [bookingsByPackage, setBookingsByPackage] = useState({});
 
   useEffect(() => {
@@ -16,7 +21,6 @@ export default function Bookingsummary() {
       try {
         const response = await axios.get(URL);
         setBookings(response.data.bookings);
-        generateSummaryData(response.data.bookings);
         groupBookingsByPackage(response.data.bookings);
       } catch (err) {
         setError('Failed to fetch bookings.');
@@ -27,34 +31,6 @@ export default function Bookingsummary() {
 
     fetchBookings();
   }, []);
-
-  // Function to group bookings by both date and package name for the bar chart
-  const generateSummaryData = (bookings) => {
-    const summaryByDateAndPackage = bookings.reduce((acc, booking) => {
-      const bookingDate = new Date(booking.date).toLocaleDateString(); // Assuming 'date' field exists
-      const packageName = booking.packagename; // Assuming 'packagename' field exists
-
-      // Initialize date entry if it doesn't exist
-      if (!acc[bookingDate]) {
-        acc[bookingDate] = {};
-      }
-      // Increment the count for the specific package on that date
-      acc[bookingDate][packageName] = (acc[bookingDate][packageName] || 0) + 1;
-
-      return acc;
-    }, {});
-
-    // Transform data into an array of objects for charting
-    const summary = Object.keys(summaryByDateAndPackage).map(date => {
-      const entry = { date };
-      Object.keys(summaryByDateAndPackage[date]).forEach(packageName => {
-        entry[packageName] = summaryByDateAndPackage[date][packageName];
-      });
-      return entry;
-    });
-
-    setSummaryData(summary);
-  };
 
   // Function to group bookings by package name for display in the table
   const groupBookingsByPackage = (bookings) => {
@@ -78,34 +54,59 @@ export default function Bookingsummary() {
     return <div className="text-center text-red-500">{error}</div>;
   }
 
-  // Extract all unique package names for the legend and bars
+  // Extract all unique package names for the pie chart
   const allPackages = Array.from(new Set(bookings.map(booking => booking.packagename)));
 
   // Define a fixed set of colors for the packages
   const colors = ["#8884d8", "#82ca9d", "#ffc658", "#ff7f50", "#a4de6c", "#d0ed57"];
 
+  // Prepare data for the pie chart
+  const pieData = allPackages.map(packageName => {
+    return {
+      name: packageName,
+      value: bookings.filter(booking => booking.packagename === packageName).length, // Count of bookings for each package
+    };
+  });
+
   return (
     <div className="p-4 flex flex-col items-center">
       <h1 className="text-2xl font-bold mb-4">Booking Summary</h1>
-      
-      {/* Bar Chart for bookings over time, grouped by package */}
-      <div className="w-full h-64 mb-8">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={summaryData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {allPackages.map((packageName, index) => (
-              <Bar
-                key={packageName}
-                dataKey={packageName}
-                fill={colors[index % colors.length]} // Use colors from the predefined set
-              />
+
+      <div className="flex flex-row justify-between w-full">
+        {/* Pie Chart for total bookings by package */}
+        <div className="w-full h-64 mb-8">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={80}
+                fill="#8884d8"
+                label
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Display package names and booking counts inside a notice frame */}
+        <div className="ml-8 flex flex-col justify-center">
+          <div className="border border-gray-300 rounded-lg bg-gray-100 p-4 shadow-md">
+            <h2 className="text-lg font-semibold mb-2">Bookings Count</h2>
+            {pieData.map((data, index) => (
+              <div key={index} className="text-lg mb-1">
+                {data.name}: <span className="font-bold">{data.value}</span> bookings
+              </div>
             ))}
-          </BarChart>
-        </ResponsiveContainer>
+          </div>
+        </div>
       </div>
 
       {/* Display bookings grouped by package name */}
