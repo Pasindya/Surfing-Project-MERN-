@@ -82,6 +82,7 @@ import Instructorlog from './Lessons/Instructorlog';
 import Adminlog from './Booking/Adminlog';
 import Saleslog from './Sales/Saleslog';
 import Maintainelog from './Equipment/Maintainelog';
+import Supplierlog from './Supplier/Supplierlog';
 
 export default function App() {
   return (
@@ -162,6 +163,7 @@ export default function App() {
         <Route path='/update/:upId' element={<Supupdate />} />
         <Route path='/order' element={<Order />} />
         <Route path='/supnav' element={<Supnav />} />
+        <Route path='/supplierlog' element={<Supplierlog />} />
         
         {/* Student pages */}
         <Route path='/studentnav' element={<Studentnav />} />
