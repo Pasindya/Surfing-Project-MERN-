@@ -11,7 +11,7 @@ paymentRouter.get("/:id",PaymentControl.getById);
 paymentRouter.put("/:id",PaymentControl.updatePayment);
 paymentRouter.delete("/:id",PaymentControl.deletePayment);
 paymentRouter.get('/payments/search', PaymentControl.searchPayment); // Add this route for searching payments
-
+paymentRouter.get('/report', PaymentControl.getPaymentReport); // This is the route for the report
 
 
 

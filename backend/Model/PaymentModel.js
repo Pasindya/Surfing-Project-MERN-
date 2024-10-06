@@ -45,9 +45,13 @@ const paymentSchema = new Schema({
         type: String,
         required: true,
     },
-    OfferCode: {
+    TotalAmount: {
         type: String,
         required: true,
+    },
+    Status: { // Add this field
+        type: String,
+        default: 'Pending', // Default status
     },
 });
 

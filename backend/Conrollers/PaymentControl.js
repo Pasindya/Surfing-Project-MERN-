@@ -12,10 +12,10 @@ const getAllPayment = async (req, res) => {
 
 // Data insert
 const addPayment = async (req, res) => {
-    const { FullName, Email, Mobile, Address, CardType, CardNumber, ExpirationMonth, ExpirationYear, CVV, OfferCode } = req.body;
+    const { FullName, Email, Mobile, Address, CardType, CardNumber, ExpirationMonth, ExpirationYear, CVV, TotalAmount } = req.body;
 
     try {
-        const newPayment = new Payment({ FullName, Email, Mobile, Address, CardType, CardNumber, ExpirationMonth, ExpirationYear, CVV, OfferCode });
+        const newPayment = new Payment({ FullName, Email, Mobile, Address, CardType, CardNumber, ExpirationMonth, ExpirationYear, CVV, TotalAmount });
         const savedPayment = await newPayment.save();
         return res.status(201).json({ savedPayment });
     } catch (error) {
@@ -41,12 +41,12 @@ const getById = async (req, res) => {
 // Update payment details
 const updatePayment = async (req, res) => {
     const id = req.params.id;
-    const { FullName, Email, Mobile, Address } = req.body; // Only update these fields
+    const { FullName, Email, Mobile, Address , Status } = req.body; // Only update these fields
 
     try {
         const updatedPayment = await Payment.findByIdAndUpdate(
             id,
-            { FullName, Email, Mobile, Address },
+            { FullName, Email, Mobile, Address , Status},
             { new: true, runValidators: true }
         );
         
@@ -95,11 +95,24 @@ const searchPayment = async (req, res) => {
     }
 };
 
+// Get payment report (you can customize this function)
+const getPaymentReport = async (req, res) => {
+    try {
+        // You can add filters, sorting, or any other logic here
+        const payments = await Payment.find(); // or use aggregation for advanced reporting
+        res.json(payments);
+    } catch (error) {
+        console.error("Error fetching payment report:", error);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
 module.exports = {
     getAllPayment,
     addPayment,
     getById,
     updatePayment,
     deletePayment,
-    searchPayment
+    searchPayment,
+    getPaymentReport,
 };
