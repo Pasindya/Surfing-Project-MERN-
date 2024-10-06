@@ -60,7 +60,7 @@ import UpdateStudent from './Students/Updatestudent';
 import Adminlogin from './Components/Adminlogin';
 import Eqnav from './Equipment/Eqnav';
 import Supnav from './Supplier/Supnav';
-import ReportGeneration from './Payment/ReportGeneration'; 
+
 import PaymentPage from './Payment/PaymentPage';
 import PaymentSummary from './Payment/PaymentSummary';
 import Boardsurf from './Event/Boardsurf';
@@ -84,6 +84,8 @@ import Saleslog from './Sales/Saleslog';
 import Maintainelog from './Equipment/Maintainelog';
 import Supplierlog from './Supplier/Supplierlog';
 import Stafflog from './Staff/Stafflog';
+import PaymentReport from './PaymentReport/PaymentReport';
+import AdminPaymentSummary from './PaymentReport/AdminPaymentSummary';
 
 export default function App() {
   return (
@@ -179,7 +181,12 @@ export default function App() {
         {/* Payment pages */}
         <Route path='/paymentpage' element={<PaymentPage />} />
         <Route path='/paymentsummary' element={<PaymentSummary />} />
-        <Route path="/report" element={<ReportGeneration />} />
+
+        
+
+    <Route path="/admin/payments/report" element={<PaymentReport />} />
+    <Route path="/admin/payments/summary" element={<AdminPaymentSummary />} />
+        
         
         {/* Event pages */}
         <Route path='/boardsurf' element={<Boardsurf />} />

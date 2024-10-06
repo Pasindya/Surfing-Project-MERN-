@@ -1,247 +1,161 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
+import jsPDF from 'jspdf';
 import Headernav from '../Components/Headernav';
 import Footer from '../Components/Footer';
 
-const PaymentSummary = () => {
+// Import the logo image (make sure the path is correct)
+import logo from '/images/logo.png'; // Update the path if necessary
+
+export default function PaymentSummary() {
   const location = useLocation();
-  const [payments, setPayments] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredPayments, setFilteredPayments] = useState([]);
-  const [selectedPayment, setSelectedPayment] = useState(null);
-  const [formData, setFormData] = useState({
-    FullName: '',
-    Email: '',
-    Mobile: '',
-    Address: ''
-  });
-  const navigate = useNavigate(); // Add navigate
+  const navigate = useNavigate(); // Initialize navigate
+  const { paymentDetails } = location.state || {};
 
-  useEffect(() => {
-    const fetchPayments = async () => {
-      try {
-        const response = await fetch('http://localhost:5009/payments');
-        const data = await response.json();
-        setPayments(data);
-      } catch (error) {
-        console.error("Error fetching payments:", error);
-      }
-    };
+  const downloadPDF = () => {
+    if (!paymentDetails) return;
 
-    fetchPayments();
-  }, []);
+    const doc = new jsPDF();
 
-  useEffect(() => {
-    const results = payments.filter(payment =>
-      payment._id.includes(searchTerm)
-    );
-    setFilteredPayments(results);
-  }, [searchTerm, payments]);
+    // Set a soft light blue background color (RGB: 220, 240, 255)
+    doc.setFillColor(220, 240, 255);
+    doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F'); // Fill the whole page
 
-  const handleUpdateClick = (payment) => {
-    setSelectedPayment(payment);
-    setFormData({
-      FullName: payment.FullName,
-      Email: payment.Email,
-      Mobile: payment.Mobile,
-      Address: payment.Address
+    // Add the logo
+    doc.addImage(logo, 'PNG', 10, 10, 30, 30); // Adjust the path and size if necessary
+
+    // Add company name and address
+    doc.setFontSize(16);
+    doc.text('SurfDeck', 50, 20); // Company name
+    doc.setFontSize(14);
+    doc.text('123 Surf Lane, Beach City, CA', 50, 30); // Company address
+
+    // Add the current date
+    const currentDate = new Date().toLocaleDateString();
+    doc.text(`Date: ${currentDate}`, 150, 20); // Date at the top-right
+
+    // Add the current time below the date
+    const currentTime = new Date().toLocaleTimeString();
+    doc.text(`Time: ${currentTime}`, 150, 30); // Time directly below the date
+
+    // Draw a line to separate company details and payment details
+    doc.setLineWidth(0.5); // Set the line width
+    doc.line(10, 50, doc.internal.pageSize.getWidth() - 10, 50); // Horizontal line
+
+    // Add payment report title (centered)
+    doc.setFontSize(27);
+    const reportTitle = 'Payment Report';
+    const reportTitleWidth = doc.getTextWidth(reportTitle);
+    doc.text(reportTitle, (doc.internal.pageSize.getWidth() - reportTitleWidth) / 2, 70); // Move down to Y=70
+
+    // Add "Payment Successful" message in the PDF (centered)
+    doc.setFontSize(16);
+    doc.setTextColor(0, 128, 0); // Green text for success
+    const successfulMessage = 'Payment Successful';
+    const messageWidth = doc.getTextWidth(successfulMessage);
+    doc.text(successfulMessage, (doc.internal.pageSize.getWidth() - messageWidth) / 2, 90); // Move down to Y=90
+
+    // Add Thank You message
+    doc.setFontSize(14);
+    doc.setTextColor(0, 0, 225); // Change color to blue
+    const thankYouMessage = 'Thank you for your payment!';
+    const thankYouWidth = doc.getTextWidth(thankYouMessage);
+    doc.text(thankYouMessage, (doc.internal.pageSize.getWidth() - thankYouWidth) / 2, 100); // Centered horizontally
+
+    // Set text color back to black for payment details (centered)
+    doc.setTextColor(0, 0, 0); // Black color
+    doc.setFont('helvetica', 'bold'); // Set font to Helvetica and bold
+    doc.setFontSize(15);
+
+    // Calculate vertical center for the payment details
+    const verticalStart = 130; // Adjust the start position for details (below the Thank You message)
+    const lineHeight = 10;
+    const totalLines = 6; // Total number of payment details lines
+    const verticalOffset = ((doc.internal.pageSize.getHeight() - (totalLines * lineHeight)) / 2) - verticalStart;
+
+    // Add the payment details (centered vertically and horizontally)
+    const details = [
+      `Full Name: ${paymentDetails.fullName}`,
+      `Email: ${paymentDetails.email}`,
+      `Mobile: ${paymentDetails.mobile}`,
+      `Address: ${paymentDetails.address}`,
+      `Card Type: ${paymentDetails.cardType}`,
+      `Total Amount (USD $): ${paymentDetails.totalAmount}`
+    ];
+
+    details.forEach((detail, index) => {
+      const detailWidth = doc.getTextWidth(detail);
+      doc.text(detail, (doc.internal.pageSize.getWidth() - detailWidth) / 2, verticalStart + verticalOffset + (index * lineHeight)); // Centered details vertically and horizontally
     });
-  };
 
-  const handleDeleteClick = async (paymentId) => {
-    try {
-      const response = await fetch(`http://localhost:5009/payments/${paymentId}`, {
-        method: 'DELETE'
-      });
+    // Add the footer (company email, phone number, and website)
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100); // Dark grey for footer
 
-      if (response.ok) {
-        // Update state to reflect deletion
-        setPayments(payments.filter(payment => payment._id !== paymentId));
-        setFilteredPayments(filteredPayments.filter(payment => payment._id !== paymentId)); // Update filtered payments
+    const footerText = [
+      `Email: info@surfdeck.com`,
+      `Phone: +123 456 7890`
+    ];
 
-        // Navigate to report generation page after deletion
-        navigate('/paymentsummary');
-      } else {
-        console.error("Error deleting payment:", await response.text());
-      }
-    } catch (error) {
-      console.error("Error deleting payment:", error);
-    }
-  };
+    footerText.forEach((text, idx) => {
+      const footerWidth = doc.getTextWidth(text);
+      doc.text(text, (doc.internal.pageSize.getWidth() - footerWidth) / 2, 280 + (idx * 5)); // Footer position near the bottom
+    });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:5009/payments/${selectedPayment._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const updatedPayment = await response.json();
-        setPayments(prevPayments =>
-          prevPayments.map(payment =>
-            payment._id === updatedPayment.payment._id ? updatedPayment.payment : payment
-          )
-        );
-        setSelectedPayment(null);
-        setFormData({ FullName: '', Email: '', Mobile: '', Address: '' });
-      } else {
-        console.error("Error updating payment:", await response.text());
-      }
-    } catch (error) {
-      console.error("Error updating payment:", error);
-    }
+    // Save the PDF
+    doc.save(`Payment_Summary_${paymentDetails.fullName}.pdf`);
   };
 
   return (
-    <div
-      className="min-h-screen flex flex-col bg-gray-100"
+    <div 
+      className="min-h-screen flex flex-col" 
       style={{
-        backgroundImage: `url('/images/board3.jpg')`,
+        backgroundImage: 'url("/images/beach2.jpg")', // Update with the correct path
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
       <Headernav />
-
-      <div className="p-10 bg-white/60 border-2 border-white/50 shadow-5xl rounded-3xl max-w-9xl mx-auto my-12 transition-all duration-500 ">
+      
+      <div className="p-12 bg-white/80 border-2 border-gray-200 shadow-2xl rounded-3xl max-w-4xl mx-auto my-12 transition-all duration-500">
         <h2 className="text-4xl md:text-5xl font-bold text-center my-6 text-black drop-shadow-lg">
           Payment Summary
         </h2>
-
-        <div className="mb-6">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search by Payment ID"
-            className="border p-2 rounded w-full"
-          />
+        
+        <div className="mt-8 space-y-4">
+          <p><strong>Full Name:</strong> {paymentDetails.fullName}</p>
+          <p><strong>Email:</strong> {paymentDetails.email}</p>
+          <p><strong>Mobile:</strong> {paymentDetails.mobile}</p>
+          <p><strong>Address:</strong> {paymentDetails.address}</p>
+          <p><strong>Card Type:</strong> {paymentDetails.cardType}</p>
+          <p><strong>Total Amount (USD $):</strong> {paymentDetails.totalAmount}</p>
+          {/* Add more details as necessary */}
         </div>
 
-        <div className="mt-10">
-          <table className="min-w-full bg-white border border-gray-200 table-auto">
-            <thead>
-              <tr>
-                <th className="border px-6 py-4">Payment ID</th>
-                <th className="border px-6 py-4">Full Name</th>
-                <th className="border px-6 py-4">Email</th>
-                <th className="border px-6 py-4">Mobile</th>
-                <th className="border px-6 py-4">Address</th>
-                <th className="border px-6 py-4">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredPayments.length > 0 ? (
-                filteredPayments.map((payment) => (
-                  <tr key={payment._id}>
-                    <td className="border px-6 py-4">{payment._id}</td>
-                    <td className="border px-6 py-4">{payment.FullName}</td>
-                    <td className="border px-6 py-4">{payment.Email}</td>
-                    <td className="border px-6 py-4">{payment.Mobile}</td>
-                    <td className="border px-6 py-4">{payment.Address}</td>
-                    <td className="border px-6 py-4">
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleUpdateClick(payment)}
-                          className="bg-blue-500 text-white px-4 py-2 rounded"
-                        >
-                          Update
-                        </button>
-                        <button
-                          onClick={() => handleDeleteClick(payment._id)}
-                          className="bg-red-500 text-white px-4 py-2 rounded"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="6" className="text-center border px-6 py-4">No matching payment details available.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {selectedPayment && (
-          <form onSubmit={handleSubmit} className="mt-8 p-4 border border-gray-200 rounded">
-            <h3 className="text-2xl font-bold mb-4">Update Payment</h3>
-            <div className="mb-4">
-              <label className="block mb-1">Full Name</label>
-              <input
-                type="text"
-                name="FullName"
-                value={formData.FullName}
-                onChange={handleChange}
-                required
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Email</label>
-              <input
-                type="email"
-                name="Email"
-                value={formData.Email}
-                onChange={handleChange}
-                required
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Mobile</label>
-              <input
-                type="text"
-                name="Mobile"
-                value={formData.Mobile}
-                onChange={handleChange}
-                required
-                className="border p-2 w-full"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-1">Address</label>
-              <input
-                type="text"
-                name="Address"
-                value={formData.Address}
-                onChange={handleChange}
-                required
-                className="border p-2 w-full"
-              />
-            </div>
-            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Update</button>
-          </form>
-        )}
-
-        {/* Navigation Button to Report Generation Page */}
-        <div className="mt-8">
-          <button 
-            onClick={() => navigate('/report')}
-            className="bg-yellow-500 text-white px-4 py-2 rounded"
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={downloadPDF}
+            className="px-4 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-800"
           >
-            Go to Report Generation
+            Download Summary 
           </button>
         </div>
+        
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => navigate('/')}
+            className="px-4 py-2 bg-gray-600 text-white font-bold rounded-lg hover:bg-gray-800"
+          >
+            Back to Home
+          </button>
+        </div>
+
       </div>
 
-      <Footer />
+      <div className="mt-auto mb-0"> {/* Add margin-bottom to push footer down */}
+        <Footer />
+      </div>
     </div>
   );
-};
-
-export default PaymentSummary;
+}
