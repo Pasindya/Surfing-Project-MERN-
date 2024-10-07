@@ -1,76 +1,44 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import girl from "../../public/images/img.jpg";
 import Headernav from '../Components/Headernav';
 import Footer from '../Components/Footer';
 
 export default function SupplierAdd() {
   const [formData, setFormData] = useState({});
-  const [publishError, setPublishError] = useState(null);
-  const [validation, setValidation] = useState(null);
-  const [validationfund, setFundValidation] = useState(null);
-  const [dateError, setDateError] = useState(null);
-  const [nameError, setNameError] = useState(null); // State for name validation
-
   const navigate = useNavigate();
 
-  // Handle form field changes
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+  // Function to get today's date in 'YYYY-MM-DD' format
+  const getTodayDate = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
   };
 
-  // Handle name input change with validation
+  // Handle name input change with validation to restrict numbers and special characters
   const handleNameChange = (e) => {
-    const name = e.target.value;
-    const namePattern = /^[A-Za-z\s]*$/; // Allow only letters and spaces
-
-    // Prevent default if input doesn't match the pattern
-    if (!namePattern.test(name)) {
-      setNameError("Name should contain only letters and spaces.");
-      setFormData({ ...formData, name: name.replace(/[^A-Za-z\s]/g, '') }); // Remove invalid characters
-    } else {
-      setFormData({ ...formData, name }); // Update form data if valid
-      setNameError(null); // Clear error message if valid
-    }
+    const name = e.target.value.replace(/[^A-Za-z\s]/g, ''); // Only allow letters and spaces
+    setFormData({ ...formData, name }); // Update form data with restricted value
   };
 
-  // Handle date input change with validation
+  // Validation for quantity input (restricting to numbers)
+  const handleQuantityChange = (e) => {
+    const quantity = e.target.value.replace(/\D/g, ''); // Only allow numbers
+    setFormData({ ...formData, Quantity: quantity });
+  };
+
+  // Validation for available fund input (restricting to numbers)
+  const handleFundChange = (e) => {
+    const fund = e.target.value.replace(/\D/g, ''); // Only allow numbers
+    setFormData({ ...formData, fund });
+  };
+
+  // Handle date input change
   const handleDateChange = (e) => {
     const date = e.target.value.trim();
-    // Set formData directly since input type is date
     setFormData({ ...formData, Reqdata: date });
-    setDateError(null); // Clear error message if valid
-  };
-
-  // Validation for quantity input
-  const handleQuantityChange = (e) => {
-    const quantity = e.target.value.trim();
-    const quantityPattern = /^[1-9]\d*$/;
-
-    if (quantity === "") {
-      setValidation(null);
-    } else if (!quantityPattern.test(quantity)) {
-      setValidation("Quantity must be a positive integer.");
-    } else {
-      setFormData({ ...formData, Quantity: quantity });
-      setValidation(null); // Clear error message if valid
-    }
-  };
-
-  // Validation for available fund input
-  const handleFundChange = (e) => {
-    const fund = e.target.value.trim();
-    const fundPattern = /^[1-9]\d*$/;
-
-    if (fund === "") {
-      setFundValidation(null);
-    } else if (!fundPattern.test(fund)) {
-      setFundValidation("Fund must be a positive number.");
-    } else {
-      setFormData({ ...formData, fund });
-      setFundValidation(null); // Clear error message if valid
-    }
   };
 
   // Handle form submission
@@ -85,18 +53,12 @@ export default function SupplierAdd() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (!res.ok) {
-        setPublishError(data.message);
-        return;
-      }
-
       if (res.ok) {
-        setPublishError(null);
         alert("Submission successful");
         navigate("/");
       }
     } catch (error) {
-      setPublishError("Something went wrong");
+      alert("Something went wrong");
     }
   };
 
@@ -105,7 +67,6 @@ export default function SupplierAdd() {
       <Headernav />
       <div className="min-h-screen">
         <img src={girl} alt="" className="w-full h-[700px] opacity-95 object-cover" />
-
         <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center">
           <div>
             <div className="lg:mt-20 mt-[270px] md:mt-20 lg:ml-[450px] md:ml-[240px] ml-[4px]">
@@ -123,7 +84,7 @@ export default function SupplierAdd() {
                 <div className="flex justify-center items-center">
                   <div className="mt-2">
                     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                      {/* Name field with validation */}
+                      {/* Name field */}
                       <div>
                         <h3 className="font-semibold text-gray-700 ml-1">Equipment Name</h3>
                         <input
@@ -132,8 +93,8 @@ export default function SupplierAdd() {
                           placeholder="Enter equipment name"
                           id="name"
                           onChange={handleNameChange}
+                          value={formData.name || ""}
                         />
-                        {nameError && <p className="mt-0 text-red-500">{nameError}</p>}
                       </div>
 
                       {/* Date field with date picker */}
@@ -143,9 +104,10 @@ export default function SupplierAdd() {
                           className="bg-slate-100 bg-opacity-40 border-white p-3 border-opacity-50 rounded-lg w-[460px] h-11"
                           type="date"
                           id="Reqdata"
+                          min={getTodayDate()} // Restrict past dates
                           onChange={handleDateChange}
+                          value={formData.Reqdata || ""}
                         />
-                        {dateError && <p className="mt-0 text-red-500">{dateError}</p>}
                       </div>
 
                       <div>
@@ -154,12 +116,12 @@ export default function SupplierAdd() {
                           className="bg-slate-100 bg-opacity-40 border-white border-opacity-50 p-3 rounded-lg w-[460px] h-28"
                           placeholder="Describe the task"
                           id="Task"
-                          onChange={handleChange}
+                          onChange={handleDateChange}
                         />
                       </div>
 
                       <div className="flex justify-center items-center gap-4">
-                        {/* Quantity field with validation */}
+                        {/* Quantity field */}
                         <div>
                           <h3 className="font-semibold text-gray-950 text-opacity-65 ml-1">Item Quantity</h3>
                           <input
@@ -167,11 +129,11 @@ export default function SupplierAdd() {
                             type="text"
                             id="Quantity"
                             onChange={handleQuantityChange}
+                            value={formData.Quantity || ""}
                           />
-                          {validation && <p className="mt-0 text-red-500">{validation}</p>}
                         </div>
 
-                        {/* Fund field with validation */}
+                        {/* Fund field */}
                         <div>
                           <h3 className="font-semibold text-gray-950 text-opacity-65 ml-1">Available Fund</h3>
                           <input
@@ -179,8 +141,8 @@ export default function SupplierAdd() {
                             type="text"
                             id="fund"
                             onChange={handleFundChange}
+                            value={formData.fund || ""}
                           />
-                          {validationfund && <p className="mt-0 text-red-500">{validationfund}</p>}
                         </div>
                       </div>
 
@@ -193,12 +155,6 @@ export default function SupplierAdd() {
                         </div>
                       </button>
                     </form>
-
-                    {publishError && (
-                      <p className="mt-0 text-red-600 absolute bg-slate-100 bg-opacity-50 w-300 h-12 ml-[-50px] rounded-lg text-center">
-                        {publishError}
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>
