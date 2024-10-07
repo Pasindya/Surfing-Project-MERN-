@@ -49,9 +49,6 @@ export default function Headernav() {
           <Link to="/payment" className="text-slate-700 hover:text-blue-600 transition duration-300">
             Payments
           </Link>
-          <Link to="/order" className="text-slate-700 hover:text-blue-600 transition duration-300">
-            Supplier
-          </Link>
           <Link to="/surfboard" className="text-slate-700 hover:text-blue-600 transition duration-300">
             Surfboards
           </Link>
@@ -68,7 +65,6 @@ export default function Headernav() {
           </button>
           {profileMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-20">
-             
               <Link to="/registerstu" className="block px-4 py-2 text-slate-700 hover:bg-blue-100">
                 Logout
               </Link>
@@ -81,8 +77,11 @@ export default function Headernav() {
       {menuOpen && (
         <div className="sm:hidden bg-slate-100 shadow-md mt-2">
           <nav className="flex flex-col">
-            <Link to="/package" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
+            <Link to="/packages" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
               Packages
+            </Link>
+            <Link to="/upcoming" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
+              Lessons
             </Link>
             <Link to="/staff" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
               Staff
@@ -90,17 +89,14 @@ export default function Headernav() {
             <Link to="/events" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
               Events
             </Link>
-            <Link to="/equipments" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
+            <Link to="/Eadd" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
               Equipments
             </Link>
             <Link to="/payment" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
               Payments
             </Link>
-            <Link to="/order" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
-              Supplier
-            </Link>
-            <Link to="/support" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
-              Support
+            <Link to="/surfboard" className="px-4 py-2 text-slate-700 hover:bg-blue-100">
+              Surfboards
             </Link>
           </nav>
         </div>

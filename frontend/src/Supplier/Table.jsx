@@ -187,9 +187,6 @@ export default function Schedul() {
                       Supply Items
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium bg-blue-900 bg-opacity-90 text-white text-opacity-80 uppercase">
-                      Send Order
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium bg-blue-900 bg-opacity-90 text-white text-opacity-80 uppercase">
                       Edit
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium bg-blue-900 bg-opacity-90 text-white text-opacity-80 uppercase">
@@ -219,13 +216,6 @@ export default function Schedul() {
                             {Employe.SItems}
                           </td>
                           <td className="whitespace-nowrap">
-                            <Link to={`/order`}>
-                              <button className="w-24 bg-blue-600 rounded-lg hover:opacity-80 h-10 bg-opacity-70 border-white border border-opacity-45 text font-serif text-white text-opacity-80 ml-2">
-                                Order
-                              </button>
-                            </Link>
-                          </td>
-                          <td className="whitespace-nowrap">
                             <Link to={`/update/${Employe._id}`}>
                               <button className="w-24 bg-green-500 hover:opacity-80 rounded-lg h-10 bg-opacity-70 border-white border border-opacity-45 text font-serif text-white text-opacity-80">
                                 Edit
@@ -248,11 +238,8 @@ export default function Schedul() {
                     </>
                   ) : (
                     <tr>
-                      <td
-                        colSpan="7"
-                        className="px-6 py-4 text-center text-gray-500"
-                      >
-                        No data found.
+                      <td colSpan="5" className="text-center py-4">
+                        No suppliers found.
                       </td>
                     </tr>
                   )}
@@ -262,6 +249,20 @@ export default function Schedul() {
           </div>
         </div>
       </div>
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold">Success</h2>
+            <p>The supplier has been successfully deleted.</p>
+            <button
+              onClick={closeModal}
+              className="mt-4 bg-blue-500 text-white rounded px-4 py-2"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
