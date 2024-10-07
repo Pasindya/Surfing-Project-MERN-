@@ -59,19 +59,20 @@ export default function PaymentPage() {
       newErrors.email = 'Email format is invalid';
     }
 
-    // Validate Mobile Number
+    // Validate Mobile Number (Only 9 digits allowed)
     if (!paymentDetails.mobile) {
-      newErrors.mobile = 'Mobile number is required';
-    } else if (!/^(?:\+?[0-9]{1,3})?[1-9][0-9]{9}$/.test(`${countryCode}${paymentDetails.mobile}`)) {
-      newErrors.mobile = 'Mobile number must be a valid format';
-    }
+        newErrors.mobile = 'Mobile number is required';
+     } else if (!/^\d{9}$/.test(paymentDetails.mobile)) {
+        newErrors.mobile = 'Mobile number must be exactly 9 digits';
+     }
 
-    // Validate Card Number
+    // Validate Card Number (Only 16 digits allowed)
     if (!paymentDetails.cardNumber) {
-      newErrors.cardNumber = 'Card Number is required';
-    } else if (!/^\d{1,16}$/.test(paymentDetails.cardNumber)) {
-      newErrors.cardNumber = 'Card Number must be a maximum of 16 digits';
-    }
+       newErrors.cardNumber = 'Card Number is required';
+    } else if (!/^\d{16}$/.test(paymentDetails.cardNumber)) {
+        newErrors.cardNumber = 'Card Number must be exactly 16 digits';
+   }
+
 
     // Validate Expiration Month and Year
     if (!paymentDetails.expirationMonth) {
@@ -80,23 +81,26 @@ export default function PaymentPage() {
       newErrors.expirationMonth = 'Expiration Month must be between 01 and 12';
     }
 
-    if (!paymentDetails.expirationYear) {
-      newErrors.expirationYear = 'Expiration Year is required';
-    } else if (paymentDetails.expirationYear.length !== 4 || isNaN(paymentDetails.expirationYear)) {
-      newErrors.expirationYear = 'Expiration Year must be 4 digits';
-    } else {
-      const currentYear = new Date().getFullYear();
-      if (parseInt(paymentDetails.expirationYear) < currentYear) {
-        newErrors.expirationYear = 'Expiration Year cannot be in the past';
-      }
-    }
+    // Validate Expiration Year (4 digits only)
+if (!paymentDetails.expirationYear) {
+  newErrors.expirationYear = 'Expiration Year is required';
+} else if (!/^\d{4}$/.test(paymentDetails.expirationYear)) {
+  newErrors.expirationYear = 'Expiration Year must be exactly 4 digits';
+} else {
+  const currentYear = new Date().getFullYear();
+  if (parseInt(paymentDetails.expirationYear) < currentYear) {
+    newErrors.expirationYear = 'Expiration Year cannot be in the past';
+  }
+}
 
-    // Validate CVV
-    if (!paymentDetails.cvv) {
-      newErrors.cvv = 'CVV is required';
-    } else if (!/^\d{3,4}$/.test(paymentDetails.cvv)) {
-      newErrors.cvv = 'CVV must be 3 or 4 digits';
-    }
+
+    // Validate CVV (3 digits only)
+if (!paymentDetails.cvv) {
+  newErrors.cvv = 'CVV is required';
+} else if (!/^\d{3}$/.test(paymentDetails.cvv)) {
+  newErrors.cvv = 'CVV must be exactly 3 digits';
+}
+
 
     // Validate Total Amount (if necessary)
     if (!paymentDetails.totalAmount) {
@@ -173,6 +177,41 @@ export default function PaymentPage() {
         return; // Ignore the change if it contains letters or special characters
       }
     }
+
+    if (name === 'mobile') {
+      if (!/^\d{0,9}$/.test(value)) {
+        return; // Ignore the change if it exceeds 9 digits or contains letters/special characters
+      }
+    }
+
+    if (name === 'cardNumber') {
+      if (!/^\d{0,16}$/.test(value)) {
+        return; // Ignore the change if it exceeds 16 digits or contains letters/special characters
+      }
+    }
+
+    // Restrict expirationMonth to only numbers and valid months (1-12)
+  if (name === 'expirationMonth') {
+    if (!/^(0?[1-9]|1[0-2])?$/.test(value)) {
+      return; // Ignore if input is not between 1 and 12 or contains letters/special characters
+    }
+  }
+
+  // Restrict expirationYear to exactly 4 digits (no letters or special characters)
+  if (name === 'expirationYear') {
+    if (!/^\d{0,4}$/.test(value)) {
+      return; // Ignore if input contains letters or special characters, limit to 4 digits
+    }
+  }
+  if (name === 'cvv') {
+    if (!/^\d{0,3}$/.test(value)) {
+      return; // Ignore if input contains letters or special characters, limit to 3 digits
+    }
+  }
+
+    
+    
+    
 
     setPaymentDetails({ ...paymentDetails, [name]: value });
   };
@@ -368,19 +407,23 @@ export default function PaymentPage() {
               {errors.cvv && <span className="text-red-500">{errors.cvv}</span>}
             </div>
 
-            {/* Total Amount Field */}
-            <div className="flex flex-col">
+           {/* Total Amount Field */}
+           <div className="flex flex-col">
               <label htmlFor="totalAmount" className="text-sm font-medium text-gray-700">Total Amount (USD $)</label>
-              <input
-                type="text"
-                id="totalAmount"
-                name="totalAmount"
-                value={paymentDetails.totalAmount}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded-lg"
-                required
-              />
-            </div>
+          <input
+           type="text"
+           id="totalAmount"
+           name="totalAmount"
+           value={`$${paymentDetails.totalAmount}`}
+           onChange={(e) => {
+              const value = e.target.value.replace(/[^0-9.]/g, ''); // Remove non-numeric characters except the dot
+                 setPaymentDetails({ ...paymentDetails, totalAmount: value });
+              }}
+          className="p-2 border border-gray-300 rounded-lg"
+          required
+          />
+         </div>
+
 
             {/* Submit and Send Email Button */}
             <div className="flex justify-between mt-4">
