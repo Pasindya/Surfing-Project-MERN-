@@ -15,19 +15,15 @@ export default function Events() {
     gender: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [nameError, setNameError] = useState(''); // State for name error
   const [submissionMessage, setSubmissionMessage] = useState(''); // State for submission feedback
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Validate StudentName input to only accept letters and spaces
+    // Validate StudentName input to only accept letters and spaces, but without showing the error message
     if (name === 'StudentName') {
-      if (!/^[a-zA-Z\s]*$/.test(value)) {  // Check if the value contains anything other than letters or spaces
-        setNameError('Only letters and spaces are allowed');
-        return;  // Do not update the state with invalid input
-      } else {
-        setNameError(''); // Clear error message if valid
+      if (!/^[a-zA-Z\s]*$/.test(value)) {
+        return;  // Do not update the state with invalid input, but do not show the error
       }
     }
 
@@ -143,7 +139,6 @@ export default function Events() {
               placeholder="Enter your name"
               required
             />
-            {nameError && <p className="text-red-500">{nameError}</p>} {/* Error message */}
           </div>
           <div>
             <label htmlFor="EventName" className="block text-lg font-semibold text-gray-800">
