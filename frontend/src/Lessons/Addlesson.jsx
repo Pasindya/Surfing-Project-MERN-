@@ -1,8 +1,3 @@
-// Addesson.jsx
-
-
-
-
 import React, { useState } from 'react';
 import Lessonnav from './Lessonnav';
 import { useNavigate } from 'react-router-dom';
@@ -86,12 +81,10 @@ export default function Addlesson() {
                 className="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                 required
               >
- Seles
                 <option value="" disabled>Select a lesson title</option>
                 {lessonTitles.map((title, index) => (
                   <option key={index} value={title}>{title}</option>
                 ))}
-
                 <option value="" disabled>Select Lesson</option>
                 <optgroup label="Beginner Lessons">
                   <option value="Beginner Lesson 1">Beginner Lesson 1</option>
@@ -115,7 +108,6 @@ export default function Addlesson() {
                   <option value="Yoga Lesson">Yoga Lesson</option>
                   <option value="Self-Guard Lesson">Self-Guard Lesson</option>
                 </optgroup>
- main
               </select>
             </div>
 
