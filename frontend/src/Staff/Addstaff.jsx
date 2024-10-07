@@ -31,17 +31,17 @@ export default function Addstaff() {
     }
 
     // Simple regex validation for the Gmail field
-    if (name === 'gmail') {
+    /*if (name === 'gmail') {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
         return; // Do not update if invalid email is typed
       }
     }
-
+*/
     // For the "nic" field, restrict input to numbers and limit to a certain length
     if (name === 'nic') {
-      const nicRegex = /^[0-9]*$/; // Only numbers
-      if (!nicRegex.test(value) || value.length > 10) {
+      const nicRegex = /^[0-9]*[Vv]?$/; // Only numbers
+      if (!nicRegex.test(value) || value.length > 14) {
         return; // Do not update if invalid NIC is typed
       }
     }

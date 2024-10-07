@@ -60,6 +60,14 @@ export default function Upstaff() {
                 return; // Do not update if invalid character is typed
             }
         }
+         // For the "nic" field, restrict input to numbers and the letter "V"
+        if (name === 'nic') {
+        const nicRegex = /^[0-9]*[Vv]?$/; // Allow only numbers and optionally 'V' or 'v'
+        if (!nicRegex.test(value) || value.length > 12) {
+            return; // Do not update if invalid NIC is typed
+        }
+    }
+        
 
         setInputs((prevState) => ({
             ...prevState,
