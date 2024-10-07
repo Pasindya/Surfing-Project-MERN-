@@ -27,6 +27,25 @@ export default function Events() {
       }
     }
 
+    // Restrict age input to values between 1 and 65
+    if (name === 'age') {
+      if (value === '') {
+        // Allow empty value to let the user clear the input
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value
+        }));
+        return;
+      }
+
+      const ageValue = parseInt(value, 10);
+
+      // Check if the entered value is a valid number and within the range
+      if (isNaN(ageValue) || ageValue < 1 || ageValue > 65) {
+        return; // Do not update the state with invalid age
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
@@ -40,8 +59,8 @@ export default function Events() {
     setSubmissionMessage('');
 
     // Basic client-side validation
-    if (formData.age <= 0) {
-      alert('Please enter a valid age.');
+    if (formData.age <= 0 || formData.age > 65) {
+      alert('Please enter a valid age between 1 and 65.');
       return;
     }
 
@@ -153,10 +172,10 @@ export default function Events() {
               required
             >
               <option value="">Select an Event</option>
-              <option value="Board Surfing">Board Surfing</option>
-              <option value="Boat Surfing">Boat Surfing</option>
-              <option value="Wind Surfing">Wind Surfing</option>
-              <option value="Special Events">Special Events</option>
+              <option value="Board Surfing">Board Surfing $100</option>
+              <option value="Boat Surfing">Boat Surfing $100</option>
+              <option value="Wind Surfing">Wind Surfing $100</option>
+              <option value="Special Events">Special Events $200</option>
             </select>
           </div>
           <div>
@@ -173,6 +192,7 @@ export default function Events() {
               placeholder="Enter your age"
               required
               min="1"
+              max="65"  // Limit age between 1 and 65
             />
           </div>
           <div>
@@ -224,5 +244,5 @@ export default function Events() {
 
       <Footer />
     </div>
-  )
+  );
 }

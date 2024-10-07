@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-import Eventnav from './Eventnav';
-
+import Headernav from '../Components/Headernav';
+import Footer from '../Components/Footer';
 
 export default function EditEvent() {
   const { state } = useLocation(); // Accessing the passed state
@@ -20,6 +19,33 @@ export default function EditEvent() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Validate StudentName input to only accept letters and spaces, but without showing the error message
+    if (name === 'StudentName') {
+      if (!/^[A-Za-z\s]*$/.test(value)) {
+        return; // Do not update the state with invalid input
+      }
+    }
+
+    // Restrict age input to values between 1 and 65
+    if (name === 'age') {
+      if (value === '') {
+        // Allow empty value to let the user clear the input
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value
+        }));
+        return;
+      }
+
+      const ageValue = parseInt(value, 10);
+
+      // Check if the entered value is a valid number and within the range
+      if (isNaN(ageValue) || ageValue < 1 || ageValue > 65) {
+        return; // Do not update the state with invalid age
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -34,6 +60,12 @@ export default function EditEvent() {
     if (!nameRegex.test(formData.StudentName)) {
       alert('Student Name can only contain letters and spaces.');
       return; // Prevent form submission
+    }
+
+    // Basic client-side validation for age
+    if (formData.age < 1 || formData.age > 65) {
+      alert('Please enter a valid age between 1 and 65.');
+      return;
     }
 
     try {
@@ -64,7 +96,7 @@ export default function EditEvent() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Eventnav />
+      <Headernav />
 
       {/* Background with Image */}
       <div
@@ -113,10 +145,10 @@ export default function EditEvent() {
                 required
               >
                 <option value="">Select Event</option>
-                <option value="Board Surfing">Board Surfing</option>
-                <option value="Boat Surfing">Boat Surfing</option>
-                <option value="Wind Surfing">Wind Surfing</option>
-                <option value="Special Events">Special Events</option>
+                <option value="Board Surfing">Board Surfing $100</option>
+                <option value="Boat Surfing">Boat Surfing $100</option>
+                <option value="Wind Surfing">Wind Surfing $100</option>
+                <option value="Special Events">Special Events $200</option>
               </select>
             </div>
 
@@ -129,7 +161,8 @@ export default function EditEvent() {
                 onChange={handleChange}
                 className="border border-gray-300 p-3 rounded-lg w-2/3 bg-gray-800 text-white focus:outline-none focus:ring-4 focus:ring-yellow-500"
                 required
-                min="0"
+                min="1"    // Updated min from 0 to 1
+                max="65"    // Added max to restrict age to 65
               />
             </div>
 
@@ -172,7 +205,7 @@ export default function EditEvent() {
         </div>
       </div>
 
-    
+      <Footer />
     </div>
   );
 }
