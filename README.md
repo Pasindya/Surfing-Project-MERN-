@@ -1,0 +1,1 @@
+This is 2nd year 2nd sem project .We implemented surfing school management system aiming surfing in Arugambay Area.Using MERN Stack we implemented this & I implemented lesson management & booking function including CRUD parts
